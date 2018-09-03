@@ -7,7 +7,7 @@ Solution: We create an app that is working partly as a showcase of the customers
 Minimum need to have functionality:
 
 - Brewdog api search and filter functionality.
-- Presentation of products combined with foodpairing.
+- Presentation of products combined with foodpairing taken from brewdog api.
 
 Nice to have functionality:
 
