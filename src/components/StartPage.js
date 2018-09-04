@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import Categories from "./Categories.js";
 
-
-
 //states
 class StartPage extends Component {
   state = {
