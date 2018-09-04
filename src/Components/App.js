@@ -1,9 +1,14 @@
-import React, { Component } from 'react';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
+import StartPage from "./StartPage";
 
 class App extends Component {
   render() {
-    return null;
+    return (
+      <div>
+        <StartPage />
+      </div>
+    );
   }
 }
 
