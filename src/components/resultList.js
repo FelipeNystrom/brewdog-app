@@ -3,24 +3,25 @@ import APIFetch from './fetchFromApi';
 
 class DisplayCards extends Component {
   state = {
-    beers: []
+    beers: ['Loading...']
   };
 
   //   function is passed to fetch component to fetch result array and set to state
   getBeers = fetchedData => {
     this.setState({ beers: fetchedData });
   };
+
   render() {
     const { beers } = this.state;
-    const generateBeers = beers.map((beer, i) => {
+    const generateBeers = beers.map(beer => {
       return (
-        <div key={i} className="card">
+        <div key={beer.id} className="card">
           <div className="beer-card">
-            <div className="beer-card-title">#</div>
+            <div className="beer-card-title">{beer.name}</div>
             <div className="beer-card-img">
-              <img src="#" alt="#" />
+              <img src={beer.image_url} alt="#" />
             </div>
-            <div className="beer-card-description">#</div>
+            <div className="beer-card-description">{beer.description}</div>
           </div>
           <div className="food-card">
             <div className="food-card-title">#</div>
@@ -34,7 +35,8 @@ class DisplayCards extends Component {
     });
     return (
       <Fragment>
-        <APIFetch food="veg" setAppState={this.getBeers} />
+        <APIFetch food="veg" setListState={this.getBeers} />
+
         {generateBeers}
       </Fragment>
     );

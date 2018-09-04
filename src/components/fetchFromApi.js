@@ -7,7 +7,7 @@ class FetchFromAPI extends Component {
     fetch(url)
       .then(res => res.json())
       .then(data => data.filter(beer => !beer.image_url.includes('keg.png')))
-      .then(filtredData => this.props.setAppState(filtredData));
+      .then(filtredData => this.props.setListState(filtredData));
   }
   render() {
     return null;
