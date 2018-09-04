@@ -15,8 +15,6 @@ class DisplayCards extends Component {
   render() {
     const { beers, isLoaded } = this.state;
     const generateBeers = beers.map(beer => {
-      console.log(beer.name);
-      console.log(beer.id);
       return (
         <div key={beer.id} className="card">
           <div className="beer-card">
@@ -27,7 +25,15 @@ class DisplayCards extends Component {
             <div className="beer-card-description">{beer.description}</div>
           </div>
           <div className="food-card">
-            <div className="food-card-title">#</div>
+            <div className="food-card-title">
+              <h1>
+                {/* Work on solution to retrive if recipe contains searched word. 
+              Know it only return if word is first */}
+                {beer.food_pairing.filter(food => {
+                  return food.includes(this.props.searchFor);
+                })}
+              </h1>
+            </div>
             <div className="food-card-img">
               <img src="#" alt="#" />
             </div>
@@ -36,9 +42,10 @@ class DisplayCards extends Component {
         </div>
       );
     });
+    const { searchFor } = this.props;
     return (
       <Fragment>
-        <APIFetch food="veg" setListState={this.getBeers} />
+        <APIFetch food={searchFor} setListState={this.getBeers} />
         {!isLoaded ? <div className="loading">Loading...</div> : generateBeers}
       </Fragment>
     );

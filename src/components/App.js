@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import './App.css';
-import DisplayCards from './ResultList';
 import StartPage from './StartPage';
 
 class App extends Component {
@@ -8,7 +7,6 @@ class App extends Component {
     return (
       <Fragment>
         <StartPage />
-        <DisplayCards />
       </Fragment>
     );
   }
