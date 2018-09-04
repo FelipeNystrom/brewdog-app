@@ -3,17 +3,20 @@ import APIFetch from './fetchFromApi';
 
 class DisplayCards extends Component {
   state = {
-    beers: ['Loading...']
+    isLoaded: false,
+    beers: []
   };
 
   //   function is passed to fetch component to fetch result array and set to state
   getBeers = fetchedData => {
-    this.setState({ beers: fetchedData });
+    this.setState({ beers: fetchedData, isLoaded: true });
   };
 
   render() {
-    const { beers } = this.state;
+    const { beers, isLoaded } = this.state;
     const generateBeers = beers.map(beer => {
+      console.log(beer.name);
+      console.log(beer.id);
       return (
         <div key={beer.id} className="card">
           <div className="beer-card">
@@ -36,8 +39,7 @@ class DisplayCards extends Component {
     return (
       <Fragment>
         <APIFetch food="veg" setListState={this.getBeers} />
-
-        {generateBeers}
+        {!isLoaded ? <div className="loading">Loading...</div> : generateBeers}
       </Fragment>
     );
   }
