@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import APIFetch from './fetchFromApi';
+import APIFetch from './FetchFromApi';
 
 class DisplayCards extends Component {
   state = {

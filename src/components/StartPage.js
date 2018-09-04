@@ -1,15 +1,15 @@
-import React, { Component } from "react";
-import Categories from "./Categories.js";
+import React, { Component } from 'react';
+import Categories from './Categories.js';
 
 //states
 class StartPage extends Component {
   state = {
-    meal: "",
+    meal: '',
     choiceIsMade: false
   };
 
   //onclick-event: changes state
-  Click = event => {
+  handleClick = event => {
     this.setState({
       [event.target.name]: event.target.value,
       choiceIsMade: true

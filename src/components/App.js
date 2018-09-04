@@ -1,10 +1,16 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import './App.css';
-import DisplayCards from './resultList';
+import DisplayCards from './ResultList';
+import StartPage from './StartPage';
 
 class App extends Component {
   render() {
-    return <DisplayCards />;
+    return (
+      <Fragment>
+        <StartPage />
+        <DisplayCards />
+      </Fragment>
+    );
   }
 }
 
