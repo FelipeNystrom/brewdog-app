@@ -27,10 +27,10 @@ class DisplayCards extends Component {
           <div className="food-card">
             <div className="food-card-title">
               <h1>
-                {/* Work on solution to retrive if recipe contains searched word. 
-              Know it only return if word is first */}
                 {beer.food_pairing.filter(food => {
-                  return food.includes(this.props.searchFor);
+                  const check = food.toLowerCase();
+                  const match = this.props.searchFor.toLowerCase();
+                  return check.includes(match);
                 })}
               </h1>
             </div>
