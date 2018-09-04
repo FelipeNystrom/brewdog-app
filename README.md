@@ -8,9 +8,9 @@ Minimum need to have functionality:
 
 - Brewdog api search and filter functionality.
 - Presentation of products combined with foodpairing taken from brewdog api.
+- Login and register functionality
+- Voting for best beer or foodpairing
 
 Nice to have functionality:
 
 - Combine foodparing with recipe api.
-- Login and register functionality
-- Voting for best beer or foodpairing
