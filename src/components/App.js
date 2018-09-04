@@ -1,10 +1,14 @@
-import React, { Component } from 'react';
-import './App.css';
-import DisplayCards from './resultList';
+import React, { Component } from "react";
+import "./App.css";
+import StartPage from "./StartPage";
 
 class App extends Component {
   render() {
-    return <DisplayCards />;
+    return (
+      <div>
+        <StartPage />
+      </div>
+    );
   }
 }
 
