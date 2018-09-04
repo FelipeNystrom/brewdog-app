@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import APIFetch from './FetchFromApi';
-
+import FoodPart from './FoodPart';
 class DisplayCards extends Component {
   state = {
     isLoaded: false,
@@ -14,7 +14,13 @@ class DisplayCards extends Component {
 
   render() {
     const { beers, isLoaded } = this.state;
+    const { searchFor } = this.props;
     const generateBeers = beers.map(beer => {
+      const recipeToMatch = beer.food_pairing.filter(food => {
+        const check = food.toLowerCase();
+        const match = this.props.searchFor.toLowerCase();
+        return check.includes(match);
+      });
       return (
         <div key={beer.id} className="card">
           <div className="beer-card">
@@ -26,23 +32,13 @@ class DisplayCards extends Component {
           </div>
           <div className="food-card">
             <div className="food-card-title">
-              <h1>
-                {beer.food_pairing.filter(food => {
-                  const check = food.toLowerCase();
-                  const match = this.props.searchFor.toLowerCase();
-                  return check.includes(match);
-                })}
-              </h1>
+              <h1>{recipeToMatch}</h1>
             </div>
-            <div className="food-card-img">
-              <img src="#" alt="#" />
-            </div>
-            <div className="food-card-description">#</div>
           </div>
+          <FoodPart searchFor={searchFor} recipeToMatch={recipeToMatch} />
         </div>
       );
     });
-    const { searchFor } = this.props;
     return (
       <Fragment>
         <APIFetch food={searchFor} setListState={this.getBeers} />
