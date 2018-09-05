@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
-import './App.css';
-import DisplayCards from './resultList';
-
+import StartPage from './StartPage';
+require('dotenv').config();
 class App extends Component {
   render() {
-    return <DisplayCards />;
+    console.log(process.env);
+    return (
+      <div>
+        <StartPage />
+      </div>
+    );
   }
 }
 

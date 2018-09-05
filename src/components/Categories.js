@@ -1,49 +1,33 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from "react";
+import DisplayCards from "./ResultList";
 
 class Categories extends Component {
-  state = {
-    choice:''
-  }
-
-  //hey 
-
-chooseCategory = event => {
-    this.setState({[event.target.name]: event.target.value})
-};
+  // handleCategory = event => {
+  //   this.setState({
+  //     [event.target.name]: event.target.value,
+  //     hasChoice: true
+  //   });
+  // };
 
   render() {
-    const dinnerChoices = ['Chicken','Beef','Pork','Lamb','Fish'];
-    const dessertChoices = ['Chocolate','Ice Cream','Cheesecake','Cookies'];
-
-    const listDinners = dinnerChoices.map((dinner, i) => (
-      <div key= {i}>
-      <button onClick={this.chooseCategory} name='choice' value={dinner}> {dinner}</button>
-      </div>
-      ))
-
-    const listDesserts = dessertChoices.map((dessert, i) => (
-      <div key= {i}>
-      <button onClick={this.chooseCategory} name='choice' value={dessert}> {dessert}</button>
-      </div>
-    ))
-
-
+    const { hasChoice, choice } = this.props.state;
     return (
-      <div>
-      {this.props.choice === 'dinner' ?
-      <div>
-      <h2>Choose type of dinner:</h2>
-        {listDinners}
-      </div>
-      :
-      <div>
-      <h2>Choose type of dessert:</h2>
-        {listDesserts}
-      </div>
-      }
-      </div>
+      <Fragment>
+        {!hasChoice ? this.props.children : <DisplayCards searchFor={choice} />}
 
-    )
+        {/* {this.props.choice === 'dinner' ? (
+          <div>
+            <h2>Choose type of dinner:</h2>
+            {listDinners}
+          </div>
+        ) : (
+          <div>
+            <h2>Choose type of dessert:</h2>
+            {listDesserts}
+          </div>
+        )} */}
+      </Fragment>
+    );
   }
 }
 
