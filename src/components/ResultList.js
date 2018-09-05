@@ -54,6 +54,7 @@ class DisplayCards extends Component {
     return (
       <Fragment>
         <APIFetch food={searchFor} setListState={this.getBeers} />
+
         {!isLoaded ? <div className="loading">Loading...</div> : generateBeers}
       </Fragment>
     );
