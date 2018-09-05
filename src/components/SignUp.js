@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import firebase from "./firebase";
 
-class Login extends Component {
+class Signup extends Component {
   state = {
     email: "",
     password: "",
-    user: ""
+    user: "",
+    error: null
   };
 
   handleInputChange = event => {
@@ -19,21 +20,6 @@ class Login extends Component {
     firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
-      .catch(error => {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        console.log(errorCode, errorMessage);
-      });
-  };
-
-  //sign in existing user
-  signIn = event => {
-    event.preventDefault();
-    const { email, password } = this.state;
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password)
       .catch(error => {
         // Handle Errors here.
         var errorCode = error.code;
@@ -73,31 +59,11 @@ class Login extends Component {
             value={password}
             onChange={this.handleInputChange}
           />
-
           <button>Register</button>
-        </form>
-
-        <h1>Login</h1>
-        <form onSubmit={this.signIn}>
-          <input
-            type="text"
-            name="email"
-            placeholder="Email"
-            value={email}
-            onChange={this.handleInputChange}
-          />
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            value={password}
-            onChange={this.handleInputChange}
-          />
-          <button>Login</button>
         </form>
       </div>
     );
   }
 }
 
-export default Login;
+export default Signup;
