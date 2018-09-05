@@ -9,19 +9,28 @@
   transition: all 1s ease-in-out;
 }
 
-.beer-card,
-.food-card {
+.beer-card {
   display: flex;
   flex-direction: row;
 }
+
 .food-card {
+  display: flex;
+  flex-direction: column;
   transition: all 1s ease-in-out;
 }
 
-.beer-card-info,
-.food-card-info {
+.beer-card-info {
   width: 59%;
   padding: 5%;
+}
+
+.food-card-info {
+  width: 100%;
+  padding: 2%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
 }
 
 .beer-card-title,
@@ -35,11 +44,24 @@
   font-size: 0.7rem;
 }
 
-.beer-card-img,
-.food-card-img {
+.beer-card-img {
   width: 35%;
   margin-top: 10%;
   padding: 7%;
+}
+
+.food-card-img {
+  width: 30%;
+  padding: auto 0;
+}
+
+.food-card-title {
+  width: 65%;
+}
+
+.food-card-title h6 {
+  text-align: center;
+  font-size: 1rem;
 }
 
 .beer-card-img img,
@@ -58,10 +80,8 @@
 }
 
 .hidden {
-  display: none;
-  opacity: 0;
+  height: 0;
 }
 .show {
-  display: block;
-  opacity: 1;
+  height: 100%;
 }

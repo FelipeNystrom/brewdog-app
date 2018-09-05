@@ -43,7 +43,7 @@ class Card extends Component {
         ) : (
           <Fragment>
             <FoodPart
-              show={showMore}
+              showMore={showMore}
               searchFor={searchFor}
               recipeToMatch={recipeToMatch}
             />
