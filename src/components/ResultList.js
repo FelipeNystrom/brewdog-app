@@ -1,10 +1,35 @@
 import React, { Component, Fragment } from 'react';
 import APIFetch from './FetchFromApi';
 import Card from './Card';
+import firebase from './firebase';
+
 class DisplayCards extends Component {
   state = {
     isLoaded: false,
-    beers: []
+    beers: [],
+    userName: '',
+    loggedIn: false
+  };
+
+  // Runs a login-check on mount
+  componentDidMount() {
+    this.auth();
+  }
+
+  // Function for login-check
+  auth = () => {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        // User is signed in.
+        const loggedInUser = user.email;
+        this.setState({ userName: loggedInUser, loggedIn: true });
+        console.log(loggedInUser + ' LOGGED IN');
+      } else {
+        // User is signed out, user === null
+        this.setState({ userName: '', loggedIn: false });
+        console.log('NOT LOGGED IN');
+      }
+    });
   };
 
   //   function is passed to fetch component to fetch result array and set to state
