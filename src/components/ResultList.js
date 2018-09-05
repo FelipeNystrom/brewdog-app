@@ -1,8 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import APIFetch from './FetchFromApi';
-import FoodPart from './FoodPart';
-import firebase, {googleProvider} from './firebase';
-
+import Card from './Card';
 class DisplayCards extends Component {
   state = {
     isLoaded: false,
@@ -14,15 +12,6 @@ class DisplayCards extends Component {
     this.setState({ beers: fetchedData, isLoaded: true });
   };
 
-  // Function to save favorites to FirebaseDB
-  saveResult = (beer) => {
-      firebase
-      .database()
-      .ref(`/users/testuser`)
-      .push(beer);
-      console.log('Successfully Saved!');
-    };
-
   render() {
     const { beers, isLoaded } = this.state;
     const { searchFor } = this.props;
@@ -33,22 +22,12 @@ class DisplayCards extends Component {
         return check.includes(match);
       });
       return (
-        <div key={beer.id} className="card">
-          <div className="beer-card">
-            <div className="beer-card-title">{beer.name}</div>
-            <div className="beer-card-img">
-              <img src={beer.image_url} alt="#" />
-            </div>
-            <div className="beer-card-description">{beer.description}</div>
-          </div>
-          <div className="food-card">
-            <div className="food-card-title">
-              <h1>{recipeToMatch}</h1>
-            </div>
-          </div>
-          <FoodPart searchFor={searchFor} recipeToMatch={recipeToMatch} />
-          <button onClick={()=> this.saveResult(beer)}> Save </button>
-        </div>
+        <Card
+          key={beer.id}
+          searchFor={searchFor}
+          recipeToMatch={recipeToMatch}
+          beer={beer}
+        />
       );
     });
     return (

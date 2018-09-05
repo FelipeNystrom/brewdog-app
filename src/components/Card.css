@@ -1,0 +1,67 @@
+.card {
+  position: relative;
+  width: 80%;
+  height: 60%;
+  margin: 4% auto;
+  border: 2px solid hsl(0, 0%, 25%);
+  display: flex;
+  flex-direction: column;
+  transition: all 1s ease-in-out;
+}
+
+.beer-card,
+.food-card {
+  display: flex;
+  flex-direction: row;
+}
+.food-card {
+  transition: all 1s ease-in-out;
+}
+
+.beer-card-info,
+.food-card-info {
+  width: 59%;
+  padding: 5%;
+}
+
+.beer-card-title,
+.food-card-title {
+  text-align: center;
+}
+
+.beer-card-description,
+.food-card-description {
+  margin-top: 20%;
+  font-size: 0.7rem;
+}
+
+.beer-card-img,
+.food-card-img {
+  width: 35%;
+  margin-top: 10%;
+  padding: 7%;
+}
+
+.beer-card-img img,
+.food-card-img img {
+  width: 100%;
+}
+
+.divider-hidden {
+  display: none;
+}
+.divider-show {
+  display: block;
+  width: 90%;
+  border-bottom: 0.05rem solid hsla(0, 0%, 30%, 0.7);
+  margin: 2% auto;
+}
+
+.hidden {
+  display: none;
+  opacity: 0;
+}
+.show {
+  display: block;
+  opacity: 1;
+}
