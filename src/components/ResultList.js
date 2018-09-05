@@ -1,6 +1,8 @@
-import React, { Component, Fragment } from "react";
-import APIFetch from "./FetchFromApi";
-import FoodPart from "./FoodPart";
+import React, { Component, Fragment } from 'react';
+import APIFetch from './FetchFromApi';
+import FoodPart from './FoodPart';
+import firebase, {googleProvider} from './firebase';
+
 class DisplayCards extends Component {
   state = {
     isLoaded: false,
@@ -11,6 +13,15 @@ class DisplayCards extends Component {
   getBeers = fetchedData => {
     this.setState({ beers: fetchedData, isLoaded: true });
   };
+
+  // Function to save favorites to FirebaseDB
+  saveResult = (beer) => {
+      firebase
+      .database()
+      .ref(`/users/testuser`)
+      .push(beer);
+      console.log('Successfully Saved!');
+    };
 
   render() {
     const { beers, isLoaded } = this.state;
@@ -36,6 +47,7 @@ class DisplayCards extends Component {
             </div>
           </div>
           <FoodPart searchFor={searchFor} recipeToMatch={recipeToMatch} />
+          <button onClick={()=> this.saveResult(beer)}> Save </button>
         </div>
       );
     });

@@ -1,5 +1,5 @@
-import React, { Component, Fragment } from "react";
-import Categories from "./Categories.js";
+import React, { Component, Fragment } from 'react';
+import Categories from './Categories.js';
 
 //states
 class StartPage extends Component {
