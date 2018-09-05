@@ -1,6 +1,6 @@
-import React, { Component, Fragment } from 'react';
-import APIFetch from './FetchFromApi';
-import FoodPart from './FoodPart';
+import React, { Component, Fragment } from "react";
+import APIFetch from "./FetchFromApi";
+import FoodPart from "./FoodPart";
 class DisplayCards extends Component {
   state = {
     isLoaded: false,
@@ -42,6 +42,7 @@ class DisplayCards extends Component {
     return (
       <Fragment>
         <APIFetch food={searchFor} setListState={this.getBeers} />
+
         {!isLoaded ? <div className="loading">Loading...</div> : generateBeers}
       </Fragment>
     );

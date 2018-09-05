@@ -1,13 +1,13 @@
-import React, { Component, Fragment } from 'react';
-import DisplayCards from './ResultList';
+import React, { Component, Fragment } from "react";
+import DisplayCards from "./ResultList";
 
 class Categories extends Component {
-  handleCategory = event => {
-    this.setState({
-      [event.target.name]: event.target.value,
-      hasChoice: true
-    });
-  };
+  // handleCategory = event => {
+  //   this.setState({
+  //     [event.target.name]: event.target.value,
+  //     hasChoice: true
+  //   });
+  // };
 
   render() {
     const { hasChoice, choice } = this.props.state;
