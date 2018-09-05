@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 
 class FoodPart extends Component {
   state = {
-    recipe
+    recipe: []
   };
   componentDidMount() {
     const apiId = process.env.EDAMAME_API_ID;
