@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import firebase from './firebase';
 
 class FoodPart extends Component {
   state = {
@@ -120,6 +121,21 @@ class FoodPart extends Component {
     }
   }
 
+  saveToFavorites = () => {
+    const { ingredients, name, image } = this.state;
+    let { beerInfo } = this.props;
+    beerInfo.recipeIngredients = ingredients;
+    beerInfo.recipeName = name;
+    beerInfo.recipeImage = image;
+    console.log(beerInfo);
+
+    firebase
+      .database()
+      .ref(`/users/testuser`)
+      .push(beerInfo);
+    console.log('Successfully Saved!');
+  };
+
   noWhiteSpace = sentence => {
     const ws = /\s/g;
     return sentence.toLowerCase().replace(ws, '+');
@@ -154,6 +170,7 @@ class FoodPart extends Component {
                   {generateIngredients}
                 </ul>
               </div>
+              <button onClick={this.saveToFavorites}>Save</button>
             </Fragment>
           )}
         </div>

@@ -1,20 +1,12 @@
 import React, { Component, Fragment } from 'react';
 import FoodPart from './FoodPart';
 import './Card.css';
-import firebase from './firebase';
 
 class Card extends Component {
   state = {
     showMore: false
   };
   // Function to save favorites to FirebaseDB
-  saveToFavorites = beer => {
-    firebase
-      .database()
-      .ref(`/users/testuser`)
-      .push(beer);
-    console.log('Successfully Saved!');
-  };
 
   toggleCard = () => {
     this.setState({ showMore: !this.state.showMore });
@@ -23,6 +15,11 @@ class Card extends Component {
   render() {
     const { beer, recipeToMatch, searchFor } = this.props;
     const { showMore } = this.state;
+    const beerInfo = {
+      beerName: beer.name,
+      beerDescription: beer.description,
+      beerImage: beer.image_url
+    };
     return (
       <div className="card">
         <div className="beer-card">
@@ -44,6 +41,7 @@ class Card extends Component {
         ) : (
           <Fragment>
             <FoodPart
+              beerInfo={beerInfo}
               showMore={showMore}
               searchFor={searchFor}
               recipeToMatch={recipeToMatch}
@@ -51,8 +49,6 @@ class Card extends Component {
             <button onClick={this.toggleCard}>Hide Recipe</button>
           </Fragment>
         )}
-
-        <button onClick={() => this.saveToFavorites(beer)}>Save</button>
       </div>
     );
   }
