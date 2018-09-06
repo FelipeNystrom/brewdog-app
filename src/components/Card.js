@@ -28,7 +28,8 @@ class Card extends Component {
         <div className="beer-card">
           <div className="beer-card-info">
             <div className="beer-card-title">
-              <h4>{beer.name}</h4>
+              <div className="beer-name">{beer.name}</div>
+              <div className="food-name">{recipeToMatch}</div>
             </div>
             <div className="beer-card-description">{beer.description}</div>
           </div>
