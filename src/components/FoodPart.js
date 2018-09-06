@@ -89,9 +89,6 @@ class FoodPart extends Component {
     if (prevState.shouldUpdate === this.state.shouldUpdate) {
       // Try second search query fetch
       if (fallback && !finalfallback) {
-        console.log(fallback && !finalfallback);
-        console.log(searchUrls[1]);
-        console.log('from second search');
         fetch(searchUrls[1])
           .then(res => res.json())
           .then(result => {
