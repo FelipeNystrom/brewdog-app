@@ -43,7 +43,7 @@ class Signup extends Component {
     const { email, password } = this.state;
     return (
       <div>
-        <h1>Register</h1>
+        <p>not registered? Sign up here:</p>
         <form onSubmit={this.signUp}>
           <input
             type="text"

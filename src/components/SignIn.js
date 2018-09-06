@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import firebase from "./firebase";
+import Signup from "./SignUp";
 
 class Signin extends Component {
   state = {
@@ -46,32 +47,24 @@ class Signin extends Component {
     const { email, password } = this.state;
     return (
       <div>
-        {this.state.user ? (
-          <div>
-            <p>Loggedin</p>
-          </div>
-        ) : (
-          <div>
-            <h1>Sign In</h1>
-            <form onSubmit={this.signIn}>
-              <input
-                type="text"
-                name="email"
-                placeholder="Email"
-                value={email}
-                onChange={this.handleInputChange}
-              />
-              <input
-                type="password"
-                name="password"
-                placeholder="Password"
-                value={password}
-                onChange={this.handleInputChange}
-              />
-              <button>Sign In</button>
-            </form>
-          </div>
-        )}
+        <form onSubmit={this.signIn}>
+          <input
+            type="text"
+            name="email"
+            placeholder="Email"
+            value={email}
+            onChange={this.handleInputChange}
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={password}
+            onChange={this.handleInputChange}
+          />
+          <button>Sign In</button>
+        </form>
+        <Signup />
       </div>
     );
   }
