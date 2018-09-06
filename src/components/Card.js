@@ -6,8 +6,8 @@ class Card extends Component {
   state = {
     showMore: false
   };
-  // Function to save favorites to FirebaseDB
 
+  // Toggle recipe part of card
   toggleCard = () => {
     this.setState({ showMore: !this.state.showMore });
   };
@@ -15,6 +15,7 @@ class Card extends Component {
   render() {
     const { beer, recipeToMatch, searchFor } = this.props;
     const { showMore } = this.state;
+    // Prepare beerinfo to send to db. Is passed to recipe component to be combined with recipe info
     const beerInfo = {
       beerName: beer.name,
       beerDescription: beer.description,
@@ -36,6 +37,7 @@ class Card extends Component {
         </div>
         <div className={showMore ? 'divider-show' : 'divider-hidden'} />
 
+        {/* toggle of recipe part happens here */}
         {!showMore ? (
           <button onClick={this.toggleCard}>Show Recipe</button>
         ) : (

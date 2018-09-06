@@ -40,13 +40,17 @@ class DisplayCards extends Component {
   render() {
     const { beers, isLoaded } = this.state;
     const { searchFor } = this.props;
+
+    // maps through state and creates a card from each index
     const generateBeers = beers.map(beer => {
+      // return matching food title from array of diffrent dishes
       const recipeToMatch = beer.food_pairing.filter(food => {
         const check = food.toLowerCase();
         const match = this.props.searchFor.toLowerCase();
         return check.includes(match);
       });
       return (
+        // card generation
         <Card
           key={beer.id}
           searchFor={searchFor}

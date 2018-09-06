@@ -15,11 +15,9 @@ class FoodPart extends Component {
   };
   componentDidMount() {
     const { showMore } = this.props;
-
     const { recipeToMatch, searchFor } = this.props;
-    // const apiId = process.env.EDAMAME_API_ID;
-    // const apiKey = process.env.EDAMAME_API_KEY;
-    console.log(searchFor);
+
+    // string manipulations method to build search query
     const lowerCaseSearch = searchFor.toLowerCase();
     const fixedString = this.noWhiteSpace(recipeToMatch[0]);
     const arrayFromSearchString = recipeToMatch[0].toLowerCase().split(' ');
@@ -34,10 +32,16 @@ class FoodPart extends Component {
     arrayFromSearchString.length = indexOfSearchWord + 2;
     const newSearchString = arrayFromSearchString.join('+');
 
+    // search querys to use for fetch sequence
+
+    // first search query
     const recipeSearchUrl = `https://api.edamam.com/search?q=${fixedString}&from=0&to=1&app_id=3a28c4f3&app_key=c6990b9b2689845c519d65f89dc29977`;
+    // second search query
     const fallbackUrl = `https://api.edamam.com/search?q=${newSearchString}&from=0&to=1&app_id=3a28c4f3&app_key=c6990b9b2689845c519d65f89dc29977`;
+    // third search query
     const finalFallBackUrl = `https://api.edamam.com/search?q=${finalFallback}+${lowerCaseSearch}&from=0&to=1&app_id=3a28c4f3&app_key=c6990b9b2689845c519d65f89dc29977`;
 
+    // Creates a delay to make class change possible. Updates component!
     if (showMore) {
       setTimeout(() => {
         this.setState({
@@ -51,22 +55,16 @@ class FoodPart extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     const { fallback, finalfallback, searchUrls, shouldUpdate } = this.state;
-
     const { recipeToMatch } = this.props;
+    // String manipulation
     const fixedString = this.noWhiteSpace(recipeToMatch[0]);
 
-    console.log(prevProps);
-    console.log(prevState);
-    console.log(shouldUpdate);
-    console.log(prevState.shouldUpdate !== this.state.shouldUpdate);
-
+    // when component is updated try first search query fetch
     if (!fallback && !finalfallback) {
-      console.log(!fallback && !finalfallback);
-      console.log(searchUrls[0]);
-      console.log('from first search');
       fetch(searchUrls[0])
         .then(res => res.json())
         .then(result => {
+          // if result has perfect match return result and set state
           if (result.hits.includes(fixedString)) {
             this.setState({
               ingredients: result.hits[0].recipe.ingredientLines,
@@ -75,12 +73,15 @@ class FoodPart extends Component {
               isLoaded: true,
               shouldUpdate: false
             });
+            // if no return set state to trigger fallback fetch
           } else {
             this.setState({ fallback: true });
           }
         });
     }
+    // If state is updated
     if (prevState.shouldUpdate === this.state.shouldUpdate) {
+      // Try second search query fetch
       if (fallback && !finalfallback) {
         console.log(fallback && !finalfallback);
         console.log(searchUrls[1]);
@@ -88,9 +89,11 @@ class FoodPart extends Component {
         fetch(searchUrls[1])
           .then(res => res.json())
           .then(result => {
+            // if result is empty set state to trigger component update
             if (result.hits.length === 0) {
               this.setState({ finalfallback: true });
             } else {
+              // if match set state and generate recipe
               this.setState({
                 ingredients: result.hits[0].recipe.ingredientLines,
                 name: result.hits[0].recipe.label,
@@ -101,14 +104,12 @@ class FoodPart extends Component {
             }
           });
       }
-
+      // Try third and final search query fetch
       if (fallback && finalfallback) {
-        console.log(fallback && finalfallback);
-        console.log(searchUrls[2]);
-        console.log('from third search');
         fetch(searchUrls[2])
           .then(res => res.json())
           .then(result => {
+            // dislpay match
             this.setState({
               ingredients: result.hits[0].recipe.ingredientLines,
               name: result.hits[0].recipe.label,
@@ -122,13 +123,14 @@ class FoodPart extends Component {
   }
 
   saveToFavorites = () => {
+    // build upon passed beer info object with additional recipe info
     const { ingredients, name, image } = this.state;
     let { beerInfo } = this.props;
     beerInfo.recipeIngredients = ingredients;
     beerInfo.recipeName = name;
     beerInfo.recipeImage = image;
-    console.log(beerInfo);
 
+    // pass to db
     firebase
       .database()
       .ref(`/users/testuser`)
@@ -136,6 +138,7 @@ class FoodPart extends Component {
     console.log('Successfully Saved!');
   };
 
+  // remove whitespaces from sentence and replace with +
   noWhiteSpace = sentence => {
     const ws = /\s/g;
     return sentence.toLowerCase().replace(ws, '+');
