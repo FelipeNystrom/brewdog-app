@@ -13,7 +13,12 @@ class FoodPart extends Component {
     searchUrls: [],
     shouldUpdate: false
   };
+
+  // switch to prevent processes to run after unmount
+  mounted = true;
+
   componentDidMount() {
+    this.mounted = true;
     const { showMore } = this.props;
     const { recipeToMatch, searchFor } = this.props;
 
@@ -54,7 +59,8 @@ class FoodPart extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { fallback, finalfallback, searchUrls, shouldUpdate } = this.state;
+    this.mounted = true;
+    const { fallback, finalfallback, searchUrls } = this.state;
     const { recipeToMatch } = this.props;
     // String manipulation
     const fixedString = this.noWhiteSpace(recipeToMatch[0]);
@@ -120,6 +126,11 @@ class FoodPart extends Component {
           });
       }
     }
+  }
+
+  componentWillUnmount() {
+    // deactivate all running processes before unmount
+    this.mounted = false;
   }
 
   saveToFavorites = () => {
