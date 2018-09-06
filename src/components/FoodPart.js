@@ -9,7 +9,8 @@ class FoodPart extends Component {
     finalfallback: false,
     isLoaded: false,
     show: false,
-    searchUrls: []
+    searchUrls: [],
+    shouldUpdate: false
   };
   componentDidMount() {
     const { showMore } = this.props;
@@ -40,21 +41,28 @@ class FoodPart extends Component {
       setTimeout(() => {
         this.setState({
           show: true,
-          searchUrls: [recipeSearchUrl, fallbackUrl, finalFallBackUrl]
+          searchUrls: [recipeSearchUrl, fallbackUrl, finalFallBackUrl],
+          shouldUpdate: true
         });
       }, 10);
     }
   }
 
-  componentDidUpdate(prevState) {
-    const { fallback, finalfallback, searchUrls } = this.state;
+  componentDidUpdate(prevProps, prevState) {
+    const { fallback, finalfallback, searchUrls, shouldUpdate } = this.state;
 
     const { recipeToMatch } = this.props;
     const fixedString = this.noWhiteSpace(recipeToMatch[0]);
 
+    console.log(prevProps);
+    console.log(prevState);
+    console.log(shouldUpdate);
+    console.log(prevState.shouldUpdate !== this.state.shouldUpdate);
+
     if (!fallback && !finalfallback) {
       console.log(!fallback && !finalfallback);
       console.log(searchUrls[0]);
+      console.log('from first search');
       fetch(searchUrls[0])
         .then(res => res.json())
         .then(result => {
@@ -63,46 +71,52 @@ class FoodPart extends Component {
               ingredients: result.hits[0].recipe.ingredientLines,
               name: result.hits[0].recipe.label,
               image: result.hits[0].recipe.image,
-              isLoaded: true
+              isLoaded: true,
+              shouldUpdate: false
             });
           } else {
             this.setState({ fallback: true });
           }
         });
     }
+    if (prevState.shouldUpdate === this.state.shouldUpdate) {
+      if (fallback && !finalfallback) {
+        console.log(fallback && !finalfallback);
+        console.log(searchUrls[1]);
+        console.log('from second search');
+        fetch(searchUrls[1])
+          .then(res => res.json())
+          .then(result => {
+            if (result.hits.length === 0) {
+              this.setState({ finalfallback: true });
+            } else {
+              this.setState({
+                ingredients: result.hits[0].recipe.ingredientLines,
+                name: result.hits[0].recipe.label,
+                image: result.hits[0].recipe.image,
+                isLoaded: true,
+                shouldUpdate: false
+              });
+            }
+          });
+      }
 
-    if (fallback && !finalfallback) {
-      console.log(fallback && !finalfallback);
-      console.log(searchUrls[1]);
-      fetch(searchUrls[1])
-        .then(res => res.json())
-        .then(result => {
-          if (result.hits.length === 0) {
-            this.setState({ finalfallback: true });
-          } else {
+      if (fallback && finalfallback) {
+        console.log(fallback && finalfallback);
+        console.log(searchUrls[2]);
+        console.log('from third search');
+        fetch(searchUrls[2])
+          .then(res => res.json())
+          .then(result => {
             this.setState({
               ingredients: result.hits[0].recipe.ingredientLines,
               name: result.hits[0].recipe.label,
               image: result.hits[0].recipe.image,
-              isLoaded: true
+              isLoaded: true,
+              shouldUpdate: false
             });
-          }
-        });
-    }
-
-    if (fallback && finalfallback) {
-      console.log(fallback && finalfallback);
-      console.log(searchUrls[2]);
-      fetch(searchUrls[2])
-        .then(res => res.json())
-        .then(result => {
-          this.setState({
-            ingredients: result.hits[0].recipe.ingredientLines,
-            name: result.hits[0].recipe.label,
-            image: result.hits[0].recipe.image,
-            isLoaded: true
           });
-        });
+      }
     }
   }
 
