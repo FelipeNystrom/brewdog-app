@@ -13,12 +13,29 @@ function toArray(firebaseObject) {
 class Favorites extends Component {
   state = {
     userFavorites: [],
-    userName: ''
+    userName: '',
+    redirect: false,
+    loggedIn: false
   };
 
   componentDidMount() {
     this.auth();
   }
+
+  // componentDidUpdate(prevProps, prevState) {
+  //   console.log(prevState);
+  //   console.log('update');
+  //   if (prevState.userName !== this.state.userName) {
+  //     console.log('from 1st');
+  //     console.log(this.state.userName);
+  //     if (this.state.userName === 'Please Login') {
+  //       console.log('from 2nd');
+  //       setTimeout(() => {
+  //         this.props.toggleView(true);
+  //       }, 3000);
+  //     }
+  //   }
+  // }
 
   // Login check, grab user id, run converter (db => array)
   auth = () => {
@@ -37,19 +54,33 @@ class Favorites extends Component {
           });
       } else {
         // User is signed out
-        this.setState({
-          userName: 'Please Login',
-          userFavorites: [],
-          loggedIn: false
-        });
+        this.setState(
+          {
+            userName: '',
+            userFavorites: [],
+            loggedIn: false
+          },
+          () => {
+            setTimeout(() => {
+              this.props.toggleView(true);
+            }, 3000);
+          }
+        );
         console.log('NOT LOGGED IN');
       }
     });
   };
 
+  // redirect = () => {
+  //   setTimeout(() => {
+  //     this.props.toggleView(true);
+  //   }, 3000);
+  // };
+
   render() {
+    // const { toggleView } = this.props;
     // Maps through favorites-array and returns favorite-cards
-    const { userFavorites, userName } = this.state;
+    const { userFavorites, loggedIn } = this.state;
     const listFavorites = userFavorites.map((fav, i) => {
       const generateIngredients = fav.recipeIngredients.map((ingredient, i) => {
         return (
@@ -91,20 +122,9 @@ class Favorites extends Component {
     });
     return (
       <div>
-        {userName === 'Please Login' ? (
-          <p
-            onLoad={() => {
-              this.props.toggleView('redirectToStart');
-            }}
-          >
-            {' '}
-            Please login too see your favorites
-          </p>
-        ) : userFavorites.length > 0 ? (
-          listFavorites
-        ) : (
-          <div>Loading...</div>
-        )}
+        {loggedIn && userFavorites.length === 0 && <div>Loading...</div>}
+        {loggedIn && userFavorites.length > 0 && listFavorites}
+        {!loggedIn && <p>Please login too see your favorites</p>}
       </div>
     );
   }

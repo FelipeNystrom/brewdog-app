@@ -11,19 +11,12 @@ class App extends Component {
 
   // toggle state to control which component is shown
   toogleView = toggleCondition => {
+    console.log(toggleCondition);
     if (toggleCondition) {
       this.setState({
         showDefault: !this.state.showDefault,
         showFavorites: !this.state.showFavorites
       });
-    }
-    if (toggleCondition === 'redirectToStart') {
-      setTimeout(() => {
-        this.setState({
-          showDefault: !this.state.showDefault,
-          showFavorites: !this.state.showFavorites
-        });
-      }, 1000);
     }
   };
 
@@ -33,7 +26,7 @@ class App extends Component {
       <div>
         <Navbar toggleView={this.toogleView} />
         {showDefault && <StartPage />}
-        {showFavorites && <Favorites />}
+        {showFavorites && <Favorites toggleView={this.toogleView} />}
       </div>
     );
   }

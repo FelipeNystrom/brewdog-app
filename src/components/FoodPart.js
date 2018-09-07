@@ -219,7 +219,7 @@ class FoodPart extends Component {
               {loggedIn && userName !== '' ? (
                 <button onClick={this.saveToFavorites}>Save</button>
               ) : (
-                <button disable>Login to favorite</button>
+                <button disabled>Login to favorite</button>
               )}
             </Fragment>
           )}
