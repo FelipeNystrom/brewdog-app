@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import firebase from "./firebase";
+import React, { Component } from 'react';
+import firebase from './firebase';
 
 class Signin extends Component {
   state = {
-    email: "",
-    password: "",
-    user: "",
+    email: '',
+    password: '',
+    user: '',
     error: null
   };
 
@@ -52,7 +52,7 @@ class Signin extends Component {
       if (user) {
         this.setState({ user });
       } else {
-        this.setState({ user: "" });
+        this.setState({ user: '' });
       }
     });
   };
@@ -63,7 +63,7 @@ class Signin extends Component {
       <div
         className="modal fade"
         id="authModal"
-        tabindex="-1"
+        tabIndex="-1"
         role="dialog"
         aria-labelledby="authModalLabel"
         aria-hidden="true"

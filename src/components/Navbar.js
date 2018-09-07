@@ -52,14 +52,14 @@ class Navbar extends Component {
         ) : (
           <nav className="navbar navbar-light bg-light">
             <span className="navbar-brand mb-0 h1">Beerit</span>
-            <a
+            <button
               onClick={() => {
                 toggleView(loggedIn);
               }}
               className="nav-link"
             >
               Favorites
-            </a>
+            </button>
             <Signout />
           </nav>
         )}

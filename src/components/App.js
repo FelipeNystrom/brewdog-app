@@ -11,7 +11,7 @@ class App extends Component {
 
   // toggle state to control which component is shown
   toogleView = toggleCondition => {
-    if (toggleCondition.length >= 20) {
+    if (toggleCondition) {
       this.setState({
         showDefault: !this.state.showDefault,
         showFavorites: !this.state.showFavorites
