@@ -11,7 +11,9 @@ class FoodPart extends Component {
     isLoaded: false,
     show: false,
     searchUrls: [],
-    shouldUpdate: false
+    shouldUpdate: false,
+    userName: '',
+    loggedIn: true
   };
 
   // switch to prevent processes to run after unmount
@@ -49,17 +51,14 @@ class FoodPart extends Component {
     // Creates a delay to make class change possible. Updates component!
     if (showMore) {
       setTimeout(() => {
-        this.setState({
-          show: true,
-          searchUrls: [recipeSearchUrl, fallbackUrl, finalFallBackUrl],
-          shouldUpdate: true
-        });
+        this.auth(recipeSearchUrl, fallbackUrl, finalFallBackUrl);
       }, 10);
     }
   }
 
   componentDidUpdate(prevProps, prevState) {
     this.mounted = true;
+
     const { fallback, finalfallback, searchUrls } = this.state;
     const { recipeToMatch } = this.props;
     // String manipulation
@@ -89,9 +88,6 @@ class FoodPart extends Component {
     if (prevState.shouldUpdate === this.state.shouldUpdate) {
       // Try second search query fetch
       if (fallback && !finalfallback) {
-        console.log(fallback && !finalfallback);
-        console.log(searchUrls[1]);
-        console.log('from second search');
         fetch(searchUrls[1])
           .then(res => res.json())
           .then(result => {
@@ -154,6 +150,34 @@ class FoodPart extends Component {
     const ws = /\s/g;
     return sentence.toLowerCase().replace(ws, '+');
   };
+
+  // Function for login-check
+  auth = (first, second, third) => {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        // User is signed in.
+        this.setState({
+          show: true,
+          searchUrls: [first, second, third],
+          shouldUpdate: true,
+          loggedIn: true,
+          userName: user.uid
+        });
+        console.log(user.uid + ' LOGGED IN');
+      } else {
+        // User is signed out, user === null
+        this.setState({
+          show: true,
+          searchUrls: [first, second, third],
+          shouldUpdate: true,
+          loggedIn: false,
+          userName: ''
+        });
+        console.log('NOT LOGGED IN');
+      }
+    });
+  };
+
   render() {
     const { show, ingredients, name, image, isLoaded } = this.state;
     const generateIngredients = ingredients.map((ingredient, i) => {

@@ -20,9 +20,16 @@ class Signout extends Component {
 
   render() {
     return (
-      <a className="dropdown-item" onClick={this.logout}>
-        Log Out
-      </a>
+      <button
+        onClick={this.logout}
+        type="button"
+        className="btn btn-secondary"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        Logout
+      </button>
     );
   }
 }
