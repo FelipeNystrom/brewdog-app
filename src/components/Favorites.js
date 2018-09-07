@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import firebase from './firebase';
 
-
 // Converter from DB-object to Array in state
 function toArray(firebaseObject) {
-  let array = []
+  let array = [];
   for (let item in firebaseObject) {
-    array.push({ ...firebaseObject[item], key: item })
+    array.push({ ...firebaseObject[item], key: item });
   }
   return array;
 }
@@ -17,9 +16,9 @@ class Favorites extends Component {
     userName: ''
   };
 
-componentDidMount() {
-  this.auth();
-}
+  componentDidMount() {
+    this.auth();
+  }
 
 // Login check, grab user id, run converter (db => array)
 auth = () => {
@@ -96,16 +95,28 @@ deleteFavorite = (fav) => {
             <ul className="ingredient-list-title">
               <h6 className="ingredients-list">List of ingredients</h6>
               {generateIngredients}
-            </ul>
-          </div>
-          <button onClick={() => this.deleteFavorite(fav)}> Delete </button>
-        </div>)
-      });
+              </ul>
+       </div>
+       <button onClick={() => this.deleteFavorite(fav)}> Delete </button>
+     </div>
+      );
+    });
       return (
         <div>
-        {listFavorites}
-        {this.state.userName === 'Please Login' ? <p> Please login too see your favorites</p>
-        : <p>Loading...</p>}
+          {userName === 'Please Login' ? (
+            <p
+              onLoad={() => {
+                this.props.toggleView('redirectToStart');
+              }}
+            >
+              {' '}
+              Please login too see your favorites
+            </p>
+          ) : userFavorites.length > 0 ? (
+            listFavorites
+          ) : (
+            <div>Loading...</div>
+          )}
         </div>
       );
     }
