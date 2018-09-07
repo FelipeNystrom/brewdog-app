@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { Component } from 'react';
 import firebase from './firebase';
 
@@ -62,7 +61,7 @@ deleteFavorite = (fav) => {
 
     render() {
       // Maps through favorites-array and returns favorite-cards
-      const { userFavorites } = this.state;
+      const { userFavorites, userName } = this.state;
       const listFavorites = userFavorites.map((fav) => {
         const generateIngredients = fav.recipeIngredients.map((ingredient, i) => {
           return (
