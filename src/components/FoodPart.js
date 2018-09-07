@@ -179,7 +179,15 @@ class FoodPart extends Component {
   };
 
   render() {
-    const { show, ingredients, name, image, isLoaded } = this.state;
+    const {
+      show,
+      ingredients,
+      name,
+      image,
+      isLoaded,
+      userName,
+      loggedIn
+    } = this.state;
     const generateIngredients = ingredients.map((ingredient, i) => {
       return (
         <li className="ingredient-list-item" key={i}>
@@ -208,7 +216,11 @@ class FoodPart extends Component {
                   {generateIngredients}
                 </ul>
               </div>
-              <button onClick={this.saveToFavorites}>Save</button>
+              {loggedIn && userName !== '' ? (
+                <button onClick={this.saveToFavorites}>Save</button>
+              ) : (
+                <button disable>Login to favorite</button>
+              )}
             </Fragment>
           )}
         </div>
