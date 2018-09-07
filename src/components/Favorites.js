@@ -14,42 +14,45 @@ function toArray(firebaseObject) {
 class Favorites extends Component {
   state = {
     userFavorites: [],
-    loggedInUser: ''
+    userName: ''
   };
 
 componentDidMount() {
   this.auth();
 }
 
-
-// Function for login-check
+// Login check, grab user id, run converter (db => array)
 auth = () => {
   firebase.auth().onAuthStateChanged(user => {
     if (user) {
       // User is signed in.
-      this.setState({ loggedInUser: 'testuser', loggedIn: true }); //REPLACE testuser WITH user.uid
+      this.setState({ userName: user.uid, loggedIn: true });
       console.log(user.uid + " LOGGED IN");
-
       firebase
-      .database()
-      .ref(`/users/${this.state.loggedInUser}`)
-      .on('value', (snapshot) => {
-        const favorites = toArray(snapshot.val());
-        this.setState({ userFavorites: favorites })
-        console.log(this.state.userFavorites);
-      });
-
+        .database()
+        .ref(`/users/${this.state.userName}`)
+        .on("value", snapshot => {
+          const favorites = toArray(snapshot.val());
+          this.setState({ userFavorites: favorites });
+          console.log(this.state.userFavorites);
+        });
     } else {
-      // User is signed out, user === null
-      this.setState({ loggedInUser: "", loggedIn: false });
+      // User is signed out
+      this.setState({
+        userName: "Please Login",
+        userFavorites: [],
+        loggedIn: false
+      });
       console.log("NOT LOGGED IN");
     }
   });
 };
 
 
+
     render() {
-      const { userFavorites } = this.state
+      // Maps through favorites-array and returns favorite-cards
+      const { userFavorites } = this.state;
       const listFavorites = userFavorites.map((fav, i) => {
         const generateIngredients = fav.recipeIngredients.map((ingredient, i) => {
           return (
@@ -90,10 +93,11 @@ auth = () => {
       return (
         <div>
         {listFavorites}
+        {this.state.userName === 'Please Login' ? <p> Please login too see your favorites</p>
+        : <p>Loading...</p>}
         </div>
       );
-
-    } //render ends
+    }
   }
 
 export default Favorites;
