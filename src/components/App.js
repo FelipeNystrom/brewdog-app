@@ -1,12 +1,32 @@
 import React, { Component } from 'react';
 import StartPage from './StartPage';
-require('dotenv').config();
+import Navbar from './Navbar';
+import Favorites from './Favorites';
+
 class App extends Component {
+  state = {
+    showDefault: true,
+    showFavorites: false
+  };
+
+  // toggle state to control which component is shown
+  toogleView = toggleCondition => {
+    console.log(toggleCondition);
+    if (toggleCondition) {
+      this.setState({
+        showDefault: !this.state.showDefault,
+        showFavorites: !this.state.showFavorites
+      });
+    }
+  };
+
   render() {
-    console.log(process.env);
+    const { showDefault, showFavorites } = this.state;
     return (
       <div>
-        <StartPage />
+        <Navbar toggleView={this.toogleView} />
+        {showDefault && <StartPage />}
+        {showFavorites && <Favorites toggleView={this.toogleView} />}
       </div>
     );
   }

@@ -1,21 +1,13 @@
 import React, { Component, Fragment } from 'react';
 import FoodPart from './FoodPart';
 import './Card.css';
-import firebase from './firebase';
 
 class Card extends Component {
   state = {
     showMore: false
   };
-  // Function to save favorites to FirebaseDB
-  saveToFavorites = beer => {
-    firebase
-      .database()
-      .ref(`/users/testuser`)
-      .push(beer);
-    console.log('Successfully Saved!');
-  };
 
+  // Toggle recipe part of card
   toggleCard = () => {
     this.setState({ showMore: !this.state.showMore });
   };
@@ -23,12 +15,19 @@ class Card extends Component {
   render() {
     const { beer, recipeToMatch, searchFor } = this.props;
     const { showMore } = this.state;
+    // Prepare beerinfo to send to db. Is passed to recipe component to be combined with recipe info
+    const beerInfo = {
+      beerName: beer.name,
+      beerDescription: beer.description,
+      beerImage: beer.image_url
+    };
     return (
       <div className="card">
         <div className="beer-card">
           <div className="beer-card-info">
             <div className="beer-card-title">
-              <h4>{beer.name}</h4>
+              <div className="beer-name">{beer.name}</div>
+              <div className="food-name">{recipeToMatch}</div>
             </div>
             <div className="beer-card-description">{beer.description}</div>
           </div>
@@ -38,20 +37,20 @@ class Card extends Component {
         </div>
         <div className={showMore ? 'divider-show' : 'divider-hidden'} />
 
+        {/* toggle of recipe part happens here */}
         {!showMore ? (
           <button onClick={this.toggleCard}>Show Recipe</button>
         ) : (
           <Fragment>
             <FoodPart
-              show={showMore}
+              beerInfo={beerInfo}
+              showMore={showMore}
               searchFor={searchFor}
               recipeToMatch={recipeToMatch}
             />
             <button onClick={this.toggleCard}>Hide Recipe</button>
           </Fragment>
         )}
-
-        <button onClick={() => this.saveToFavorites(beer)}>Save</button>
       </div>
     );
   }
