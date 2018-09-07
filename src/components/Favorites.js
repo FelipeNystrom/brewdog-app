@@ -17,9 +17,15 @@ class Favorites extends Component {
     redirect: false,
     loggedIn: false
   };
-
+  // switch to prevent processes to run after unmount
+  mounted = true;
   componentDidMount() {
+    this.mounted = true;
     this.auth();
+  }
+
+  componentWillMount() {
+    this.mounted = false;
   }
 
   // Login check, grab user id, run converter (db => array)
