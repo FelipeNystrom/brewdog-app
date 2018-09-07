@@ -140,7 +140,7 @@ class FoodPart extends Component {
     // pass to db
     firebase
       .database()
-      .ref(`/users/testuser`)
+      .ref(`/users/${this.state.userName}`)
       .push(beerInfo);
     console.log('Successfully Saved!');
   };

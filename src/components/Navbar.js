@@ -37,18 +37,17 @@ class Navbar extends Component {
         {!this.state.loggedIn ? (
           <nav className="navbar navbar-light bg-light">
             <span className="navbar-brand mb-0 h1">Beerit</span>
-            <div className="btn-group">
-              <button
-                type="button"
-                className="btn btn-secondary dropdown-toggle"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                Sign in
-              </button>
-              <Signin />
-            </div>
+
+            <button
+              type="button"
+              className="btn btn-primary"
+              data-toggle="modal"
+              data-target="#authModal"
+              data-whatever="@mdo"
+            >
+              Login
+            </button>
+            <Signin />
           </nav>
         ) : (
           <nav className="navbar navbar-light bg-light">
