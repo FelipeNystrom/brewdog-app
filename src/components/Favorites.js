@@ -28,14 +28,7 @@ auth = () => {
       // User is signed in.
       this.setState({ userName: user.uid, loggedIn: true });
       console.log(user.uid + " LOGGED IN");
-      firebase
-        .database()
-        .ref(`/users/${this.state.userName}`)
-        .on("value", snapshot => {
-          const favorites = toArray(snapshot.val());
-          this.setState({ userFavorites: favorites });
-          console.log(this.state.userFavorites);
-        });
+      this.convertFromDatabase();
     } else {
       // User is signed out
       this.setState({
@@ -48,12 +41,29 @@ auth = () => {
   });
 };
 
+convertFromDatabase = () => {
+  firebase
+    .database()
+    .ref(`/users/${this.state.userName}`)
+    .on("value", snapshot => {
+      const favorites = toArray(snapshot.val());
+      this.setState({ userFavorites: favorites });
+      console.log(this.state.userFavorites);
+    });
+}
 
+deleteFavorite = (fav) => {
+  firebase
+  .database()
+  .ref(`/users/${this.state.userName}/${fav.key}`)
+  .remove();
+  this.convertFromDatabase();
+};
 
     render() {
       // Maps through favorites-array and returns favorite-cards
       const { userFavorites } = this.state;
-      const listFavorites = userFavorites.map((fav, i) => {
+      const listFavorites = userFavorites.map((fav) => {
         const generateIngredients = fav.recipeIngredients.map((ingredient, i) => {
           return (
             <li className="ingredient-list-item" key={i}>
@@ -61,7 +71,7 @@ auth = () => {
             </li>
           );
         });
-        return (<div key={i}className="card">
+        return (<div key={fav.key}className="card">
           <div className="beer-card">
             <div className="beer-card-info">
               <div className="beer-card-title">
@@ -88,6 +98,7 @@ auth = () => {
               {generateIngredients}
             </ul>
           </div>
+          <button onClick={() => this.deleteFavorite(fav)}> Delete </button>
         </div>)
       });
       return (
