@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import firebase from './firebase';
 
-
 // Converter from DB-object to Array in state
 function toArray(firebaseObject) {
-  let array = []
+  let array = [];
   for (let item in firebaseObject) {
-    array.push({ ...firebaseObject[item], key: item })
+    array.push({ ...firebaseObject[item], key: item });
   }
   return array;
 }
@@ -17,51 +16,50 @@ class Favorites extends Component {
     userName: ''
   };
 
-componentDidMount() {
-  this.auth();
-}
+  componentDidMount() {
+    this.auth();
+  }
 
-// Login check, grab user id, run converter (db => array)
-auth = () => {
-  firebase.auth().onAuthStateChanged(user => {
-    if (user) {
-      // User is signed in.
-      this.setState({ userName: user.uid, loggedIn: true });
-      console.log(user.uid + " LOGGED IN");
-      firebase
-        .database()
-        .ref(`/users/${this.state.userName}`)
-        .on("value", snapshot => {
-          const favorites = toArray(snapshot.val());
-          this.setState({ userFavorites: favorites });
-          console.log(this.state.userFavorites);
+  // Login check, grab user id, run converter (db => array)
+  auth = () => {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        // User is signed in.
+        this.setState({ userName: user.uid, loggedIn: true });
+        console.log(user.uid + ' LOGGED IN');
+        firebase
+          .database()
+          .ref(`/users/${this.state.userName}`)
+          .on('value', snapshot => {
+            const favorites = toArray(snapshot.val());
+            this.setState({ userFavorites: favorites });
+            console.log(this.state.userFavorites);
+          });
+      } else {
+        // User is signed out
+        this.setState({
+          userName: 'Please Login',
+          userFavorites: [],
+          loggedIn: false
         });
-    } else {
-      // User is signed out
-      this.setState({
-        userName: "Please Login",
-        userFavorites: [],
-        loggedIn: false
+        console.log('NOT LOGGED IN');
+      }
+    });
+  };
+
+  render() {
+    // Maps through favorites-array and returns favorite-cards
+    const { userFavorites, userName } = this.state;
+    const listFavorites = userFavorites.map((fav, i) => {
+      const generateIngredients = fav.recipeIngredients.map((ingredient, i) => {
+        return (
+          <li className="ingredient-list-item" key={i}>
+            {ingredient}
+          </li>
+        );
       });
-      console.log("NOT LOGGED IN");
-    }
-  });
-};
-
-
-
-    render() {
-      // Maps through favorites-array and returns favorite-cards
-      const { userFavorites } = this.state;
-      const listFavorites = userFavorites.map((fav, i) => {
-        const generateIngredients = fav.recipeIngredients.map((ingredient, i) => {
-          return (
-            <li className="ingredient-list-item" key={i}>
-              {ingredient}
-            </li>
-          );
-        });
-        return (<div key={i}className="card">
+      return (
+        <div key={i} className="card">
           <div className="beer-card">
             <div className="beer-card-info">
               <div className="beer-card-title">
@@ -88,16 +86,21 @@ auth = () => {
               {generateIngredients}
             </ul>
           </div>
-        </div>)
-      });
-      return (
-        <div>
-        {listFavorites}
-        {this.state.userName === 'Please Login' ? <p> Please login too see your favorites</p>
-        : <p>Loading...</p>}
         </div>
       );
-    }
+    });
+    return (
+      <div>
+        {userName === 'Please Login' ? (
+          <p> Please login too see your favorites</p>
+        ) : userFavorites.length > 0 ? (
+          listFavorites
+        ) : (
+          <div>Loading...</div>
+        )}
+      </div>
+    );
   }
+}
 
 export default Favorites;
