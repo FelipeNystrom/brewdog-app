@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import firebase from "./firebase";
 import Signout from "./SignOut";
 import Signin from "./SignIn";
@@ -30,33 +30,31 @@ class Navbar extends Component {
 
   render() {
     return (
-      <nav className="navbar navbar-light bg-light">
-        <h2 className="navbar-brand">Beerit</h2>
-
-        <div className="nav-item dropdown">
-          <a
-            className="nav-link dropdown-toggle"
-            id="navbarDropdownMenuLink"
-            role="button"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
-            Menu
-          </a>
-          <div
-            className="dropdown-menu"
-            aria-labelledby="navbarDropdownMenuLink"
-          >
-            {this.state.loggedIn ? <Signout /> : <Signin />}
-
-            <a className="dropdown-item">
-              {this.state.loggedIn ? "Favorites" : ""}
-            </a>
-            <a className="dropdown-item">About us</a>
-          </div>
-        </div>
-      </nav>
+      <Fragment>
+        {!this.state.loggedIn ? (
+          <nav className="navbar navbar-light bg-light">
+            <span className="navbar-brand mb-0 h1">Beerit</span>
+            <div className="btn-group">
+              <button
+                type="button"
+                className="btn btn-secondary dropdown-toggle"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                Sign in
+              </button>
+              <Signin />
+            </div>
+          </nav>
+        ) : (
+          <nav className="navbar navbar-light bg-light">
+            <span className="navbar-brand mb-0 h1">Beerit</span>
+            <a className="nav-link">Favorites</a>
+            <Signout />
+          </nav>
+        )}
+      </Fragment>
     );
   }
 }
