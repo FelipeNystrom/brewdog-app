@@ -92,7 +92,14 @@ class Favorites extends Component {
     return (
       <div>
         {userName === 'Please Login' ? (
-          <p> Please login too see your favorites</p>
+          <p
+            onLoad={() => {
+              this.props.toggleView('redirectToStart');
+            }}
+          >
+            {' '}
+            Please login too see your favorites
+          </p>
         ) : userFavorites.length > 0 ? (
           listFavorites
         ) : (

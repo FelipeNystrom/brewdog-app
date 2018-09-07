@@ -10,12 +10,20 @@ class App extends Component {
   };
 
   // toggle state to control which component is shown
-  toogleView = isLoggedIn => {
-    if (isLoggedIn) {
+  toogleView = toggleCondition => {
+    if (toggleCondition.length >= 20) {
       this.setState({
         showDefault: !this.state.showDefault,
         showFavorites: !this.state.showFavorites
       });
+    }
+    if (toggleCondition === 'redirectToStart') {
+      setTimeout(() => {
+        this.setState({
+          showDefault: !this.state.showDefault,
+          showFavorites: !this.state.showFavorites
+        });
+      }, 1000);
     }
   };
 
