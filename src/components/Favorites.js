@@ -22,21 +22,6 @@ class Favorites extends Component {
     this.auth();
   }
 
-  // componentDidUpdate(prevProps, prevState) {
-  //   console.log(prevState);
-  //   console.log('update');
-  //   if (prevState.userName !== this.state.userName) {
-  //     console.log('from 1st');
-  //     console.log(this.state.userName);
-  //     if (this.state.userName === 'Please Login') {
-  //       console.log('from 2nd');
-  //       setTimeout(() => {
-  //         this.props.toggleView(true);
-  //       }, 3000);
-  //     }
-  //   }
-  // }
-
   // Login check, grab user id, run converter (db => array)
   auth = () => {
     firebase.auth().onAuthStateChanged(user => {
@@ -44,19 +29,12 @@ class Favorites extends Component {
         // User is signed in.
         this.setState({ userName: user.uid, loggedIn: true });
         console.log(user.uid + ' LOGGED IN');
-        firebase
-          .database()
-          .ref(`/users/${this.state.userName}`)
-          .on('value', snapshot => {
-            const favorites = toArray(snapshot.val());
-            this.setState({ userFavorites: favorites });
-            console.log(this.state.userFavorites);
-          });
+        this.convertFromDatabase();
       } else {
         // User is signed out
         this.setState(
           {
-            userName: '',
+            userName: 'Please Login',
             userFavorites: [],
             loggedIn: false
           },
@@ -71,17 +49,29 @@ class Favorites extends Component {
     });
   };
 
-  // redirect = () => {
-  //   setTimeout(() => {
-  //     this.props.toggleView(true);
-  //   }, 3000);
-  // };
+  convertFromDatabase = () => {
+    firebase
+      .database()
+      .ref(`/users/${this.state.userName}`)
+      .on('value', snapshot => {
+        const favorites = toArray(snapshot.val());
+        this.setState({ userFavorites: favorites });
+        console.log(this.state.userFavorites);
+      });
+  };
+
+  deleteFavorite = fav => {
+    firebase
+      .database()
+      .ref(`/users/${this.state.userName}/${fav.key}`)
+      .remove();
+    this.convertFromDatabase();
+  };
 
   render() {
-    // const { toggleView } = this.props;
     // Maps through favorites-array and returns favorite-cards
     const { userFavorites, loggedIn } = this.state;
-    const listFavorites = userFavorites.map((fav, i) => {
+    const listFavorites = userFavorites.map(fav => {
       const generateIngredients = fav.recipeIngredients.map((ingredient, i) => {
         return (
           <li className="ingredient-list-item" key={i}>
@@ -90,7 +80,7 @@ class Favorites extends Component {
         );
       });
       return (
-        <div key={i} className="card">
+        <div key={fav.key} className="card">
           <div className="beer-card">
             <div className="beer-card-info">
               <div className="beer-card-title">
@@ -117,6 +107,7 @@ class Favorites extends Component {
               {generateIngredients}
             </ul>
           </div>
+          <button onClick={() => this.deleteFavorite(fav)}> Delete </button>
         </div>
       );
     });
