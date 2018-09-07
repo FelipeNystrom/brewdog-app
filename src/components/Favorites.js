@@ -103,6 +103,8 @@ deleteFavorite = (fav) => {
       });
       return (
         <div>
+
+        
         {listFavorites}
         {this.state.userName === 'Please Login' ? <p> Please login too see your favorites</p>
         : <p>Loading...</p>}
