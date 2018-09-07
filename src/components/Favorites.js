@@ -14,23 +14,45 @@ function toArray(firebaseObject) {
 class Favorites extends Component {
   state = {
     userFavorites: [],
+    userName: ''
   };
 
-// Uses toArray/converter on mount
-  componentDidMount() {
-    firebase
-    .database()
-    .ref('/users/testuser')
-    .on('value', (snapshot) => {
-      const favorites = toArray(snapshot.val());
-      this.setState({ userFavorites: favorites })
-      console.log(this.state.userFavorites);
-    });
+componentDidMount() {
+  this.auth();
 }
 
-    render() {
+// Login check, grab user id, run converter (db => array)
+auth = () => {
+  firebase.auth().onAuthStateChanged(user => {
+    if (user) {
+      // User is signed in.
+      this.setState({ userName: user.uid, loggedIn: true });
+      console.log(user.uid + " LOGGED IN");
+      firebase
+        .database()
+        .ref(`/users/${this.state.userName}`)
+        .on("value", snapshot => {
+          const favorites = toArray(snapshot.val());
+          this.setState({ userFavorites: favorites });
+          console.log(this.state.userFavorites);
+        });
+    } else {
+      // User is signed out
+      this.setState({
+        userName: "Please Login",
+        userFavorites: [],
+        loggedIn: false
+      });
+      console.log("NOT LOGGED IN");
+    }
+  });
+};
 
-      const { userFavorites } = this.state
+
+
+    render() {
+      // Maps through favorites-array and returns favorite-cards
+      const { userFavorites } = this.state;
       const listFavorites = userFavorites.map((fav, i) => {
         const generateIngredients = fav.recipeIngredients.map((ingredient, i) => {
           return (
@@ -71,6 +93,8 @@ class Favorites extends Component {
       return (
         <div>
         {listFavorites}
+        {this.state.userName === 'Please Login' ? <p> Please login too see your favorites</p>
+        : <p>Loading...</p>}
         </div>
       );
     }
