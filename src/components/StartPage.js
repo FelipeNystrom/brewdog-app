@@ -4,9 +4,9 @@ import Categories from './Categories.js';
 //states
 class StartPage extends Component {
   state = {
-    meal: "",
+    meal: '',
     choiceIsMade: false,
-    choice: "",
+    choice: '',
     hasChoice: false
   };
 
@@ -32,8 +32,8 @@ class StartPage extends Component {
   //return either start-page or filter-page
   render() {
     const { meal, choiceIsMade } = this.state;
-    const dinnerChoices = ["Chicken", "Beef", "Pork", "Lamb", "Fish"];
-    const dessertChoices = ["Chocolate", "Ice Cream", "Cheesecake", "Cookies"];
+    const dinnerChoices = ['Chicken', 'Beef', 'Pork', 'Lamb', 'Fish'];
+    const dessertChoices = ['Chocolate', 'Ice Cream', 'Cheesecake', 'Cookies'];
 
     const listDinners = dinnerChoices.map((dinner, i) => (
       <button
@@ -84,7 +84,7 @@ class StartPage extends Component {
           </div>
         ) : (
           <Categories state={this.state}>
-            {meal === "dinner" ? listDinners : listDesserts}
+            {meal === 'dinner' ? listDinners : listDesserts}
             <div>
               <button onClick={this.goBack}>Back</button>
             </div>

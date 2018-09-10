@@ -10,9 +10,12 @@ class Navbar extends Component {
     userName: ""
   };
 
+  mounted = true;
   // Runs a login-check on mount
   componentDidMount() {
-    this.auth();
+    if (this.mounted) {
+      this.auth();
+    }
   }
 
   // Function for login-check
@@ -65,7 +68,9 @@ class Navbar extends Component {
           <Fragment>
             <button
               onClick={() => {
-                toggleView(loggedIn);
+                setTimeout(() => {
+                  toggleView(loggedIn);
+                }, 500);
               }}
               className="nav-link"
             >
