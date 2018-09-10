@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
 import StartPage from './StartPage';
 import Navbar from './Navbar';
 import Favorites from './Favorites';
@@ -25,8 +26,14 @@ class App extends Component {
     return (
       <div>
         <Navbar toggleView={this.toogleView} />
-        {showDefault && <StartPage />}
-        {showFavorites && <Favorites toggleView={this.toogleView} />}
+
+        {showDefault && <Route path="/" component={StartPage} />}
+        {showFavorites && (
+          <Route
+            path="/favorites"
+            render={() => <Favorites toggleView={this.toogleView} />}
+          />
+        )}
       </div>
     );
   }

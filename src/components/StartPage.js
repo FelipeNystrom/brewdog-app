@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import { Link, Route } from 'react-router-dom';
 import Categories from './Categories.js';
 
 //states
@@ -64,31 +65,40 @@ class StartPage extends Component {
             <h3>Match food with beer</h3>
             <h4>Choose meal</h4>
             <div>
-              <button
-                type="button"
-                onClick={this.handleClick}
-                name="meal"
-                value="dinner"
-              >
-                Dinner
-              </button>
-              <button
-                type="button"
-                onClick={this.handleClick}
-                name="meal"
-                value="dessert"
-              >
-                Dessert
-              </button>
+              <Link to="/categories">
+                <button
+                  type="button"
+                  onClick={this.handleClick}
+                  name="meal"
+                  value="dinner"
+                >
+                  Dinner
+                </button>
+              </Link>
+              <Link to="/categories">
+                <button
+                  type="button"
+                  onClick={this.handleClick}
+                  name="meal"
+                  value="dessert"
+                >
+                  Dessert
+                </button>
+              </Link>
             </div>
           </div>
         ) : (
-          <Categories state={this.state}>
-            {meal === 'dinner' ? listDinners : listDesserts}
-            <div>
-              <button onClick={this.goBack}>Back</button>
-            </div>
-          </Categories>
+          <Route
+            path="/categories"
+            render={() => (
+              <Categories state={this.state}>
+                {meal === 'dinner' ? listDinners : listDesserts}
+                <div>
+                  <button onClick={this.goBack}>Back</button>
+                </div>
+              </Categories>
+            )}
+          />
         )}
       </Fragment>
     );
