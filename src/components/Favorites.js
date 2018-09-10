@@ -12,6 +12,7 @@ function toArray(firebaseObject) {
 
 class Favorites extends Component {
   state = {
+    hasNoFavorites: false,
     userFavorites: [],
     userName: '',
     redirect: false,
@@ -19,12 +20,14 @@ class Favorites extends Component {
   };
   // switch to prevent processes to run after unmount
   mounted = true;
+
   componentDidMount() {
-    this.mounted = true;
-    this.auth();
+    if (this.mounted) {
+      this.auth();
+    }
   }
 
-  componentWillMount() {
+  componentWillUnmount() {
     this.mounted = false;
   }
 
@@ -34,7 +37,6 @@ class Favorites extends Component {
       if (user) {
         // User is signed in.
         this.setState({ userName: user.uid, loggedIn: true });
-        console.log(user.uid + ' LOGGED IN');
         this.convertFromDatabase();
       } else {
         // User is signed out
@@ -50,23 +52,26 @@ class Favorites extends Component {
             }, 3000);
           }
         );
-        console.log('NOT LOGGED IN');
       }
     });
   };
 
+  // Helper function to fetch and convert user data
   convertFromDatabase = () => {
     firebase
       .database()
       .ref(`/users/${this.state.userName}`)
       .on('value', snapshot => {
         const favorites = toArray(snapshot.val());
-        this.setState({ userFavorites: favorites });
-        console.log(this.state.userFavorites);
+        if (favorites.length !== 0) {
+          this.setState({ userFavorites: favorites });
+        } else {
+          this.setState({ hasNoFavorites: true });
+        }
       });
   };
 
-  deleteFavorite = fav => {
+  deleteFavoriteFromDB = fav => {
     firebase
       .database()
       .ref(`/users/${this.state.userName}/${fav.key}`)
@@ -76,7 +81,7 @@ class Favorites extends Component {
 
   render() {
     // Maps through favorites-array and returns favorite-cards
-    const { userFavorites, loggedIn } = this.state;
+    const { userFavorites, loggedIn, hasNoFavorites } = this.state;
     const listFavorites = userFavorites.map(fav => {
       const generateIngredients = fav.recipeIngredients.map((ingredient, i) => {
         return (
@@ -113,14 +118,21 @@ class Favorites extends Component {
               {generateIngredients}
             </ul>
           </div>
-          <button onClick={() => this.deleteFavorite(fav)}> Delete </button>
+          <button onClick={() => this.deleteFavoriteFromDB(fav)}>Delete</button>
         </div>
       );
     });
     return (
       <div>
-        {loggedIn && userFavorites.length === 0 && <div>Loading...</div>}
+        {/* Is displayed during fetch */}
+        {loggedIn &&
+          userFavorites.length === 0 &&
+          !hasNoFavorites && <div>Loading...</div>}
+        {/* If user has no favorites show message */}
+        {hasNoFavorites && <div>You have 0 favorites</div>}
+        {/* Displays user favorites */}
         {loggedIn && userFavorites.length > 0 && listFavorites}
+        {/* Is shown for 3 sec when user is logged out then triggers toggleView function which mounts default view  */}
         {!loggedIn && <p>Please login too see your favorites</p>}
       </div>
     );

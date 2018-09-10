@@ -9,9 +9,12 @@ class Navbar extends Component {
     userName: ''
   };
 
+  mounted = true;
   // Runs a login-check on mount
   componentDidMount() {
-    this.auth();
+    if (this.mounted) {
+      this.auth();
+    }
   }
 
   // Function for login-check
@@ -54,7 +57,9 @@ class Navbar extends Component {
             <span className="navbar-brand mb-0 h1">Beerit</span>
             <button
               onClick={() => {
-                toggleView(loggedIn);
+                setTimeout(() => {
+                  toggleView(loggedIn);
+                }, 500);
               }}
               className="nav-link"
             >
