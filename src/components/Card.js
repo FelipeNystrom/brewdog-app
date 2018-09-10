@@ -1,6 +1,7 @@
-import React, { Component, Fragment } from 'react';
-import FoodPart from './FoodPart';
-import './Card.css';
+import React, { Component, Fragment } from "react";
+import FoodPart from "./FoodPart";
+import ShowMore from "react-show-more";
+import "./Card.css";
 
 class Card extends Component {
   state = {
@@ -29,13 +30,22 @@ class Card extends Component {
               <div className="beer-name">{beer.name}</div>
               <div className="food-name">{recipeToMatch}</div>
             </div>
-            <div className="beer-card-description">{beer.description}</div>
+            <div className="beer-card-description">
+              <ShowMore
+                lines={4}
+                more="Show more"
+                less="Show less"
+                anchorClass=""
+              >
+                {beer.description}
+              </ShowMore>
+            </div>
           </div>
           <div className="beer-card-img">
             <img src={beer.image_url} alt="#" />
           </div>
         </div>
-        <div className={showMore ? 'divider-show' : 'divider-hidden'} />
+        <div className={showMore ? "divider-show" : "divider-hidden"} />
 
         {/* toggle of recipe part happens here */}
         {!showMore ? (
