@@ -3,28 +3,18 @@ import './NavigationControl.css';
 
 class NavigationControl extends Component {
   state = {
-    canForward: false,
-    totalHistory: 0
+    canForward: false
   };
 
   componentDidMount() {
     const { history } = this.props;
+
+    // make disabling of forward button possible if no forward
     if (history.action === 'POP') {
       this.setState({ canForward: true });
     } else {
       this.setState({ canForward: false });
     }
-  }
-
-  componentDidUpdate() {
-    console.log('update');
-    // const { history } = this.props;
-    // console.log(window.history.length);
-    // console.log(window.history.state);
-
-    // if (this.props.history.length > this.state.totalHistory) {
-    //   this.setState({ canForward: true });
-    // }
   }
 
   render() {
