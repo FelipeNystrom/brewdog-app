@@ -193,33 +193,42 @@ class FoodPart extends Component {
     });
     return (
       <Fragment>
-        <div className={`food-card ${show ? "show" : "hidden"}`}>
-          {!isLoaded ? (
-            <div>Loading...</div>
-          ) : (
-            <Fragment>
+        {!isLoaded ? (
+          <div>Loading...</div>
+        ) : (
+          <Fragment>
+            <div className={`food-card ${show ? "show" : "hidden"}`}>
+              <div className="food-card-img">
+                <img src={image} alt="#" />
+              </div>
               <div className="food-card-info">
                 <div className="food-card-title">
                   <h6>{name}</h6>
                 </div>
-                <div className="food-card-img">
-                  <img src={image} alt="#" />
+                <div className="food-card-description">
+                  <ul className="ingredient-list-title">
+                    {generateIngredients}
+                  </ul>
                 </div>
               </div>
-              <div className="food-card-description">
-                <ul className="ingredient-list-title">
-                  <h6 className="ingredients-list">List of ingredients</h6>
-                  {generateIngredients}
-                </ul>
-              </div>
+            </div>
+            {/* // Buttons */}
+            <div className="food-card-button">
               {loggedIn && userName !== "" ? (
-                <button onClick={this.saveToFavorites}>Save</button>
+                <button
+                  className="btn btn-outline-success btn-sm"
+                  onClick={this.saveToFavorites}
+                >
+                  Save
+                </button>
               ) : (
-                <button disabled>Login to favorite</button>
+                <button className="btn btn-outline-secondary btn-sm" disabled>
+                  Login to favorite
+                </button>
               )}
-            </Fragment>
-          )}
-        </div>
+            </div>
+          </Fragment>
+        )}
       </Fragment>
     );
   }
