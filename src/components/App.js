@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
+
+import './App.css';
+
+// Components to route
 import StartPage from './StartPage';
 import Navbar from './Navbar';
 import Favorites from './Favorites';
