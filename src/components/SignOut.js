@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import firebase from "./firebase";
+import React, { Component } from 'react';
+import firebase from './firebase';
 
 class Signout extends Component {
   state = {
-    email: "",
-    password: "",
-    user: "",
+    email: '',
+    password: '',
+    user: '',
     loggedIn: true
   };
 
@@ -14,7 +14,7 @@ class Signout extends Component {
       .auth()
       .signOut()
       .then(() => {
-        this.setState({ user: "", email: "", password: "", loggedIn: false });
+        this.setState({ user: '', email: '', password: '', loggedIn: false });
       });
   };
 

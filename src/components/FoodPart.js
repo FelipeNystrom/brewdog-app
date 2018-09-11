@@ -16,11 +16,7 @@ class FoodPart extends Component {
     loggedIn: true
   };
 
-  // switch to prevent processes to run after unmount
-  mounted = true;
-
   componentDidMount() {
-    this.mounted = true;
     const { showMore } = this.props;
     const { recipeToMatch, searchFor } = this.props;
 

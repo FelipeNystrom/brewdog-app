@@ -87,10 +87,3 @@
   border-bottom: 0.05rem solid hsla(0, 0%, 30%, 0.7);
   margin: 2% auto;
 }
-
-.hidden {
-  height: 0;
-}
-/* .show {
-  height: 100%;
-} */

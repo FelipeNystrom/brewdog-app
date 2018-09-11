@@ -1,7 +1,9 @@
 import React, { Component, Fragment } from 'react';
+import { Link } from 'react-router-dom';
 import firebase from './firebase';
 import Signout from './SignOut';
 import Signin from './SignIn';
+import image from '../media/blogo.jpg';
 
 class Navbar extends Component {
   state = {
@@ -9,9 +11,12 @@ class Navbar extends Component {
     userName: ''
   };
 
+  mounted = true;
   // Runs a login-check on mount
   componentDidMount() {
-    this.auth();
+    if (this.mounted) {
+      this.auth();
+    }
   }
 
   // Function for login-check
@@ -31,13 +36,19 @@ class Navbar extends Component {
 
   render() {
     const { loggedIn } = this.state;
-    const { toggleView } = this.props;
     return (
-      <Fragment>
-        {!this.state.loggedIn ? (
-          <nav className="navbar navbar-light bg-light">
-            <span className="navbar-brand mb-0 h1">Beerit</span>
-
+      <nav className="navbar navbar-light bg-light">
+        {/* <button
+          onClick={() => window.location.reload()}
+          className="navbar-brand mb-0 h1"
+        >
+          Beerit
+        </button>{" "} */}
+        <Link to="/">
+          <img src={image} width="40" height="40" alt="logo" />
+        </Link>
+        {!loggedIn ? (
+          <Fragment>
             <button
               type="button"
               className="btn btn-primary"
@@ -48,22 +59,16 @@ class Navbar extends Component {
               Login
             </button>
             <Signin />
-          </nav>
+          </Fragment>
         ) : (
-          <nav className="navbar navbar-light bg-light">
-            <span className="navbar-brand mb-0 h1">Beerit</span>
-            <button
-              onClick={() => {
-                toggleView(loggedIn);
-              }}
-              className="nav-link"
-            >
-              Favorites
-            </button>
+          <Fragment>
+            <Link to="/favorites">
+              <button className="nav-link">Favorites</button>
+            </Link>
             <Signout />
-          </nav>
+          </Fragment>
         )}
-      </Fragment>
+      </nav>
     );
   }
 }

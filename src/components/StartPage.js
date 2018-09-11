@@ -1,14 +1,18 @@
 import React, { Component, Fragment } from 'react';
+<<<<<<< HEAD
 import Categories from './Categories.js';
 import './StartPage.css';
 
+=======
+import { Link } from 'react-router-dom';
+>>>>>>> f9c7c3b11b03dbb3d073235f1a8c5759738765d3
 
 //states
 class StartPage extends Component {
   state = {
-    meal: "",
+    meal: '',
     choiceIsMade: false,
-    choice: "",
+    choice: '',
     hasChoice: false
   };
 
@@ -27,12 +31,9 @@ class StartPage extends Component {
     });
   };
 
-  goBack = () => {
-    this.setState({ choiceIsMade: false });
-  };
-
   //return either start-page or filter-page
   render() {
+<<<<<<< HEAD
     const { meal, choiceIsMade } = this.state;
     const dinnerChoices = ["Chicken", "Beef", "Pork", "Lamb", "Fish"];
     const dessertChoices = ["Chocolate", "Ice Cream", "Cheesecake", "Cookies"];
@@ -71,6 +72,17 @@ class StartPage extends Component {
             </div>
             <div className="childDiv">
                 <button
+=======
+    return (
+      <Fragment>
+        <div>
+          <h1>Beerit</h1>
+          <h3>Match food with beer</h3>
+          <h4>Choose meal</h4>
+          <div>
+            <Link to={`/categories/dinner`}>
+              <button
+>>>>>>> f9c7c3b11b03dbb3d073235f1a8c5759738765d3
                 type="button"
                 onClick={this.handleClick}
                 name="meal"
@@ -79,9 +91,15 @@ class StartPage extends Component {
                 >
                 Dinner
               </button>
+<<<<<<< HEAD
               </div>
               <div className="childDiv">
                 <button
+=======
+            </Link>
+            <Link to={`/categories/dessert`}>
+              <button
+>>>>>>> f9c7c3b11b03dbb3d073235f1a8c5759738765d3
                 type="button"
                 onClick={this.handleClick}
                 name="meal"
@@ -90,6 +108,7 @@ class StartPage extends Component {
                 >
                 Dessert
               </button>
+<<<<<<< HEAD
               </div>
           </div>
         ) : (
@@ -107,6 +126,11 @@ class StartPage extends Component {
             </div>
           </Categories>
         )}
+=======
+            </Link>
+          </div>
+        </div>
+>>>>>>> f9c7c3b11b03dbb3d073235f1a8c5759738765d3
       </Fragment>
     );
   }
