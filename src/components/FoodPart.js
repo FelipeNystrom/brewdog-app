@@ -194,7 +194,7 @@ class FoodPart extends Component {
     return (
       <Fragment>
         {!isLoaded ? (
-          <div>Loading...</div>
+          <div>Searching for recipe...</div>
         ) : (
           <Fragment>
             <div className={`food-card ${show ? "show" : "hidden"}`}>
