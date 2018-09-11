@@ -31,13 +31,12 @@ class Categories extends Component {
     ));
 
     const listDesserts = dessertChoices.map((dessert, i) => (
-      <Link key={i} to={`/beers-to-match-with/${dessert}`}>
+      <Link key={i} to={`/beers-to-match-with/${dessert.toLowerCase()}`}>
         <button>{dessert}</button>
       </Link>
     ));
     const { typeOfFood } = this.state;
     const { history } = this.props;
-    console.log(history);
     return (
       <Fragment>
         <button
