@@ -120,7 +120,7 @@ class Signin extends Component {
                   role="tabpanel"
                   aria-labelledby="login-tab"
                 >
-                  ...
+                  <p>Login with email and password</p>
                   <form>
                     <div className="form-group">
                       <input
@@ -148,7 +148,7 @@ class Signin extends Component {
 
                     <button
                       type="submit"
-                      className="btn btn-primary"
+                      className="btn btn-outline-info"
                       onClick={this.signIn}
                       data-dismiss="modal"
                     >
@@ -162,7 +162,7 @@ class Signin extends Component {
                   role="tabpanel"
                   aria-labelledby="register-tab"
                 >
-                  ...
+                  <p>Create an account</p>
                   <form>
                     <div className="form-group">
                       <input
@@ -189,7 +189,7 @@ class Signin extends Component {
                     </div>
                     <button
                       type="submit"
-                      className="btn btn-primary"
+                      className="btn btn-outline-info"
                       onClick={this.signUp}
                       data-dismiss="modal"
                     >

@@ -4,7 +4,6 @@ import firebase from "./firebase";
 import Signout from "./SignOut";
 import Signin from "./SignIn";
 import image from "../media/blogo.jpg";
-import "./Card.css";
 
 class Navbar extends Component {
   state = {
@@ -47,7 +46,7 @@ class Navbar extends Component {
             <Fragment>
               <button
                 type="button"
-                className="btn btn-outline-dark btn-sm"
+                className="btn btn-outline-info btn-sm"
                 data-toggle="modal"
                 data-target="#authModal"
                 data-whatever="@mdo"

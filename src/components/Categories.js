@@ -37,24 +37,23 @@ class Categories extends Component {
     ));
     const { typeOfFood } = this.state;
     const { history } = this.props;
-    console.log(history);
     return (
       <Fragment>
-      <div className="mainContainer">
-      <div className="headerContainer">
-      <h3>Choose ingredient</h3>
-      </div>
-      <div className="midContainer">
-      {typeOfFood === 'dinner' ? listDinners : listDesserts}
-        <button
-          className="goBack"
-          onClick={() => {
-            history.goBack();
-          }}
-        >
-          <i className="fas fa-arrow-circle-left" />
-        </button>
-        </div>
+        <div className="mainContainer">
+          <div className="headerContainer">
+            <h3>Choose ingredient</h3>
+          </div>
+          <div className="midContainer">
+            {typeOfFood === "dinner" ? listDinners : listDesserts}
+            <button
+              className="goBack"
+              onClick={() => {
+                history.goBack();
+              }}
+            >
+              <i className="fas fa-arrow-circle-left" />
+            </button>
+          </div>
         </div>
       </Fragment>
     );
