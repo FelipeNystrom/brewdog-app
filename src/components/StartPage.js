@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { Link, Route } from 'react-router-dom';
-import Categories from './Categories.js';
+import { Link } from 'react-router-dom';
 
 //states
 class StartPage extends Component {
@@ -35,7 +34,7 @@ class StartPage extends Component {
           <h3>Match food with beer</h3>
           <h4>Choose meal</h4>
           <div>
-            <Link to={`${this.props.match.url}/dinner`}>
+            <Link to={`/categories/dinner`}>
               <button
                 type="button"
                 onClick={this.handleClick}
@@ -45,7 +44,7 @@ class StartPage extends Component {
                 Dinner
               </button>
             </Link>
-            <Link to={`${this.props.match.url}/dinner`}>
+            <Link to={`/categories/dessert`}>
               <button
                 type="button"
                 onClick={this.handleClick}
@@ -57,13 +56,6 @@ class StartPage extends Component {
             </Link>
           </div>
         </div>
-
-        <Route
-          path="/categories"
-          // component={Categories}
-          // render={() => <div>hej</div>}
-          render={() => <Categories {...this.state} />}
-        />
       </Fragment>
     );
   }
