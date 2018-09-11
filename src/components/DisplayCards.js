@@ -37,8 +37,6 @@ class DisplayCards extends Component {
   };
 
   render() {
-    console.log(this.props);
-
     const { beers, isLoaded } = this.state;
     const { history } = this.props;
     const searchFor = this.props.match.params.foodTypeToMatchWith;

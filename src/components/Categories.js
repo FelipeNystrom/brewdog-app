@@ -1,9 +1,10 @@
-import React, { Component, Fragment } from "react";
-import { Link } from "react-router-dom";
+import React, { Component, Fragment } from 'react';
+import { Link } from 'react-router-dom';
+import './Categories.css';
 
 class Categories extends Component {
   state = {
-    typeOfFood: ""
+    typeOfFood: ''
   };
 
   componentDidMount() {
@@ -22,8 +23,8 @@ class Categories extends Component {
   }
 
   render() {
-    const dinnerChoices = ["Chicken", "Beef", "Pork", "Lamb", "Fish"];
-    const dessertChoices = ["Chocolate", "Ice Cream", "Cheesecake", "Cookies"];
+    const dinnerChoices = ['Chicken', 'Beef', 'Pork', 'Lamb', 'Fish'];
+    const dessertChoices = ['Chocolate', 'Ice Cream', 'Cheesecake', 'Cookies'];
     const listDinners = dinnerChoices.map((dinner, i) => (
       <Link key={i} to={`/beers-to-match-with/${dinner.toLowerCase()}`}>
         <button className="ingredientButton">{dinner}</button>
@@ -37,24 +38,21 @@ class Categories extends Component {
     ));
     const { typeOfFood } = this.state;
     const { history } = this.props;
-    console.log(history);
     return (
       <Fragment>
-      <div className="mainContainer">
-      <div className="headerContainer">
-      <h3>Choose ingredient</h3>
-      </div>
-      <div className="midContainer">
-      {typeOfFood === 'dinner' ? listDinners : listDesserts}
-        <button
-          className="goBack"
-          onClick={() => {
-            history.goBack();
-          }}
-        >
-          <i className="fas fa-arrow-circle-left" />
-        </button>
-        </div>
+        <div className="mainContainer">
+          <div className="ingredientsHeader">
+            <h3>Choose ingredient</h3>
+          </div>
+          <i
+            className="fas fa-arrow-circle-left goBack"
+            onClick={() => {
+              history.goBack();
+            }}
+          />
+          <div className="ingredientsWrapper">
+            {typeOfFood === 'dinner' ? listDinners : listDesserts}
+          </div>
         </div>
       </Fragment>
     );
