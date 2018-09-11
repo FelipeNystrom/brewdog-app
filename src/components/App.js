@@ -15,6 +15,7 @@ class App extends Component {
     return (
       <Fragment>
         <Navbar />
+
         <Route exact path="/" component={StartPage} />
         <Route
           path="/categories/:foodOrDessert"

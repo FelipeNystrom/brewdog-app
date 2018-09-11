@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
+import "./Categories.css";
 
 class Categories extends Component {
   state = {
@@ -40,19 +41,17 @@ class Categories extends Component {
     return (
       <Fragment>
         <div className="mainContainer">
-          <div className="headerContainer">
+          <div className="ingredientsHeader">
             <h3>Choose ingredient</h3>
           </div>
-          <div className="midContainer">
+          <i
+            className="fas fa-arrow-circle-left goBack"
+            onClick={() => {
+              history.goBack();
+            }}
+          />
+          <div className="ingredientsWrapper">
             {typeOfFood === "dinner" ? listDinners : listDesserts}
-            <button
-              className="goBack"
-              onClick={() => {
-                history.goBack();
-              }}
-            >
-              <i className="fas fa-arrow-circle-left" />
-            </button>
           </div>
         </div>
       </Fragment>

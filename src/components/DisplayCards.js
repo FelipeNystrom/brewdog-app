@@ -61,6 +61,9 @@ class DisplayCards extends Component {
     return (
       <Fragment>
         <APIFetch food={searchFor} setListState={this.getBeers} />
+        <div className="resultsHeader">
+          <h3>Your match</h3>
+        </div>
         <button
           className="goBack"
           onClick={() => {

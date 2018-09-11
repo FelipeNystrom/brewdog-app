@@ -42,7 +42,7 @@ class Card extends Component {
             </div>
           </div>
           <div className="beer-card-img">
-            <img src={beer.image_url} alt="No image" />
+            <img src={beer.image_url} alt="beer img" />
           </div>
         </div>
 
