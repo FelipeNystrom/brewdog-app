@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import StartPage from './StartPage';
 import Navbar from './Navbar';
 import Favorites from './Favorites';
+import './StartPage.css';
+
 
 class App extends Component {
   state = {
@@ -23,7 +25,7 @@ class App extends Component {
   render() {
     const { showDefault, showFavorites } = this.state;
     return (
-      <div>
+      <div className="appContainer">
         <Navbar toggleView={this.toogleView} />
         {showDefault && <StartPage />}
         {showFavorites && <Favorites toggleView={this.toogleView} />}

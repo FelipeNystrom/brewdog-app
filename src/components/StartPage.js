@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import Categories from './Categories.js';
+import './StartPage.css';
+
 
 //states
 class StartPage extends Component {
@@ -36,57 +38,72 @@ class StartPage extends Component {
     const dessertChoices = ["Chocolate", "Ice Cream", "Cheesecake", "Cookies"];
 
     const listDinners = dinnerChoices.map((dinner, i) => (
-      <button
+      <div
         key={i}
         onClick={this.handleCategory}
         name="choice"
         value={dinner}
+        className="chooseIngredient"
       >
         {dinner}
-      </button>
+      </div>
     ));
 
     const listDesserts = dessertChoices.map((dessert, i) => (
-      <button
+      <div
         key={i}
         onClick={this.handleCategory}
         name="choice"
         value={dessert}
+        className="chooseIngredient"
       >
         {dessert}
-      </button>
+      </div>
     ));
     return (
       <Fragment>
         {!choiceIsMade ? (
-          <div>
-            <h1>Beerit</h1>
-            <h3>Match food with beer</h3>
-            <h4>Choose meal</h4>
-            <div>
-              <button
+          <div className="mainContainer">
+            <div className="textContainer">
+              <h1>Beerit</h1>
+              <h3>Match food with beer</h3>
+              <h4>Choose meal</h4>
+            </div>
+            <div className="childDiv">
+                <button
                 type="button"
                 onClick={this.handleClick}
                 name="meal"
                 value="dinner"
-              >
+                className="choiceButton dinner"
+                >
                 Dinner
               </button>
-              <button
+              </div>
+              <div className="childDiv">
+                <button
                 type="button"
                 onClick={this.handleClick}
                 name="meal"
                 value="dessert"
-              >
+                className="choiceButton dessert"
+                >
                 Dessert
               </button>
-            </div>
+              </div>
           </div>
         ) : (
           <Categories state={this.state}>
-            {meal === "dinner" ? listDinners : listDesserts}
-            <div>
-              <button onClick={this.goBack}>Back</button>
+            <div className="mainContainer">
+              <div className="textContainer">
+                <h2>Choose main ingredient </h2>
+              </div>
+              <div className="childDiv">
+              {meal === "dinner" ? listDinners : listDesserts}
+              </div>
+              <div>
+              <button className="chooseIngredient" onClick={this.goBack}>Back</button>
+              </div>
             </div>
           </Categories>
         )}
