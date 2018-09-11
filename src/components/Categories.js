@@ -31,7 +31,7 @@ class Categories extends Component {
     ));
 
     const listDesserts = dessertChoices.map((dessert, i) => (
-      <Link key={i} to={`/beers-to-match-with/${dessert}`}>
+      <Link key={i} to={`/beers-to-match-with/${dessert.toLowerCase()}`}>
         <button>{dessert}</button>
       </Link>
     ));
