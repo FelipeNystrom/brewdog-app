@@ -29,33 +29,35 @@ class StartPage extends Component {
   render() {
     return (
       <Fragment>
-        <div>
+      <div className="mainContainer">
+          <div className="headerContainer">
           <h1>Beerit</h1>
           <h3>Match food with beer</h3>
           <h4>Choose meal</h4>
-          <div>
+          </div>
+          <div className="midContainer">
             <Link to={`/categories/dinner`}>
-              <button
-                type="button"
+              <div
+                className="dinnerButton"
                 onClick={this.handleClick}
                 name="meal"
                 value="dinner"
               >
                 Dinner
-              </button>
+              </div>
             </Link>
             <Link to={`/categories/dessert`}>
-              <button
-                type="button"
+              <div
+                className="dessertButton"
                 onClick={this.handleClick}
                 name="meal"
                 value="dessert"
               >
                 Dessert
-              </button>
+              </div>
             </Link>
+            </div>
           </div>
-        </div>
       </Fragment>
     );
   }
