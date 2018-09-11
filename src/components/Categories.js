@@ -46,7 +46,7 @@ class Categories extends Component {
             history.goBack();
           }}
         >
-          <i class="fas fa-arrow-circle-left" />
+          <i className="fas fa-arrow-circle-left" />
         </button>
         {typeOfFood === 'dinner' ? listDinners : listDesserts}
       </Fragment>

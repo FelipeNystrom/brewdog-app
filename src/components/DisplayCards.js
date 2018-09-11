@@ -69,7 +69,7 @@ class DisplayCards extends Component {
             history.goBack();
           }}
         >
-          <i class="fas fa-arrow-circle-left" />
+          <i className="fas fa-arrow-circle-left" />
         </button>
         {!isLoaded ? <div className="loading">Loading...</div> : generateBeers}
       </Fragment>
