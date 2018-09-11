@@ -26,19 +26,25 @@ class Categories extends Component {
     const dessertChoices = ["Chocolate", "Ice Cream", "Cheesecake", "Cookies"];
     const listDinners = dinnerChoices.map((dinner, i) => (
       <Link key={i} to={`/beers-to-match-with/${dinner.toLowerCase()}`}>
-        <button>{dinner}</button>
+        <button className="ingredientButton">{dinner}</button>
       </Link>
     ));
 
     const listDesserts = dessertChoices.map((dessert, i) => (
       <Link key={i} to={`/beers-to-match-with/${dessert.toLowerCase()}`}>
-        <button>{dessert}</button>
+        <button className="ingredientButton">{dessert}</button>
       </Link>
     ));
     const { typeOfFood } = this.state;
     const { history } = this.props;
     return (
       <Fragment>
+      <div className="mainContainer">
+      <div className="headerContainer">
+      <h3>Choose ingredient</h3>
+      </div>
+      <div className="midContainer">
+      {typeOfFood === 'dinner' ? listDinners : listDesserts}
         <button
           className="goBack"
           onClick={() => {
@@ -47,7 +53,8 @@ class Categories extends Component {
         >
           <i className="fas fa-arrow-circle-left" />
         </button>
-        {typeOfFood === "dinner" ? listDinners : listDesserts}
+        </div>
+        </div>
       </Fragment>
     );
   }
