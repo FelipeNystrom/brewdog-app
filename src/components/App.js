@@ -1,8 +1,7 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { Route } from "react-router-dom";
 
 import "./App.css";
-
 
 // Components to route
 import StartPage from "./StartPage";
@@ -14,7 +13,7 @@ import DisplayCards from "./DisplayCards";
 class App extends Component {
   render() {
     return (
-      <div className="appContainer">
+      <Fragment>
         <Navbar />
         <Route exact path="/" component={StartPage} />
         <Route
@@ -31,7 +30,7 @@ class App extends Component {
           path="/beers-to-match-with/:foodTypeToMatchWith"
           render={props => <DisplayCards {...props} />}
         />
-      </div>
+      </Fragment>
     );
   }
 }
