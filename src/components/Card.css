@@ -1,76 +1,102 @@
+body {
+  background: #f5f7f8;
+  font-family: "Roboto", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  padding: 20px 0;
+}
+
+.food-button {
+}
+
+.container {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
 .card {
   position: relative;
-  width: 80%;
-  height: 60%;
+  max-width: 500px;
+  max-height: 1000px;
   margin: 4% auto;
-  border: 1px solid hsl(0, 0%, 50%);
   display: flex;
   padding: 2%;
   flex-direction: column;
   border-radius: 0.2rem;
-  box-shadow: 0.1rem 0.2rem 0.3rem hsl(0, 0%, 25%);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   transition: all 1s ease-in-out;
+}
+
+.card:hover {
+  top: -2px;
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
 }
 
 .beer-card {
   display: flex;
   flex-direction: row;
+  margin-bottom: 5%;
 }
 
 .food-card {
-  display: flex;
-  flex-direction: column;
   transition: all 1s ease-in-out;
 }
 
 .beer-card-info {
-  width: 59%;
-  padding: 5%;
+  width: 80%;
+}
+
+.food-info {
+  padding-left: 4%;
+  margin-top: 4%;
+  margin-bottom: 4%;
+  font-size: 0.7rem;
 }
 
 .food-card-info {
   width: 100%;
-  padding: 2%;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: row;
 }
 
-.beer-card-title,
+.beer-card-title {
+  text-align: left;
+  border-bottom: 0.05rem solid hsla(0, 0%, 30%, 0.7);
+}
+
 .food-card-title {
-  text-align: center;
+  text-align: left;
+  border-bottom: 0.05rem solid hsla(0, 0%, 30%, 0.7);
+  margin-bottom: 5%;
 }
 
 .beer-card-description,
 .food-card-description {
-  margin-top: 20%;
+  margin-top: 5%;
   font-size: 0.7rem;
 }
 
 .beer-card-img {
-  width: 35%;
-  margin-top: 10%;
-  padding: 7%;
+  width: 9%;
+  margin-left: 5%;
 }
 
 .food-card-img {
-  width: 30%;
-  padding: auto 0;
+  width: 100%;
+  padding: 10%;
+  border-radius: 4%;
 }
 
-.food-card-title {
-  width: 65%;
-  display: flex;
-  flex-direction: column;
+.food-card-button {
+  justify-content: center;
 }
 
 .beer-name,
 .food-name {
-  font-size: 0.9rem;
-  text-align: center;
+  font-size: 1rem;
 }
-.beer-name {
-  border-bottom: 0.01rem solid hsl(0, 0%, 25%);
+
+.alert {
+  margin: 0;
 }
 
 .beer-card-img img,
@@ -81,6 +107,7 @@
 .divider-hidden {
   display: none;
 }
+
 .divider-show {
   display: block;
   width: 90%;
@@ -91,6 +118,3 @@
 .hidden {
   height: 0;
 }
-/* .show {
-  height: 100%;
-} */

@@ -24,11 +24,11 @@ class Card extends Component {
     };
     return (
       <div className="card">
+        {/* Beer-card */}
         <div className="beer-card">
           <div className="beer-card-info">
-            <div className="beer-card-title">
+            <div className="beer-card-title" role="alert">
               <div className="beer-name">{beer.name}</div>
-              <div className="food-name">{recipeToMatch}</div>
             </div>
             <div className="beer-card-description">
               <ShowMore
@@ -45,11 +45,17 @@ class Card extends Component {
             <img src={beer.image_url} alt="#" />
           </div>
         </div>
-        <div className={showMore ? "divider-show" : "divider-hidden"} />
 
-        {/* toggle of recipe part happens here */}
+        {/* Food-card */}
+
+        <div className="food-card-title" role="alert">
+          <div className="food-name">{recipeToMatch}</div>
+        </div>
+
         {!showMore ? (
-          <button onClick={this.toggleCard}>Show Recipe</button>
+          <button className="food-button" onClick={this.toggleCard}>
+            Show Recipe
+          </button>
         ) : (
           <Fragment>
             <FoodPart

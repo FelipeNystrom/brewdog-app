@@ -1,18 +1,19 @@
-import React, { Component, Fragment } from 'react';
-import firebase from './firebase';
+import React, { Component, Fragment } from "react";
+import firebase from "./firebase";
+import "./Card.css";
 
 class FoodPart extends Component {
   state = {
     ingredients: [],
-    name: '',
-    image: '',
+    name: "",
+    image: "",
     fallback: false,
     finalfallback: false,
     isLoaded: false,
     show: false,
     searchUrls: [],
     shouldUpdate: false,
-    userName: '',
+    userName: "",
     loggedIn: true
   };
 
@@ -23,7 +24,7 @@ class FoodPart extends Component {
     // string manipulations method to build search query
     const lowerCaseSearch = searchFor.toLowerCase();
     const fixedString = this.noWhiteSpace(recipeToMatch[0]);
-    const arrayFromSearchString = recipeToMatch[0].toLowerCase().split(' ');
+    const arrayFromSearchString = recipeToMatch[0].toLowerCase().split(" ");
     const cleanedString = arrayFromSearchString.filter(
       i => i !== lowerCaseSearch
     );
@@ -33,7 +34,7 @@ class FoodPart extends Component {
     const indexOfSearchWord = arrayFromSearchString.indexOf(lowerCaseSearch);
 
     arrayFromSearchString.length = indexOfSearchWord + 2;
-    const newSearchString = arrayFromSearchString.join('+');
+    const newSearchString = arrayFromSearchString.join("+");
 
     // search querys to use for fetch sequence
 
@@ -138,13 +139,13 @@ class FoodPart extends Component {
       .database()
       .ref(`/users/${this.state.userName}`)
       .push(beerInfo);
-    console.log('Successfully Saved!');
+    console.log("Successfully Saved!");
   };
 
   // remove whitespaces from sentence and replace with +
   noWhiteSpace = sentence => {
     const ws = /\s/g;
-    return sentence.toLowerCase().replace(ws, '+');
+    return sentence.toLowerCase().replace(ws, "+");
   };
 
   // Function for login-check
@@ -159,7 +160,7 @@ class FoodPart extends Component {
           loggedIn: true,
           userName: user.uid
         });
-        console.log(user.uid + ' LOGGED IN');
+        console.log(user.uid + " LOGGED IN");
       } else {
         // User is signed out, user === null
         this.setState({
@@ -167,9 +168,9 @@ class FoodPart extends Component {
           searchUrls: [first, second, third],
           shouldUpdate: true,
           loggedIn: false,
-          userName: ''
+          userName: ""
         });
-        console.log('NOT LOGGED IN');
+        console.log("NOT LOGGED IN");
       }
     });
   };
@@ -193,33 +194,35 @@ class FoodPart extends Component {
     });
     return (
       <Fragment>
-        <div className={`food-card ${show ? 'show' : 'hidden'}`}>
-          {!isLoaded ? (
-            <div>Loading...</div>
-          ) : (
-            <Fragment>
+        {!isLoaded ? (
+          <div>Loading...</div>
+        ) : (
+          <Fragment>
+            <div className={`food-card ${show ? "show" : "hidden"}`}>
+              <div className="food-card-img">
+                <img src={image} alt="#" />
+              </div>
               <div className="food-card-info">
                 <div className="food-card-title">
                   <h6>{name}</h6>
                 </div>
-                <div className="food-card-img">
-                  <img src={image} alt="#" />
+                <div className="food-card-description">
+                  <ul className="ingredient-list-title">
+                    {generateIngredients}
+                  </ul>
                 </div>
               </div>
-              <div className="food-card-description">
-                <ul className="ingredient-list-title">
-                  <h6 className="ingredients-list">List of ingredients</h6>
-                  {generateIngredients}
-                </ul>
-              </div>
-              {loggedIn && userName !== '' ? (
+            </div>
+            {/* // Buttons */}
+            <div className="food-card-button">
+              {loggedIn && userName !== "" ? (
                 <button onClick={this.saveToFavorites}>Save</button>
               ) : (
                 <button disabled>Login to favorite</button>
               )}
-            </Fragment>
-          )}
-        </div>
+            </div>
+          </Fragment>
+        )}
       </Fragment>
     );
   }
