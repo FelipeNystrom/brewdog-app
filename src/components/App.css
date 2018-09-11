@@ -1,31 +1,19 @@
 .goBack {
   background-color: transparent;
   border-style: none;
-  flex:1;
-  width: 100%;
-  height: 100%;
-}
-
-.goBack:active {
-  outline: none;
-}
-
-.fas {
-  width: 100%;
+  flex: 1;
   color: hsl(208, 7%, 56%);
-  font-size: 1.5rem;
-  border-radius: 100%;
+  font-size: 2rem;
   transition: all 100ms ease-in-out;
   margin: 0;
   padding: 0;
 }
-
-.fas:hover {
+.goBack:hover {
   color: hsl(208, 7%, 26%);
   box-shadow: 0.1rem 0.1rem 0.5rem 0 hsla(0, 0%, 0%, 0.75);
 }
-
-.fas:active {
+.goBack:active {
+  outline: none;
   color: hsl(208, 7%, 16%);
 }
 
@@ -40,7 +28,6 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100vh;
 }
 
 .headerContainer {
@@ -48,11 +35,12 @@
   width: 100%;
   height: auto;
   text-align: center;
-  background-image: url("../media/chalk1.jpg");
+  background-image: url('../media/chalk1.jpg');
   background-size: cover;
   padding: 1rem;
   color: white;
-  text-shadow: -4px 0 4px black, 0 4px 4px black, 4px 0 4px black, 0 -4px 4px black;
+  text-shadow: -4px 0 4px black, 0 4px 4px black, 4px 0 4px black,
+    0 -4px 4px black;
 }
 
 .midContainer {
@@ -64,50 +52,38 @@
 }
 
 .midContainer a {
-  flex:1;
+  flex: 1;
   height: 50%;
 }
 
 .dinnerButton {
-  flex:1;
+  flex: 1;
   width: 100%;
   height: 100%;
   border-top: 2px solid rgb(232, 232, 232);
-  background-image: url("../media/beer4.jpg");
+  background-image: url('../media/beer4.jpg');
   background-size: cover;
   background-position: center;
   border: 0;
   text-align: center;
   font-size: 2rem;
   color: white;
-  text-shadow: -4px 0 4px black, 0 4px 4px black, 4px 0 4px black, 0 -4px 4px black;
+  text-shadow: -4px 0 4px black, 0 4px 4px black, 4px 0 4px black,
+    0 -4px 4px black;
 }
 
 .dessertButton {
-  flex:1;
+  flex: 1;
   width: 100%;
   height: 100%;
   border-top: 2px solid rgb(232, 232, 232);
-  background-image: url("../media/dessert1.jpg");
+  background-image: url('../media/dessert1.jpg');
   background-size: cover;
   background-position: center;
   border: 0;
   text-align: center;
   font-size: 2rem;
   color: white;
-  text-shadow: -4px 0 4px black, 0 4px 4px black, 4px 0 4px black, 0 -4px 4px black;
-}
-
-.ingredientButton {
-  flex:1;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  color: white;
-  font-size: 2rem;
-  border-top: 2px solid rgb(232, 232, 232);
-  padding: 1rem;
-  background: #085078;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #85D8CE, #085078);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #85D8CE, #085078); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  text-shadow: -4px 0 4px black, 0 4px 4px black, 4px 0 4px black,
+    0 -4px 4px black;
 }
