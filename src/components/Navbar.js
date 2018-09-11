@@ -46,11 +46,7 @@ class Navbar extends Component {
             <Fragment>
               <button
                 type="button"
-<<<<<<< HEAD
-                className="btn btn-outline-info btn-sm"
-=======
                 className="btn btn-outline-dark btn-sm"
->>>>>>> dev-branch
                 data-toggle="modal"
                 data-target="#authModal"
                 data-whatever="@mdo"
