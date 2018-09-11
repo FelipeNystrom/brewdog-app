@@ -5,6 +5,17 @@
   justify-content: center;
 }
 
+.navigationButtonDisabled {
+  text-align: center;
+  border-radius: 100%;
+  flex: 1;
+  background-color: transparent;
+  border-style: none;
+  flex: 1;
+  color: hsl(208, 7%, 56%, 0.3);
+  font-size: 2rem;
+}
+
 .navigationButton {
   text-align: center;
   border-radius: 100%;

@@ -39,7 +39,6 @@ class Categories extends Component {
     ));
     const { typeOfFood } = this.state;
     const { history } = this.props;
-    console.log(history);
     return (
       <Fragment>
         <div className="mainContainer">

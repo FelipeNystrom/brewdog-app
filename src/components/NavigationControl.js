@@ -9,12 +9,19 @@ class NavigationControl extends Component {
 
   componentDidMount() {
     const { history } = this.props;
-    console.log(history.length);
-    this.setState({ totalHistory: history.length });
+    if (history.action === 'POP') {
+      this.setState({ canForward: true });
+    } else {
+      this.setState({ canForward: false });
+    }
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    console.log(this.props.history.length > prevState.totalHistory.length);
+  componentDidUpdate() {
+    console.log('update');
+    // const { history } = this.props;
+    // console.log(window.history.length);
+    // console.log(window.history.state);
+
     // if (this.props.history.length > this.state.totalHistory) {
     //   this.setState({ canForward: true });
     // }
@@ -32,7 +39,10 @@ class NavigationControl extends Component {
           }}
         />
         {!canForward ? (
-          <i className="fas fa-arrow-circle-right navigationButton" disabled />
+          <i
+            className="fas fa-arrow-circle-right navigationButtonDisabled"
+            disabled
+          />
         ) : (
           <i
             className="fas fa-arrow-circle-right navigationButton"
