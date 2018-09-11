@@ -62,6 +62,9 @@ class DisplayCards extends Component {
     return (
       <Fragment>
         <APIFetch food={searchFor} setListState={this.getBeers} />
+        <div className="resultsHeader">
+          <h3>Your match</h3>
+        </div>
         <NavigationControl history={history} />
         <div className="container">
           {!isLoaded ? (

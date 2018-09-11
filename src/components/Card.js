@@ -1,7 +1,7 @@
-import React, { Component, Fragment } from 'react';
-import FoodPart from './FoodPart';
-import ShowMore from 'react-show-more';
-import './Card.css';
+import React, { Component, Fragment } from "react";
+import FoodPart from "./FoodPart";
+import ShowMore from "react-show-more";
+import "./Card.css";
 
 class Card extends Component {
   state = {
@@ -42,7 +42,7 @@ class Card extends Component {
             </div>
           </div>
           <div className="beer-card-img">
-            <img src={beer.image_url} alt="beer" />
+            <img src={beer.image_url} alt="beer img" />
           </div>
         </div>
 

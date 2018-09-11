@@ -1,14 +1,14 @@
-import React, { Component, Fragment } from 'react';
-import { Link } from 'react-router-dom';
-import firebase from './firebase';
-import Signout from './SignOut';
-import Signin from './SignIn';
-import image from '../media/blogo.jpg';
+import React, { Component, Fragment } from "react";
+import { Link } from "react-router-dom";
+import firebase from "./firebase";
+import Signout from "./SignOut";
+import Signin from "./SignIn";
+import image from "../media/blogo.jpg";
 
 class Navbar extends Component {
   state = {
     loggedIn: false,
-    userName: ''
+    userName: ""
   };
 
   mounted = true;
@@ -25,11 +25,11 @@ class Navbar extends Component {
       if (user) {
         // User is signed in.
         this.setState({ userName: user.uid, loggedIn: true });
-        console.log(user.uid + ' LOGGED IN');
+        console.log(user.uid + " LOGGED IN");
       } else {
         // User is signed out, user === null
-        this.setState({ userName: '', loggedIn: false });
-        console.log('NOT LOGGED IN');
+        this.setState({ userName: "", loggedIn: false });
+        console.log("NOT LOGGED IN");
       }
     });
   };
@@ -37,38 +37,36 @@ class Navbar extends Component {
   render() {
     const { loggedIn } = this.state;
     return (
-      <nav className="navbar navbar-light bg-light">
-        {/* <button
-          onClick={() => window.location.reload()}
-          className="navbar-brand mb-0 h1"
-        >
-          Beerit
-        </button>{" "} */}
-        <Link to="/">
-          <img src={image} width="40" height="40" alt="logo" />
-        </Link>
-        {!loggedIn ? (
-          <Fragment>
-            <button
-              type="button"
-              className="btn btn-primary"
-              data-toggle="modal"
-              data-target="#authModal"
-              data-whatever="@mdo"
-            >
-              Login
-            </button>
-            <Signin />
-          </Fragment>
-        ) : (
-          <Fragment>
-            <Link to="/favorites">
-              <button className="nav-link">Favorites</button>
-            </Link>
-            <Signout />
-          </Fragment>
-        )}
-      </nav>
+      <Fragment>
+        <nav className="navbar sticky-top navbar-light bg-light">
+          <Link to="/">
+            <img src={image} width="40" height="40" alt="logo" />
+          </Link>
+          {!loggedIn ? (
+            <Fragment>
+              <button
+                type="button"
+                className="btn btn-outline-dark btn-sm"
+                data-toggle="modal"
+                data-target="#authModal"
+                data-whatever="@mdo"
+              >
+                Login
+              </button>
+            </Fragment>
+          ) : (
+            <Fragment>
+              <Link to="/favorites">
+                <button className="btn btn-outline-danger btn-sm">
+                  Favorites
+                </button>
+              </Link>
+              <Signout />
+            </Fragment>
+          )}
+        </nav>
+        <Signin />
+      </Fragment>
     );
   }
 }
