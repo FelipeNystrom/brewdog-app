@@ -1,12 +1,12 @@
 import React, { Component, Fragment } from 'react';
-import Categories from './Categories.js';
+import { Link } from 'react-router-dom';
 
 //states
 class StartPage extends Component {
   state = {
-    meal: "",
+    meal: '',
     choiceIsMade: false,
-    choice: "",
+    choice: '',
     hasChoice: false
   };
 
@@ -25,71 +25,39 @@ class StartPage extends Component {
     });
   };
 
-  goBack = () => {
-    this.setState({ choiceIsMade: false });
-  };
-
   //return either start-page or filter-page
   render() {
-    const { meal, choiceIsMade } = this.state;
-    const dinnerChoices = ["Chicken", "Beef", "Pork", "Lamb", "Fish"];
-    const dessertChoices = ["Chocolate", "Ice Cream", "Cheesecake", "Cookies"];
-
-    const listDinners = dinnerChoices.map((dinner, i) => (
-      <button
-        key={i}
-        onClick={this.handleCategory}
-        name="choice"
-        value={dinner}
-      >
-        {dinner}
-      </button>
-    ));
-
-    const listDesserts = dessertChoices.map((dessert, i) => (
-      <button
-        key={i}
-        onClick={this.handleCategory}
-        name="choice"
-        value={dessert}
-      >
-        {dessert}
-      </button>
-    ));
     return (
       <Fragment>
-        {!choiceIsMade ? (
-          <div>
-            <h1>Beerit</h1>
-            <h3>Match food with beer</h3>
-            <h4>Choose meal</h4>
-            <div>
-              <button
-                type="button"
+      <div className="mainContainer">
+          <div className="headerContainer">
+          <h1>Beerit</h1>
+          <h3>Match food with beer</h3>
+          <h4>Choose meal</h4>
+          </div>
+          <div className="midContainer">
+            <Link to={`/categories/dinner`}>
+              <div
+                className="dinnerButton"
                 onClick={this.handleClick}
                 name="meal"
                 value="dinner"
               >
                 Dinner
-              </button>
-              <button
-                type="button"
+              </div>
+            </Link>
+            <Link to={`/categories/dessert`}>
+              <div
+                className="dessertButton"
                 onClick={this.handleClick}
                 name="meal"
                 value="dessert"
               >
                 Dessert
-              </button>
+              </div>
+            </Link>
             </div>
           </div>
-        ) : (
-          <Categories state={this.state}>
-            {meal === "dinner" ? listDinners : listDesserts}
-            <div>
-              <button onClick={this.goBack}>Back</button>
-            </div>
-          </Categories>
-        )}
       </Fragment>
     );
   }
