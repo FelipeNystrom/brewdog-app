@@ -1,12 +1,12 @@
-import React, { Component, Fragment } from 'react';
-import { Link } from 'react-router-dom';
+import React, { Component, Fragment } from "react";
+import { Link } from "react-router-dom";
 
 //states
 class StartPage extends Component {
   state = {
-    meal: '',
+    meal: "",
     choiceIsMade: false,
-    choice: '',
+    choice: "",
     hasChoice: false
   };
 

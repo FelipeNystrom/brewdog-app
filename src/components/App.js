@@ -28,11 +28,7 @@ class App extends Component {
         />
         <Route
           path="/beers-to-match-with/:foodTypeToMatchWith"
-          render={props => (
-            <div className="container">
-              <DisplayCards {...props} />
-            </div>
-          )}
+          render={props => <DisplayCards {...props} />}
         />
       </div>
     );

@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from "react";
 import firebase from "./firebase";
-import "./Card.css";
 
 class FoodPart extends Component {
   state = {
@@ -194,42 +193,33 @@ class FoodPart extends Component {
     });
     return (
       <Fragment>
-        {!isLoaded ? (
-          <div>Loading...</div>
-        ) : (
-          <Fragment>
-            <div className={`food-card ${show ? "show" : "hidden"}`}>
-              <div className="food-card-img">
-                <img src={image} alt="#" />
-              </div>
+        <div className={`food-card ${show ? "show" : "hidden"}`}>
+          {!isLoaded ? (
+            <div>Loading...</div>
+          ) : (
+            <Fragment>
               <div className="food-card-info">
                 <div className="food-card-title">
                   <h6>{name}</h6>
                 </div>
-                <div className="food-card-description">
-                  <ul className="ingredient-list-title">
-                    {generateIngredients}
-                  </ul>
+                <div className="food-card-img">
+                  <img src={image} alt="#" />
                 </div>
               </div>
-            </div>
-            {/* // Buttons */}
-            <div className="food-card-button">
+              <div className="food-card-description">
+                <ul className="ingredient-list-title">
+                  <h6 className="ingredients-list">List of ingredients</h6>
+                  {generateIngredients}
+                </ul>
+              </div>
               {loggedIn && userName !== "" ? (
-                <button
-                  className="btn btn-outline-success btn-sm"
-                  onClick={this.saveToFavorites}
-                >
-                  Save
-                </button>
+                <button onClick={this.saveToFavorites}>Save</button>
               ) : (
-                <button className="btn btn-outline-secondary btn-sm" disabled>
-                  Login to favorite
-                </button>
+                <button disabled>Login to favorite</button>
               )}
-            </div>
-          </Fragment>
-        )}
+            </Fragment>
+          )}
+        </div>
       </Fragment>
     );
   }

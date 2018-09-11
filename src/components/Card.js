@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from "react";
 import FoodPart from "./FoodPart";
-import ShowMore from "react-show-more";
 import "./Card.css";
 
 class Card extends Component {
@@ -24,41 +23,23 @@ class Card extends Component {
     };
     return (
       <div className="card">
-        {/* Beer-card */}
         <div className="beer-card">
           <div className="beer-card-info">
-            <div className="beer-card-title" role="alert">
+            <div className="beer-card-title">
               <div className="beer-name">{beer.name}</div>
+              <div className="food-name">{recipeToMatch}</div>
             </div>
-            <div className="beer-card-description">
-              <ShowMore
-                lines={3}
-                more="Show more"
-                less="Show less"
-                anchorClass=""
-              >
-                {beer.description}
-              </ShowMore>
-            </div>
+            <div className="beer-card-description">{beer.description}</div>
           </div>
           <div className="beer-card-img">
-            <img src={beer.image_url} alt="No image" />
+            <img src={beer.image_url} alt="#" />
           </div>
         </div>
+        <div className={showMore ? "divider-show" : "divider-hidden"} />
 
-        {/* Food-card */}
-
-        <div className="food-card-title" role="alert">
-          <div className="food-name">{recipeToMatch}</div>
-        </div>
-
+        {/* toggle of recipe part happens here */}
         {!showMore ? (
-          <button
-            className="btn btn-outline-secondary btn-sm"
-            onClick={this.toggleCard}
-          >
-            Show Recipe
-          </button>
+          <button onClick={this.toggleCard}>Show Recipe</button>
         ) : (
           <Fragment>
             <FoodPart
@@ -67,12 +48,7 @@ class Card extends Component {
               searchFor={searchFor}
               recipeToMatch={recipeToMatch}
             />
-            <button
-              className="btn btn-outline-dark btn-sm"
-              onClick={this.toggleCard}
-            >
-              Hide Recipe
-            </button>
+            <button onClick={this.toggleCard}>Hide Recipe</button>
           </Fragment>
         )}
       </div>
