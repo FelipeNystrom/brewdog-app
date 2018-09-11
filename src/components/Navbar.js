@@ -37,40 +37,36 @@ class Navbar extends Component {
   render() {
     const { loggedIn } = this.state;
     return (
-      <nav className="navbar sticky-top navbar-light bg-light">
-        {/* <button
-          onClick={() => window.location.reload()}
-          className="navbar-brand mb-0 h1"
-        >
-          Beerit
-        </button>{" "} */}
-        <Link to="/">
-          <img src={image} width="40" height="40" alt="logo" />
-        </Link>
-        {!loggedIn ? (
-          <Fragment>
-            <button
-              type="button"
-              className="btn btn-outline-dark btn-sm"
-              data-toggle="modal"
-              data-target="#authModal"
-              data-whatever="@mdo"
-            >
-              Login
-            </button>
-            <Signin />
-          </Fragment>
-        ) : (
-          <Fragment>
-            <Link to="/favorites">
-              <button className="btn btn-outline-danger btn-sm">
-                Favorites
+      <Fragment>
+        <nav className="navbar sticky-top navbar-light bg-light">
+          <Link to="/">
+            <img src={image} width="40" height="40" alt="logo" />
+          </Link>
+          {!loggedIn ? (
+            <Fragment>
+              <button
+                type="button"
+                className="btn btn-outline-dark btn-sm"
+                data-toggle="modal"
+                data-target="#authModal"
+                data-whatever="@mdo"
+              >
+                Login
               </button>
-            </Link>
-            <Signout />
-          </Fragment>
-        )}
-      </nav>
+            </Fragment>
+          ) : (
+            <Fragment>
+              <Link to="/favorites">
+                <button className="btn btn-outline-danger btn-sm">
+                  Favorites
+                </button>
+              </Link>
+              <Signout />
+            </Fragment>
+          )}
+        </nav>
+        <Signin />
+      </Fragment>
     );
   }
 }
