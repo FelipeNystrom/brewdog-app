@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import firebase from './firebase';
+import { Redirect } from 'react-router-dom';
 
 // Converter from DB-object to Array in state
 function toArray(firebaseObject) {
@@ -13,10 +14,12 @@ function toArray(firebaseObject) {
 class Favorites extends Component {
   state = {
     hasNoFavorites: false,
+    redirect: false,
     userFavorites: [],
     userName: '',
-    redirect: false,
-    loggedIn: false
+    loggedIn: false,
+    loggedOutMessage: 'Please login too see your favorites',
+    showLogOutMessage: false
   };
   // switch to prevent processes to run after unmount
   mounted = true;
@@ -44,11 +47,13 @@ class Favorites extends Component {
           {
             userName: 'Please Login',
             userFavorites: [],
-            loggedIn: false
+            loggedIn: false,
+            hasNoFavorites: false,
+            showLogOutMessage: true
           },
           () => {
             setTimeout(() => {
-              this.props.toggleView(true);
+              this.setState({ redirect: true });
             }, 3000);
           }
         );
@@ -81,7 +86,17 @@ class Favorites extends Component {
 
   render() {
     // Maps through favorites-array and returns favorite-cards
-    const { userFavorites, loggedIn, hasNoFavorites } = this.state;
+    const {
+      userFavorites,
+      loggedIn,
+      hasNoFavorites,
+      showLogOutMessage,
+      loggedOutMessage,
+      redirect
+    } = this.state;
+
+    console.log(this.props);
+
     const listFavorites = userFavorites.map(fav => {
       const generateIngredients = fav.recipeIngredients.map((ingredient, i) => {
         return (
@@ -133,7 +148,8 @@ class Favorites extends Component {
         {/* Displays user favorites */}
         {loggedIn && userFavorites.length > 0 && listFavorites}
         {/* Is shown for 3 sec when user is logged out then triggers toggleView function which mounts default view  */}
-        {!loggedIn && <p>Please login too see your favorites</p>}
+        {showLogOutMessage && <p>{loggedOutMessage}</p>}
+        {redirect && <Redirect to="/" />}
       </div>
     );
   }

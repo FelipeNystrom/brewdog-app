@@ -22,7 +22,9 @@ class App extends Component {
         />
         <Route
           path="/favorites"
-          render={() => <Favorites toggleView={this.toogleView} />}
+          render={props => (
+            <Favorites {...props} toggleView={this.toogleView} />
+          )}
         />
         <Route
           path="/beers-to-match-with/:foodTypeToMatchWith"
