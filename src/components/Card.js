@@ -28,11 +28,13 @@ class Card extends Component {
         <div className="beer-card">
           <div className="beer-card-info">
             <div className="beer-card-title" role="alert">
-              <div className="beer-name">{beer.name}</div>
+              <div className="beer-name">
+                {beer.name} - {beer.abv}%
+              </div>
             </div>
             <div className="beer-card-description">
               <ShowMore
-                lines={3}
+                lines={4}
                 more="Show more"
                 less="Show less"
                 anchorClass=""
@@ -49,15 +51,20 @@ class Card extends Component {
         {/* Food-card */}
 
         <div className="food-card-title" role="alert">
+          <span className="badge badge-info">Food match</span>
           <div className="food-name">{recipeToMatch}</div>
+        </div>
+        <div className="food-card-intro">
+          Search for the best matching recipe and try out the match yourself.
+          Login to save your favourite match!
         </div>
 
         {!showMore ? (
           <button
-            className="btn btn-outline-secondary btn-sm"
+            className="btn btn-outline-dark btn-sm"
             onClick={this.toggleCard}
           >
-            Show Recipe
+            Find recipe
           </button>
         ) : (
           <Fragment>

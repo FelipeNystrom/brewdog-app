@@ -1,11 +1,11 @@
-import React, { Component, Fragment } from 'react';
-import { Link } from 'react-router-dom';
-import './Categories.css';
-import NavigationControl from './NavigationControl';
+import React, { Component, Fragment } from "react";
+import { Link } from "react-router-dom";
+import "./Categories.css";
+import NavigationControl from "./NavigationControl";
 
 class Categories extends Component {
   state = {
-    typeOfFood: ''
+    typeOfFood: ""
   };
 
   componentDidMount() {
@@ -24,8 +24,8 @@ class Categories extends Component {
   }
 
   render() {
-    const dinnerChoices = ['Chicken', 'Beef', 'Pork', 'Lamb', 'Fish'];
-    const dessertChoices = ['Chocolate', 'Ice Cream', 'Cheesecake', 'Cookies'];
+    const dinnerChoices = ["Chicken", "Beef", "Pork", "Lamb", "Fish"];
+    const dessertChoices = ["Chocolate", "Ice Cream", "Cheesecake", "Cookies"];
     const listDinners = dinnerChoices.map((dinner, i) => (
       <Link key={i} to={`/beers-to-match-with/${dinner.toLowerCase()}`}>
         <button className="ingredientButton">{dinner}</button>
@@ -47,7 +47,7 @@ class Categories extends Component {
           </div>
           <NavigationControl history={history} />
           <div className="ingredientsWrapper">
-            {typeOfFood === 'dinner' ? listDinners : listDesserts}
+            {typeOfFood === "dinner" ? listDinners : listDesserts}
           </div>
         </div>
       </Fragment>
