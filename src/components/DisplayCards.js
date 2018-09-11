@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import APIFetch from "./FetchFromApi";
 import Card from "./Card";
 import firebase from "./firebase";
+import "./Card.css";
 
 class DisplayCards extends Component {
   state = {
@@ -52,6 +53,7 @@ class DisplayCards extends Component {
       });
       return (
         // card generation
+
         <Card
           key={beer.id}
           searchFor={searchFor}
