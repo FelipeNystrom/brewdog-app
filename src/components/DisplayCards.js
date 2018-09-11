@@ -1,13 +1,13 @@
-import React, { Component, Fragment } from 'react';
-import APIFetch from './FetchFromApi';
-import Card from './Card';
-import firebase from './firebase';
+import React, { Component, Fragment } from "react";
+import APIFetch from "./FetchFromApi";
+import Card from "./Card";
+import firebase from "./firebase";
 
 class DisplayCards extends Component {
   state = {
     isLoaded: false,
     beers: [],
-    userName: '',
+    userName: "",
     loggedIn: false
   };
 
@@ -22,11 +22,11 @@ class DisplayCards extends Component {
       if (user) {
         // User is signed in.
         this.setState({ userName: user.uid, loggedIn: true });
-        console.log(user.uid + ' LOGGED IN');
+        console.log(user.uid + " LOGGED IN");
       } else {
         // User is signed out, user === null
-        this.setState({ userName: '', loggedIn: false });
-        console.log('NOT LOGGED IN');
+        this.setState({ userName: "", loggedIn: false });
+        console.log("NOT LOGGED IN");
       }
     });
   };
@@ -69,7 +69,7 @@ class DisplayCards extends Component {
             history.goBack();
           }}
         >
-          <i class="fas fa-arrow-circle-left" />
+          <i className="fas fa-arrow-circle-left" />
         </button>
         {!isLoaded ? <div className="loading">Loading...</div> : generateBeers}
       </Fragment>
