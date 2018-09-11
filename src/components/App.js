@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from "react";
 import { Route } from "react-router-dom";
-
 import "./App.css";
 
 // Components to route
@@ -21,12 +20,16 @@ class App extends Component {
           path="/categories/:foodOrDessert"
           render={props => <Categories {...props} />}
         />
+
         <Route
           path="/favorites"
           render={props => (
-            <Favorites {...props} toggleView={this.toogleView} />
+            <div className="container">
+              <Favorites {...props} toggleView={this.toogleView} />
+            </div>
           )}
         />
+
         <Route
           path="/beers-to-match-with/:foodTypeToMatchWith"
           render={props => <DisplayCards {...props} />}

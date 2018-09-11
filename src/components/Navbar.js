@@ -40,11 +40,11 @@ class Navbar extends Component {
     return (
       <Fragment>
         <nav className="navbar sticky-top navbar-light bg-light">
-          <a className="navbar-brand">
+          <div className="navbar-brand">
             <Link to="/">
               <img src={image} width="40" height="40" alt="logo" />
             </Link>
-          </a>
+          </div>
           <div className="nav-bar-buttons">
             {!loggedIn ? (
               <Fragment>
