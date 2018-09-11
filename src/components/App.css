@@ -1,6 +1,9 @@
 .goBack {
   background-color: transparent;
   border-style: none;
+}
+
+.backButton {
   flex:1;
   width: 100%;
   height: 100%;
@@ -29,33 +32,29 @@
   color: hsl(208, 7%, 16%);
 }
 
-.appContainer {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100vh;
-}
-
 .mainContainer {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100vh;
+  height: calc(100% 56px);
+  margin: 0;
+  padding: 0 1rem;
 }
 
 .headerContainer {
   flex: 0;
-  width: 100%;
-  height: auto;
+  width: auto;
   text-align: center;
-  background-image: url("../media/chalk1.jpg");
-  background-size: cover;
+  background-color: black;
   padding: 1rem;
+  margin-top: .5rem;
   color: white;
-  text-shadow: -4px 0 4px black, 0 4px 4px black, 4px 0 4px black, 0 -4px 4px black;
+  border-radius: .2rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: all 1s ease-in-out;
 }
 
-.midContainer {
+.mealContainer {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -63,51 +62,38 @@
   height: auto;
 }
 
-.midContainer a {
+.mealContainer a {
   flex:1;
-  height: 50%;
 }
 
-.dinnerButton {
+.meal {
+  margin: .8rem 0 0;
   flex:1;
-  width: 100%;
+  width: auto;
   height: 100%;
   border-top: 2px solid rgb(232, 232, 232);
+  background-size: cover;
+  background-position: center;
+  border-radius: .2rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: all 1s ease-in-out;
+}
+
+.mealButton {
+  background-color: transparent;
+  border: 2px solid darkgray;
+  padding: 1.5rem 3rem;
+  margin: 15%;
+  text-align: center;
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.dinner {
   background-image: url("../media/beer4.jpg");
-  background-size: cover;
-  background-position: center;
-  border: 0;
-  text-align: center;
-  font-size: 2rem;
-  color: white;
-  text-shadow: -4px 0 4px black, 0 4px 4px black, 4px 0 4px black, 0 -4px 4px black;
 }
 
-.dessertButton {
-  flex:1;
-  width: 100%;
-  height: 100%;
-  border-top: 2px solid rgb(232, 232, 232);
+.dessert{
   background-image: url("../media/dessert1.jpg");
-  background-size: cover;
-  background-position: center;
-  border: 0;
-  text-align: center;
-  font-size: 2rem;
-  color: white;
-  text-shadow: -4px 0 4px black, 0 4px 4px black, 4px 0 4px black, 0 -4px 4px black;
-}
-
-.ingredientButton {
-  flex:1;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  color: white;
-  font-size: 2rem;
-  border-top: 2px solid rgb(232, 232, 232);
-  padding: 1rem;
-  background: #085078;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #85D8CE, #085078);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #85D8CE, #085078); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
