@@ -57,7 +57,7 @@ class Navbar extends Component {
           ) : (
             <Fragment>
               <Link to="/favorites">
-                <button className="btn btn-outline-danger btn-sm">
+                <button className="btn btn-outline-success btn-sm">
                   Favorites
                 </button>
               </Link>
