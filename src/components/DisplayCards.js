@@ -37,7 +37,10 @@ class DisplayCards extends Component {
   };
 
   render() {
+    console.log(this.props);
+
     const { beers, isLoaded } = this.state;
+    const { history } = this.props;
     const searchFor = this.props.match.params.foodTypeToMatchWith;
 
     // maps through state and creates a card from each index
@@ -60,7 +63,14 @@ class DisplayCards extends Component {
     return (
       <Fragment>
         <APIFetch food={searchFor} setListState={this.getBeers} />
-        <button>back</button>
+        <button
+          className="goBack"
+          onClick={() => {
+            history.goBack();
+          }}
+        >
+          <i class="fas fa-arrow-circle-left" />
+        </button>
         {!isLoaded ? <div className="loading">Loading...</div> : generateBeers}
       </Fragment>
     );

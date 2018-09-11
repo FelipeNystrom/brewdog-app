@@ -36,8 +36,18 @@ class Categories extends Component {
       </Link>
     ));
     const { typeOfFood } = this.state;
+    const { history } = this.props;
+    console.log(history);
     return (
       <Fragment>
+        <button
+          className="goBack"
+          onClick={() => {
+            history.goBack();
+          }}
+        >
+          <i class="fas fa-arrow-circle-left" />
+        </button>
         {typeOfFood === 'dinner' ? listDinners : listDesserts}
       </Fragment>
     );

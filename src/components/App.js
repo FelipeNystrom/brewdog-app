@@ -1,32 +1,33 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
+
+import './App.css';
+
+// Components to route
 import StartPage from './StartPage';
 import Navbar from './Navbar';
 import Favorites from './Favorites';
+import Categories from './Categories.js';
+import DisplayCards from './DisplayCards';
 
 class App extends Component {
-  state = {
-    showDefault: true,
-    showFavorites: false
-  };
-
-  // toggle state to control which component is shown
-  toogleView = toggleCondition => {
-    console.log(toggleCondition);
-    if (toggleCondition) {
-      this.setState({
-        showDefault: !this.state.showDefault,
-        showFavorites: !this.state.showFavorites
-      });
-    }
-  };
-
   render() {
-    const { showDefault, showFavorites } = this.state;
     return (
       <div>
-        <Navbar toggleView={this.toogleView} />
-        {showDefault && <StartPage />}
-        {showFavorites && <Favorites toggleView={this.toogleView} />}
+        <Navbar />
+        <Route exact path="/" component={StartPage} />
+        <Route
+          path="/categories/:foodOrDessert"
+          render={props => <Categories {...props} />}
+        />
+        <Route
+          path="/favorites"
+          render={() => <Favorites toggleView={this.toogleView} />}
+        />
+        <Route
+          path="/beers-to-match-with/:foodTypeToMatchWith"
+          render={props => <DisplayCards {...props} />}
+        />
       </div>
     );
   }
