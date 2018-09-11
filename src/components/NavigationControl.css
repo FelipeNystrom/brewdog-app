@@ -1,0 +1,28 @@
+.navigationWrapper {
+  width: 50%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
+.navigationButton {
+  text-align: center;
+  border-radius: 100%;
+  flex: 1;
+  background-color: transparent;
+  border-style: none;
+  flex: 1;
+  color: hsl(208, 7%, 56%);
+  font-size: 2rem;
+  transition: all 100ms ease-in-out;
+  margin: 0;
+  padding: 0;
+}
+.navigationButton:hover {
+  color: hsl(208, 7%, 26%);
+  box-shadow: 0.1rem 0.1rem 0.5rem 0 hsla(0, 0%, 0%, 0.75);
+}
+.navigationButton:active {
+  outline: none;
+  color: hsl(208, 7%, 16%);
+}
