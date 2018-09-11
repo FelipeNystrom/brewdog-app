@@ -1,0 +1,9 @@
+.btn {
+  margin-left: 5px;
+}
+
+.btn-outline-success:hover {
+  color: #28a745;
+  background-color: none;
+  border-color: #28a745;
+}
