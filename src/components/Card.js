@@ -32,7 +32,7 @@ class Card extends Component {
             </div>
             <div className="beer-card-description">
               <ShowMore
-                lines={4}
+                lines={3}
                 more="Show more"
                 less="Show less"
                 anchorClass=""
@@ -42,7 +42,7 @@ class Card extends Component {
             </div>
           </div>
           <div className="beer-card-img">
-            <img src={beer.image_url} alt="#" />
+            <img src={beer.image_url} alt="No image" />
           </div>
         </div>
 
@@ -53,7 +53,10 @@ class Card extends Component {
         </div>
 
         {!showMore ? (
-          <button className="food-button" onClick={this.toggleCard}>
+          <button
+            className="btn btn-outline-secondary btn-sm"
+            onClick={this.toggleCard}
+          >
             Show Recipe
           </button>
         ) : (
@@ -64,7 +67,12 @@ class Card extends Component {
               searchFor={searchFor}
               recipeToMatch={recipeToMatch}
             />
-            <button onClick={this.toggleCard}>Hide Recipe</button>
+            <button
+              className="btn btn-outline-dark btn-sm"
+              onClick={this.toggleCard}
+            >
+              Hide Recipe
+            </button>
           </Fragment>
         )}
       </div>

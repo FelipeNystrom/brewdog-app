@@ -5,7 +5,8 @@ body {
   padding: 20px 0;
 }
 
-.food-button {
+.food-card-button {
+  padding-bottom: 4%;
 }
 
 .container {
@@ -18,10 +19,10 @@ body {
 .card {
   position: relative;
   max-width: 500px;
-  max-height: 1000px;
+  max-height: 100%;
   margin: 4% auto;
   display: flex;
-  padding: 2%;
+  padding: 4%;
   flex-direction: column;
   border-radius: 0.2rem;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -76,14 +77,14 @@ body {
 }
 
 .beer-card-img {
-  width: 9%;
-  margin-left: 5%;
+  width: 8%;
+  margin-left: 7%;
+  margin-top: 7%;
 }
 
 .food-card-img {
   width: 100%;
-  padding: 10%;
-  border-radius: 4%;
+  padding: 5% 10% 10% 10%;
 }
 
 .food-card-button {

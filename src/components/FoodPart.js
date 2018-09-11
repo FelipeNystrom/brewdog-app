@@ -216,9 +216,16 @@ class FoodPart extends Component {
             {/* // Buttons */}
             <div className="food-card-button">
               {loggedIn && userName !== "" ? (
-                <button onClick={this.saveToFavorites}>Save</button>
+                <button
+                  className="btn btn-outline-success btn-sm"
+                  onClick={this.saveToFavorites}
+                >
+                  Save
+                </button>
               ) : (
-                <button disabled>Login to favorite</button>
+                <button className="btn btn-outline-secondary btn-sm" disabled>
+                  Login to favorite
+                </button>
               )}
             </div>
           </Fragment>
