@@ -219,7 +219,7 @@ class FoodPart extends Component {
                   className="btn btn-outline-success btn-sm"
                   onClick={this.saveToFavorites}
                 >
-                  Save
+                  Add to favorites
                 </button>
               ) : (
                 <button className="btn btn-outline-secondary btn-sm" disabled>
