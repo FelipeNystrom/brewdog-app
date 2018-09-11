@@ -71,7 +71,13 @@ class DisplayCards extends Component {
         >
           <i className="fas fa-arrow-circle-left" />
         </button>
-        {!isLoaded ? <div className="loading">Loading...</div> : generateBeers}
+        <div className="container">
+          {!isLoaded ? (
+            <div className="loading">Loading...</div>
+          ) : (
+            generateBeers
+          )}
+        </div>
       </Fragment>
     );
   }
