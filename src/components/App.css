@@ -1,0 +1,27 @@
+.goBack {
+  background-color: transparent;
+  border-style: none;
+}
+
+.goBack:active {
+  outline: none;
+}
+
+.fas {
+  width: 100%;
+  color: hsl(208, 7%, 56%);
+  font-size: 1.5rem;
+  border-radius: 100%;
+  transition: all 100ms ease-in-out;
+  margin: 0;
+  padding: 0;
+}
+
+.fas:hover {
+  color: hsl(208, 7%, 26%);
+  box-shadow: 0.1rem 0.1rem 0.5rem 0 hsla(0, 0%, 0%, 0.75);
+}
+
+.fas:active {
+  color: hsl(208, 7%, 16%);
+}
