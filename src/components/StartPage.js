@@ -35,10 +35,11 @@ class StartPage extends Component {
           <h3>Match food with beer</h3>
           <h4>Choose meal</h4>
           </div>
-          <div className="midContainer">
+          <div className="mealContainer">
+          <div className="meal dinner">
             <Link to={`/categories/dinner`}>
               <div
-                className="dinnerButton"
+                className="mealButton"
                 onClick={this.handleClick}
                 name="meal"
                 value="dinner"
@@ -46,9 +47,11 @@ class StartPage extends Component {
                 Dinner
               </div>
             </Link>
+            </div>
+            <div className="meal dessert">
             <Link to={`/categories/dessert`}>
               <div
-                className="dessertButton"
+                className="mealButton"
                 onClick={this.handleClick}
                 name="meal"
                 value="dessert"
@@ -56,6 +59,7 @@ class StartPage extends Component {
                 Dessert
               </div>
             </Link>
+            </div>
             </div>
           </div>
       </Fragment>
