@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { Component } from "react";
 
 class FetchFromAPI extends Component {
   // At mount fetch beers that matches search parameter from punkapi
@@ -8,7 +8,7 @@ class FetchFromAPI extends Component {
 
     fetch(punkapiUrl)
       .then(res => res.json())
-      .then(data => data.filter(beer => !beer.image_url.includes('keg.png')))
+      .then(data => data.filter(beer => !beer.image_url.includes("keg.png")))
       // pass result up to parent component and set result as state
       .then(filtredData => setListState(filtredData));
   }

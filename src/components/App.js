@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import React, { Component } from "react";
+import { Route } from "react-router-dom";
 
-import './App.css';
+import "./App.css";
 
 // Components to route
-import StartPage from './StartPage';
-import Navbar from './Navbar';
-import Favorites from './Favorites';
-import Categories from './Categories.js';
-import DisplayCards from './DisplayCards';
+import StartPage from "./StartPage";
+import Navbar from "./Navbar";
+import Favorites from "./Favorites";
+import Categories from "./Categories.js";
+import DisplayCards from "./DisplayCards";
 
 class App extends Component {
   render() {
