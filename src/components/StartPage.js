@@ -32,8 +32,8 @@ class StartPage extends Component {
       <div className="mainContainer">
           <div className="headerContainer">
           <h1>Beerit</h1>
-          <h3>Match food with beer</h3>
-          <h4>Choose meal</h4>
+          <h4>Matching food with beer</h4>
+          <p>Choose meal to start:</p>
           </div>
           <div className="mealContainer">
           <div className="meal dinner">
