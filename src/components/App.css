@@ -70,3 +70,14 @@
 .dessert {
   background-image: url("../media/dessert1.jpg");
 }
+
+@media screen and (min-width: 650px) {
+  .mealContainer {
+    flex-direction: row;
+  }
+
+  .mainContainer, .navbar{
+    width: 80%;
+    margin: auto;
+  }
+}
