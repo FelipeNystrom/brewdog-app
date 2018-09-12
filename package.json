@@ -1,8 +1,8 @@
 {
+  "homepage": "http://FelipeNystrom.github.io/brewdog-beer-app",
   "name": "brewdog-beer-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://FelipeNystrom.github.io/brewdog-beer-app",
   "dependencies": {
     "firebase": "^5.4.2",
     "react": "^16.4.2",
