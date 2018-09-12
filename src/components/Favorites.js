@@ -170,7 +170,9 @@ class Favorites extends Component {
               userFavorites.length === 0 &&
               !hasNoFavorites && <Loading />}
             {/* If user has no favorites show message */}
-            {hasNoFavorites && <div>You have 0 favorites</div>}
+            {hasNoFavorites && (
+              <div className="zeroFavorites">You have 0 favorites</div>
+            )}
             {/* Displays user favorites */}
             {loggedIn && userFavorites.length > 0 && listFavorites}
             {/* Is shown for 3 sec when user is logged out then triggers toggleView function which mounts default view  */}

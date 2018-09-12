@@ -25,6 +25,12 @@
   transform: rotate(-1deg);
 }
 
+.zeroFavorites {
+  margin: 2rem auto;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
 @media screen and (min-width: 650px) {
   .favoritesHeader {
     width: 100%;
