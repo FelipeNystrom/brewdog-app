@@ -23,7 +23,7 @@ class Signout extends Component {
       <button
         onClick={this.logout}
         type="button"
-        className="btn btn-secondary"
+        className="btn btn-outline-dark"
         data-toggle="dropdown"
         aria-haspopup="true"
         aria-expanded="false"

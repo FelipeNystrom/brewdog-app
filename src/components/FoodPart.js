@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import firebase from './firebase';
 
+import Loading from './Loading';
+
 class FoodPart extends Component {
   state = {
     ingredients: [],
@@ -16,11 +18,7 @@ class FoodPart extends Component {
     loggedIn: true
   };
 
-  // switch to prevent processes to run after unmount
-  mounted = true;
-
   componentDidMount() {
-    this.mounted = true;
     const { showMore } = this.props;
     const { recipeToMatch, searchFor } = this.props;
 
@@ -186,7 +184,9 @@ class FoodPart extends Component {
       image,
       isLoaded,
       userName,
-      loggedIn
+      loggedIn,
+      fallback,
+      finalfallback
     } = this.state;
     const generateIngredients = ingredients.map((ingredient, i) => {
       return (
@@ -197,33 +197,56 @@ class FoodPart extends Component {
     });
     return (
       <Fragment>
-        <div className={`food-card ${show ? 'show' : 'hidden'}`}>
-          {!isLoaded ? (
-            <div>Loading...</div>
-          ) : (
-            <Fragment>
+        {!isLoaded ? (
+          <Loading />
+        ) : (
+          <Fragment>
+            <div className={`food-card ${show ? 'show' : 'hidden'}`}>
+              <div>
+                {!fallback &&
+                  !finalfallback && (
+                    <div className="badge badge-success">Perfect match!</div>
+                  )}
+                {fallback &&
+                  !finalfallback && (
+                    <div className="badge badge-warning">Similar match</div>
+                  )}
+                {fallback &&
+                  finalfallback && (
+                    <div className="badge badge-secondary">Suprise match</div>
+                  )}
+              </div>
+              <div className="food-card-img">
+                <img src={image} alt="#" />
+              </div>
               <div className="food-card-info">
                 <div className="food-card-title">
                   <h6>{name}</h6>
                 </div>
-                <div className="food-card-img">
-                  <img src={image} alt="#" />
+                <div className="food-card-description">
+                  <ul className="ingredient-list-title">
+                    {generateIngredients}
+                  </ul>
                 </div>
               </div>
-              <div className="food-card-description">
-                <ul className="ingredient-list-title">
-                  <h6 className="ingredients-list">List of ingredients</h6>
-                  {generateIngredients}
-                </ul>
-              </div>
+            </div>
+            {/* // Buttons */}
+            <div className="food-card-button">
               {loggedIn && userName !== '' ? (
-                <button onClick={this.saveToFavorites}>Save</button>
+                <button
+                  className="btn btn-outline-success btn-sm"
+                  onClick={this.saveToFavorites}
+                >
+                  Add to favorites
+                </button>
               ) : (
-                <button disabled>Login to favorite</button>
+                <button className="btn btn-outline-secondary btn-sm" disabled>
+                  Login to favorite
+                </button>
               )}
-            </Fragment>
-          )}
-        </div>
+            </div>
+          </Fragment>
+        )}
       </Fragment>
     );
   }

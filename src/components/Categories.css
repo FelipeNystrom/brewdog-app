@@ -1,0 +1,64 @@
+.ingredientsHeader {
+  width: 90%;
+  margin: 1rem auto;
+  padding: 5% 0;
+  background-color: hsl(286, 62%, 32%);
+  transform: rotate(5deg);
+  border-radius: 0.15rem;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.ingredientsHeader h3 {
+  color: hsla(0, 0%, 100%, 0.9);
+  font-weight: bold;
+  margin: 0.5rem 0;
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  text-align: center;
+  transform: rotate(-2deg);
+}
+
+.ingredientsWrapper {
+  width: 90%;
+  margin: 2% auto;
+}
+
+.ingredientButton {
+  outline: none;
+  border-style: none;
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  margin: 2% 0;
+  text-align: center;
+  box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  color: hsl(210, 11%, 15%);
+  font-size: 1.3rem;
+  padding: 0.8rem 0;
+  background: #ffffff; /* fallback for old browsers */
+  transition: all 100ms ease-in-out;
+}
+
+.ingredientButton:hover {
+  box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.2);
+}
+
+.ingredientButton:active {
+  outline: none;
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.2);
+}
+
+@media screen and (min-width: 650px) {
+  .ingredientsHeader {
+    width: 100%;
+    padding: 2% 0;
+    margin: 2rem 0;
+    background-color: hsl(286, 62%, 32%);
+    transform: rotate(2.5deg);
+  }
+
+  .ingredientsWrapper {
+    width: 100%;
+  }
+}

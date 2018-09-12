@@ -1,5 +1,11 @@
-import React, { Component } from 'react';
-import firebase from './firebase';
+import React, { Component, Fragment } from "react";
+import firebase from "./firebase";
+import { Redirect } from "react-router-dom";
+import ShowMore from "react-show-more";
+import Loading from "./Loading";
+import NavigationControl from "./NavigationControl";
+import "./Card.css";
+import "./Favorites.css";
 
 // Converter from DB-object to Array in state
 function toArray(firebaseObject) {
@@ -12,19 +18,24 @@ function toArray(firebaseObject) {
 
 class Favorites extends Component {
   state = {
-    userFavorites: [],
-    userName: '',
+    hasNoFavorites: false,
     redirect: false,
-    loggedIn: false
+    userFavorites: [],
+    userName: "",
+    loggedIn: false,
+    loggedOutMessage: "Please login too see your favorites",
+    showLogOutMessage: false
   };
   // switch to prevent processes to run after unmount
   mounted = true;
+
   componentDidMount() {
-    this.mounted = true;
-    this.auth();
+    if (this.mounted) {
+      this.auth();
+    }
   }
 
-  componentWillMount() {
+  componentWillUnmount() {
     this.mounted = false;
   }
 
@@ -34,39 +45,43 @@ class Favorites extends Component {
       if (user) {
         // User is signed in.
         this.setState({ userName: user.uid, loggedIn: true });
-        console.log(user.uid + ' LOGGED IN');
         this.convertFromDatabase();
       } else {
         // User is signed out
         this.setState(
           {
-            userName: 'Please Login',
+            userName: "Please Login",
             userFavorites: [],
-            loggedIn: false
+            loggedIn: false,
+            hasNoFavorites: false,
+            showLogOutMessage: true
           },
           () => {
             setTimeout(() => {
-              this.props.toggleView(true);
+              this.setState({ redirect: true });
             }, 3000);
           }
         );
-        console.log('NOT LOGGED IN');
       }
     });
   };
 
+  // Helper function to fetch and convert user data
   convertFromDatabase = () => {
     firebase
       .database()
       .ref(`/users/${this.state.userName}`)
-      .on('value', snapshot => {
+      .on("value", snapshot => {
         const favorites = toArray(snapshot.val());
-        this.setState({ userFavorites: favorites });
-        console.log(this.state.userFavorites);
+        if (favorites.length !== 0) {
+          this.setState({ userFavorites: favorites });
+        } else {
+          this.setState({ hasNoFavorites: true, userFavorites: [] });
+        }
       });
   };
 
-  deleteFavorite = fav => {
+  deleteFavoriteFromDB = fav => {
     firebase
       .database()
       .ref(`/users/${this.state.userName}/${fav.key}`)
@@ -76,7 +91,15 @@ class Favorites extends Component {
 
   render() {
     // Maps through favorites-array and returns favorite-cards
-    const { userFavorites, loggedIn } = this.state;
+    const {
+      userFavorites,
+      loggedIn,
+      hasNoFavorites,
+      showLogOutMessage,
+      loggedOutMessage,
+      redirect
+    } = this.state;
+
     const listFavorites = userFavorites.map(fav => {
       const generateIngredients = fav.recipeIngredients.map((ingredient, i) => {
         return (
@@ -89,40 +112,73 @@ class Favorites extends Component {
         <div key={fav.key} className="card">
           <div className="beer-card">
             <div className="beer-card-info">
-              <div className="beer-card-title">
+              <div className="beer-card-title" role="alert">
                 <div className="beer-name">{fav.beerName}</div>
-                <div className="food-name">{fav.recipeName}</div>
               </div>
-              <div className="beer-card-description">{fav.beerDescription}</div>
+              <div className="beer-card-description">
+                <ShowMore
+                  lines={4}
+                  more="Show more"
+                  less="Show less"
+                  anchorClass="showmorebutton"
+                >
+                  {fav.beerDescription}
+                </ShowMore>
+              </div>
             </div>
             <div className="beer-card-img">
-              <img src={fav.beerImage} alt="#" />
+              <img src={fav.beerImage} alt="beer img" />
             </div>
           </div>
+
           <div className="food-card-info">
-            <div className="food-card-title">
-              <h6>{fav.recipeName}</h6>
+            <div className="food-card-title" role="alert">
+              <span className="badge badge-info">Food match</span>
+              <div className="food-name">{fav.recipeName}</div>
             </div>
             <div className="food-card-img">
               <img src={fav.recipeImage} alt="#" />
             </div>
           </div>
           <div className="food-card-description">
-            <ul className="ingredient-list-title">
-              <h6 className="ingredients-list">List of ingredients</h6>
-              {generateIngredients}
-            </ul>
+            <ul className="ingredient-list-title">{generateIngredients}</ul>
           </div>
-          <button onClick={() => this.deleteFavorite(fav)}> Delete </button>
+          <button
+            className="btn btn-outline-danger btn-sm"
+            onClick={() => this.deleteFavoriteFromDB(fav)}
+          >
+            Remove from favorite
+          </button>
         </div>
       );
     });
+    const { history } = this.props;
+
     return (
-      <div>
-        {loggedIn && userFavorites.length === 0 && <div>Loading...</div>}
-        {loggedIn && userFavorites.length > 0 && listFavorites}
-        {!loggedIn && <p>Please login too see your favorites</p>}
-      </div>
+      <Fragment>
+        <div className="mainContainer">
+          <div className="favoritesHeader">
+            <h3>Favorites</h3>
+          </div>
+
+          <div className="favoriteContainer">
+            <NavigationControl history={history} />
+            {/* Is displayed during fetch */}
+            {loggedIn &&
+              userFavorites.length === 0 &&
+              !hasNoFavorites && <Loading />}
+            {/* If user has no favorites show message */}
+            {hasNoFavorites && (
+              <div className="zeroFavorites">You have 0 favorites</div>
+            )}
+            {/* Displays user favorites */}
+            {loggedIn && userFavorites.length > 0 && listFavorites}
+            {/* Is shown for 3 sec when user is logged out then triggers toggleView function which mounts default view  */}
+            {showLogOutMessage && <p>{loggedOutMessage}</p>}
+            {redirect && <Redirect to="/" />}
+          </div>
+        </div>
+      </Fragment>
     );
   }
 }

@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import firebase from './firebase';
+import React, { Component } from "react";
+import firebase from "./firebase";
 
 class Signin extends Component {
   state = {
-    email: '',
-    password: '',
-    user: '',
+    email: "",
+    password: "",
+    user: "",
     error: null
   };
 
@@ -52,7 +52,7 @@ class Signin extends Component {
       if (user) {
         this.setState({ user });
       } else {
-        this.setState({ user: '' });
+        this.setState({ user: "" });
       }
     });
   };
@@ -120,7 +120,7 @@ class Signin extends Component {
                   role="tabpanel"
                   aria-labelledby="login-tab"
                 >
-                  ...
+                  <p>Login with email and password</p>
                   <form>
                     <div className="form-group">
                       <input
@@ -148,7 +148,7 @@ class Signin extends Component {
 
                     <button
                       type="submit"
-                      className="btn btn-primary"
+                      className="btn btn-outline-info"
                       onClick={this.signIn}
                       data-dismiss="modal"
                     >
@@ -162,7 +162,7 @@ class Signin extends Component {
                   role="tabpanel"
                   aria-labelledby="register-tab"
                 >
-                  ...
+                  <p>Create an account</p>
                   <form>
                     <div className="form-group">
                       <input
@@ -189,7 +189,7 @@ class Signin extends Component {
                     </div>
                     <button
                       type="submit"
-                      className="btn btn-primary"
+                      className="btn btn-outline-info"
                       onClick={this.signUp}
                       data-dismiss="modal"
                     >
@@ -207,51 +207,3 @@ class Signin extends Component {
 }
 
 export default Signin;
-
-// <div className="dropdown-menu dropdown-menu-right">
-//         <form className="px-4 py-3">
-//           <div className="form-group">
-//             <label>Email</label>
-//             <input
-//               type="email"
-//               className="form-control"
-//               name="email"
-//               placeholder="Email"
-//               value={email}
-//               onChange={this.handleInputChange}
-//             />
-//           </div>
-//           <div className="form-group">
-//             <label>Password</label>
-//             <input
-//               className="form-control"
-//               type="password"
-//               name="password"
-//               placeholder="Password"
-//               value={password}
-//               onChange={this.handleInputChange}
-//             />
-//           </div>
-//           {!this.state.needAuth ? (
-//             <div>
-//               <button className="btn btn-primary" onClick={this.signIn}>
-//                 Sign In
-//               </button>
-//               <div className="dropdown-divider"> </div>
-//               <a className="dropdown-item" onClick={this.register}>
-//                 New around here? Sign up
-//               </a>
-//             </div>
-//           ) : (
-//             <div>
-//               <button className="btn btn-primary" onClick={this.signUp}>
-//                 Sign Up
-//               </button>
-//               <div className="dropdown-divider"> </div>
-//               <a className="dropdown-item" onClick={this.login}>
-//                 Already registered? Log in
-//               </a>
-//             </div>
-//           )}
-//         </form>
-//       </div>
