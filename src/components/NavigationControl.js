@@ -32,7 +32,7 @@ class NavigationControl extends Component {
           />
         </div>
         <Link to="/">
-          <i class="fas fa-home navigateHome" />
+          <i className="fas fa-home navigateHome" />
         </Link>
         {!canForward ? (
           <div>

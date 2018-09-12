@@ -184,7 +184,9 @@ class FoodPart extends Component {
       image,
       isLoaded,
       userName,
-      loggedIn
+      loggedIn,
+      fallback,
+      finalfallback
     } = this.state;
     const generateIngredients = ingredients.map((ingredient, i) => {
       return (
@@ -200,6 +202,20 @@ class FoodPart extends Component {
         ) : (
           <Fragment>
             <div className={`food-card ${show ? 'show' : 'hidden'}`}>
+              <div>
+                {!fallback &&
+                  !finalfallback && (
+                    <div className="badge badge-success">Perfect match!</div>
+                  )}
+                {fallback &&
+                  !finalfallback && (
+                    <div className="badge badge-warning">Similar match</div>
+                  )}
+                {fallback &&
+                  finalfallback && (
+                    <div className="badge badge-secondary">Suprise match</div>
+                  )}
+              </div>
               <div className="food-card-img">
                 <img src={image} alt="#" />
               </div>
