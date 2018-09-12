@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import firebase from "./firebase";
 import Signout from "./SignOut";
 import Signin from "./SignIn";
-import image from "../media/blogo.jpg";
+import image from "../media/logo.gif";
 import "./Navbar.css";
 
 class Navbar extends Component {
