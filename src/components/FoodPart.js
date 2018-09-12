@@ -38,14 +38,12 @@ class FoodPart extends Component {
     const newSearchString = arrayFromSearchString.join('+');
 
     // search querys to use for fetch sequence
-
     // first search query
     const recipeSearchUrl = `https://api.edamam.com/search?q=${fixedString}&from=0&to=1&app_id=3a28c4f3&app_key=c6990b9b2689845c519d65f89dc29977`;
     // second search query
-    const fallbackUrl = `https://api.edamam.com/search?q=${newSearchString}&from=0&to=1&app_id=$3a28c4f3&app_key=c6990b9b2689845c519d65f89dc29977`;
+    const fallbackUrl = `https://api.edamam.com/search?q=${newSearchString}&from=0&to=1&app_id=3a28c4f3&app_key=c6990b9b2689845c519d65f89dc29977`;
     // third search query
     const finalFallBackUrl = `https://api.edamam.com/search?q=${finalFallback}+${lowerCaseSearch}&from=0&to=1&app_id=3a28c4f3&app_key=c6990b9b2689845c519d65f89dc29977`;
-
     // Creates a delay to make class change possible. Updates component!
     if (showMore) {
       setTimeout(() => {
