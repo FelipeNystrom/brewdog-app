@@ -2,6 +2,7 @@
   position: relative;
   width: 80%;
   margin: 0 auto;
+  margin-bottom: 1.3rem;
   flex: 1;
   color: white;
   min-height: 9rem;
@@ -133,6 +134,7 @@
   }
 
   .firstHeader {
+    top: 10%;
     font-size: 2rem;
   }
 
@@ -142,11 +144,12 @@
     transform: rotate(2deg);
     border-width: 0.2rem;
     padding: 2% 0;
-    top: 40%;
+    top: 50%;
     left: -0.5%;
   }
   .thirdHeader {
     font-size: 1.3rem;
+    top: 90%;
   }
 
   .mealContainer {

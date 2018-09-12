@@ -68,3 +68,17 @@
   text-align: center;
   transform: rotate(2deg);
 }
+
+@media screen and (min-width: 650px) {
+  .ingredientsHeader {
+    width: 100%;
+    padding: 2% 0;
+    margin: 2rem 0;
+    background-color: hsl(286, 62%, 32%);
+    transform: rotate(2.5deg);
+  }
+
+  .ingredientsWrapper {
+    width: 100%;
+  }
+}
