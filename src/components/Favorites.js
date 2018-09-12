@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import firebase from "./firebase";
 import { Redirect } from "react-router-dom";
 import ShowMore from "react-show-more";
@@ -152,7 +152,7 @@ class Favorites extends Component {
       );
     });
     return (
-      <div>
+      <Fragment>
         {/* Is displayed during fetch */}
         {loggedIn &&
           userFavorites.length === 0 &&
@@ -164,7 +164,7 @@ class Favorites extends Component {
         {/* Is shown for 3 sec when user is logged out then triggers toggleView function which mounts default view  */}
         {showLogOutMessage && <p>{loggedOutMessage}</p>}
         {redirect && <Redirect to="/" />}
-      </div>
+      </Fragment>
     );
   }
 }
