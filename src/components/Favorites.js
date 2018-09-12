@@ -100,8 +100,6 @@ class Favorites extends Component {
       redirect
     } = this.state;
 
-    console.log(this.props);
-
     const listFavorites = userFavorites.map(fav => {
       const generateIngredients = fav.recipeIngredients.map((ingredient, i) => {
         return (
