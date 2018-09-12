@@ -38,14 +38,12 @@ class FoodPart extends Component {
     const newSearchString = arrayFromSearchString.join('+');
 
     // search querys to use for fetch sequence
-
     // first search query
     const recipeSearchUrl = `https://api.edamam.com/search?q=${fixedString}&from=0&to=1&app_id=3a28c4f3&app_key=c6990b9b2689845c519d65f89dc29977`;
     // second search query
     const fallbackUrl = `https://api.edamam.com/search?q=${newSearchString}&from=0&to=1&app_id=3a28c4f3&app_key=c6990b9b2689845c519d65f89dc29977`;
     // third search query
     const finalFallBackUrl = `https://api.edamam.com/search?q=${finalFallback}+${lowerCaseSearch}&from=0&to=1&app_id=3a28c4f3&app_key=c6990b9b2689845c519d65f89dc29977`;
-
     // Creates a delay to make class change possible. Updates component!
     if (showMore) {
       setTimeout(() => {
@@ -149,7 +147,9 @@ class FoodPart extends Component {
     return sentence.toLowerCase().replace(ws, '+');
   };
 
-  // Function for login-check
+  /* Function for login-check. Takes thre arguments that is 
+     passed to search array if user exists or not in db. This 
+     to enable foodpairing functionality without login */
   auth = (first, second, third) => {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
