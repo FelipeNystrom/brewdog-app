@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import './NavigationControl.css';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import "./NavigationControl.css";
 
 class NavigationControl extends Component {
   state = {
@@ -11,7 +11,7 @@ class NavigationControl extends Component {
     const { history } = this.props;
 
     // make disabling of forward button possible if no forward
-    if (history.action === 'POP') {
+    if (history.action === "POP") {
       this.setState({ canForward: true });
     } else {
       this.setState({ canForward: false });

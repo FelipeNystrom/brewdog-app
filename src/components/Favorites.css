@@ -25,6 +25,10 @@
   transform: rotate(-1deg);
 }
 
+.showmorebutton {
+  color: rgb(50, 161, 165);
+}
+
 .zeroFavorites {
   margin: 2rem auto;
   font-size: 1.5rem;
