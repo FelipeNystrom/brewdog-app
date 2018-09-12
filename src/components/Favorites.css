@@ -1,0 +1,29 @@
+.favoritesHeader {
+  width: 90%;
+  margin: 1rem auto;
+  padding: 5% 0;
+  background-color: hsl(48, 100%, 50%);
+  transform: rotate(-3deg);
+  border-radius: 0.15rem;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.favoritesHeader h3 {
+  color: hsla(0, 0%, 100%, 0.9);
+  font-weight: bold;
+  margin: 0.5rem 0;
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  text-align: center;
+  transform: rotate(-1deg);
+}
+
+@media screen and (min-width: 650px) {
+  .favoritesHeader {
+    width: 100%;
+    padding: 2% 0;
+    margin: 2rem 0;
+    background-color: hsl(48, 100%, 50%);
+    transform: rotate(-3deg);
+  }
+}

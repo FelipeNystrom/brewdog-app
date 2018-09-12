@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom';
 import ShowMore from 'react-show-more';
 import Loading from './Loading';
 import './Card.css';
+import './Favorites.css';
 
 // Converter from DB-object to Array in state
 function toArray(firebaseObject) {
