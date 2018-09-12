@@ -149,7 +149,9 @@ class FoodPart extends Component {
     return sentence.toLowerCase().replace(ws, '+');
   };
 
-  // Function for login-check
+  /* Function for login-check. Takes thre arguments that is 
+     passed to search array if user exists or not in db. This 
+     to enable foodpairing functionality without login */
   auth = (first, second, third) => {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
