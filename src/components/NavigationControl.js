@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './NavigationControl.css';
 
 class NavigationControl extends Component {
@@ -30,6 +31,9 @@ class NavigationControl extends Component {
             }}
           />
         </div>
+        <Link to="/">
+          <i class="fas fa-home navigateHome" />
+        </Link>
         {!canForward ? (
           <div>
             <i

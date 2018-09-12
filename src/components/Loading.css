@@ -1,0 +1,8 @@
+.loadingWrapper {
+  margin: 5% auto;
+
+  width: 15%;
+}
+.loadingSpinner {
+  width: 100%;
+}

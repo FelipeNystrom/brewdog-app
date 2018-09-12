@@ -29,11 +29,22 @@
   margin: 0;
   padding: 0;
 }
+
+.navigateHome {
+  color: hsl(208, 7%, 56%);
+  font-size: 2rem;
+}
+
+.navigateHome:hover {
+  color: hsl(208, 7%, 26%);
+}
+
 .navigationButton:hover {
   color: hsl(208, 7%, 26%);
   box-shadow: 0.1rem 0.1rem 0.5rem 0 hsla(0, 0%, 0%, 0.75);
 }
-.navigationButton:active {
+.navigationButton:active,
+.navigateHome:active {
   outline: none;
   color: hsl(208, 7%, 16%);
 }
