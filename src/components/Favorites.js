@@ -1,6 +1,8 @@
-import React, { Component } from 'react';
-import firebase from './firebase';
-import { Redirect } from 'react-router-dom';
+import React, { Component, Fragment } from "react";
+import firebase from "./firebase";
+import { Redirect } from "react-router-dom";
+import ShowMore from "react-show-more";
+import "./Card.css";
 
 // Converter from DB-object to Array in state
 function toArray(firebaseObject) {
@@ -16,9 +18,9 @@ class Favorites extends Component {
     hasNoFavorites: false,
     redirect: false,
     userFavorites: [],
-    userName: '',
+    userName: "",
     loggedIn: false,
-    loggedOutMessage: 'Please login too see your favorites',
+    loggedOutMessage: "Please login too see your favorites",
     showLogOutMessage: false
   };
   // switch to prevent processes to run after unmount
@@ -45,7 +47,7 @@ class Favorites extends Component {
         // User is signed out
         this.setState(
           {
-            userName: 'Please Login',
+            userName: "Please Login",
             userFavorites: [],
             loggedIn: false,
             hasNoFavorites: false,
@@ -66,7 +68,7 @@ class Favorites extends Component {
     firebase
       .database()
       .ref(`/users/${this.state.userName}`)
-      .on('value', snapshot => {
+      .on("value", snapshot => {
         const favorites = toArray(snapshot.val());
         if (favorites.length !== 0) {
           this.setState({ userFavorites: favorites });
@@ -109,36 +111,48 @@ class Favorites extends Component {
         <div key={fav.key} className="card">
           <div className="beer-card">
             <div className="beer-card-info">
-              <div className="beer-card-title">
+              <div className="beer-card-title" role="alert">
                 <div className="beer-name">{fav.beerName}</div>
-                <div className="food-name">{fav.recipeName}</div>
               </div>
-              <div className="beer-card-description">{fav.beerDescription}</div>
+              <div className="beer-card-description">
+                <ShowMore
+                  lines={4}
+                  more="Show more"
+                  less="Show less"
+                  anchorClass=""
+                >
+                  {fav.beerDescription}
+                </ShowMore>
+              </div>
             </div>
             <div className="beer-card-img">
-              <img src={fav.beerImage} alt="#" />
+              <img src={fav.beerImage} alt="beer img" />
             </div>
           </div>
+
           <div className="food-card-info">
-            <div className="food-card-title">
-              <h6>{fav.recipeName}</h6>
+            <div className="food-card-title" role="alert">
+              <span className="badge badge-info">Food match</span>
+              <div className="food-name">{fav.recipeName}</div>
             </div>
             <div className="food-card-img">
               <img src={fav.recipeImage} alt="#" />
             </div>
           </div>
           <div className="food-card-description">
-            <ul className="ingredient-list-title">
-              <h6 className="ingredients-list">List of ingredients</h6>
-              {generateIngredients}
-            </ul>
+            <ul className="ingredient-list-title">{generateIngredients}</ul>
           </div>
-          <button onClick={() => this.deleteFavoriteFromDB(fav)}>Delete</button>
+          <button
+            className="btn btn-outline-danger btn-sm"
+            onClick={() => this.deleteFavoriteFromDB(fav)}
+          >
+            Remove from favorite
+          </button>
         </div>
       );
     });
     return (
-      <div>
+      <Fragment>
         {/* Is displayed during fetch */}
         {loggedIn &&
           userFavorites.length === 0 &&
@@ -150,7 +164,7 @@ class Favorites extends Component {
         {/* Is shown for 3 sec when user is logged out then triggers toggleView function which mounts default view  */}
         {showLogOutMessage && <p>{loggedOutMessage}</p>}
         {redirect && <Redirect to="/" />}
-      </div>
+      </Fragment>
     );
   }
 }

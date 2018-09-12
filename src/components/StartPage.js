@@ -32,6 +32,7 @@ class StartPage extends Component {
       <Fragment>
         <div className="mainContainer">
           <div className="headerContainer">
+<<<<<<< HEAD
             <div className="firstHeader BG">
               <div>Beerit</div>
             </div>
@@ -41,6 +42,11 @@ class StartPage extends Component {
             <div className="thirdHeader ">
               <div>Choose meal</div>
             </div>
+=======
+          <h1>Beerit</h1>
+          <h4>Matching food with beer</h4>
+          <p>Choose meal to start:</p>
+>>>>>>> 6cfd7c70b6a41a21e224f4e9bf4c7b5b1c6eb43c
           </div>
           <div className="mealContainer">
             <div className="meal dinner">

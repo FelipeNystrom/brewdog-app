@@ -56,7 +56,7 @@ class Card extends Component {
         </div>
         <div className="food-card-intro">
           Search for the best matching recipe and try out the match yourself.
-          Login to save your favourite match!
+          Login to save your favorite match!
         </div>
 
         {!showMore ? (
