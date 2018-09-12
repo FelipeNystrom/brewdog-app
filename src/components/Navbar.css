@@ -1,3 +1,10 @@
 .btn {
   margin-left: 5px;
 }
+
+@media screen and (min-width: 650px) {
+  .navbar {
+    width: 100%;
+    padding: 0 15%;
+  }
+}

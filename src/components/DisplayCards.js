@@ -61,17 +61,19 @@ class DisplayCards extends Component {
     });
     return (
       <Fragment>
-        <APIFetch food={searchFor} setListState={this.getBeers} />
-        <div className="resultsHeader">
-          <h3>Your match</h3>
-        </div>
-        <NavigationControl history={history} />
-        <div className="container">
-          {!isLoaded ? (
-            <div className="loading">Loading results...</div>
-          ) : (
-            generateBeers
-          )}
+        <div className="mainContainer">
+          <APIFetch food={searchFor} setListState={this.getBeers} />
+          <div className="resultsHeader">
+            <h3>Your match</h3>
+          </div>
+          <NavigationControl history={history} />
+          <div className="container">
+            {!isLoaded ? (
+              <div className="loading">Loading results...</div>
+            ) : (
+              generateBeers
+            )}
+          </div>
         </div>
       </Fragment>
     );

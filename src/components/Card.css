@@ -1,7 +1,3 @@
-.food-card-button {
-  padding-bottom: 4%;
-}
-
 .container {
   margin: 0 auto;
   display: flex;
@@ -11,7 +7,7 @@
 
 .card {
   position: relative;
-  max-width: 500px;
+  max-width: 470px;
   max-height: 100%;
   margin: 4% auto;
   display: flex;
@@ -27,18 +23,33 @@
   box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
 }
 
+/* Beer card */
+
 .beer-card {
   display: flex;
   flex-direction: row;
   margin-bottom: 5%;
 }
 
-.food-card {
-  transition: all 1s ease-in-out;
+.beer-card-title {
+  text-align: left;
+  border-bottom: 0.05rem solid hsla(0, 0%, 30%, 0.7);
 }
 
 .beer-card-info {
   width: 80%;
+}
+
+.beer-card-img {
+  width: 8%;
+  margin-left: 7%;
+  margin-top: 7%;
+}
+
+/* Food card */
+
+.food-card {
+  transition: all 1s ease-in-out;
 }
 
 .food-info {
@@ -52,9 +63,8 @@
   width: 100%;
 }
 
-.beer-card-title {
-  text-align: left;
-  border-bottom: 0.05rem solid hsla(0, 0%, 30%, 0.7);
+.food-card-button {
+  padding-bottom: 4%;
 }
 
 .food-card-title {
@@ -62,22 +72,10 @@
   border-bottom: 0.05rem solid hsla(0, 0%, 30%, 0.7);
 }
 
-.beer-card-description,
-.food-card-description {
-  margin-top: 5%;
-  font-size: 0.8rem;
-}
-
 .food-card-intro {
   font-size: 0.8rem;
   padding-top: 3%;
   padding-bottom: 3%;
-}
-
-.beer-card-img {
-  width: 8%;
-  margin-left: 7%;
-  margin-top: 7%;
 }
 
 .food-card-img {
@@ -92,10 +90,23 @@
   justify-content: center;
 }
 
+/* General */
+
+.beer-card-description,
+.food-card-description {
+  margin-top: 5%;
+  font-size: 0.8rem;
+}
+
 .beer-name,
 .food-name {
   font-size: 1rem;
   font-weight: bold;
+}
+
+.beer-card-img img,
+.food-card-img img {
+  width: 100%;
 }
 
 .badge {
@@ -104,11 +115,6 @@
 
 .alert {
   margin: 0;
-}
-
-.beer-card-img img,
-.food-card-img img {
-  width: 100%;
 }
 
 .divider-hidden {
@@ -120,4 +126,34 @@
   width: 90%;
   border-bottom: 0.05rem solid hsla(0, 0%, 30%, 0.7);
   margin: 2% auto;
+}
+
+.resultsHeader {
+  width: 90%;
+  margin: 1rem auto;
+  padding: 5% 0;
+  background-color: hsl(325, 59%, 49%);
+  transform: rotate(-5deg);
+  border-radius: 0.15rem;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.resultsHeader h3 {
+  color: hsla(0, 0%, 100%, 0.9);
+  font-weight: bold;
+  margin: 0.5rem 0;
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  text-align: center;
+  transform: rotate(2deg);
+}
+
+@media screen and (min-width: 650px) {
+  .resultsHeader {
+    width: 100%;
+    padding: 2% 0;
+    margin: 2rem 0;
+    background-color: hsl(325, 59%, 49%);
+    transform: rotate(-2.5deg);
+  }
 }

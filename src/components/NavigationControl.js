@@ -22,24 +22,30 @@ class NavigationControl extends Component {
     const { canForward } = this.state;
     return (
       <div className="navigationWrapper">
-        <i
-          className="fas fa-arrow-circle-left navigationButton"
-          onClick={() => {
-            history.goBack();
-          }}
-        />
-        {!canForward ? (
+        <div>
           <i
-            className="fas fa-arrow-circle-right navigationButtonDisabled"
-            disabled
-          />
-        ) : (
-          <i
-            className="fas fa-arrow-circle-right navigationButton"
+            className="fas fa-arrow-circle-left navigationButton"
             onClick={() => {
-              history.goForward();
+              history.goBack();
             }}
           />
+        </div>
+        {!canForward ? (
+          <div>
+            <i
+              className="fas fa-arrow-circle-right navigationButtonDisabled"
+              disabled
+            />
+          </div>
+        ) : (
+          <div>
+            <i
+              className="fas fa-arrow-circle-right navigationButton"
+              onClick={() => {
+                history.goForward();
+              }}
+            />
+          </div>
         )}
       </div>
     );

@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from "react";
 import { Route } from "react-router-dom";
-import "./App.css";
 
 // Components to route
 import StartPage from "./StartPage";
@@ -24,8 +23,14 @@ class App extends Component {
         <Route
           path="/favorites"
           render={props => (
-            <div className="container">
-              <Favorites {...props} toggleView={this.toogleView} />
+            <div className="mainContainer">
+              <div className="favoritesHeader">
+                <h3>Favorites</h3>
+              </div>
+
+              <div className="container">
+                <Favorites {...props} toggleView={this.toogleView} />
+              </div>
             </div>
           )}
         />
