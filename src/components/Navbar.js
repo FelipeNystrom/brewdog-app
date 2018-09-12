@@ -4,6 +4,7 @@ import firebase from "./firebase";
 import Signout from "./SignOut";
 import Signin from "./SignIn";
 import image from "../media/blogo.jpg";
+import "./Navbar.css";
 
 class Navbar extends Component {
   state = {
@@ -39,31 +40,36 @@ class Navbar extends Component {
     return (
       <Fragment>
         <nav className="navbar sticky-top navbar-light bg-light">
-          <Link to="/">
-            <img src={image} width="40" height="40" alt="logo" />
-          </Link>
-          {!loggedIn ? (
-            <Fragment>
-              <button
-                type="button"
-                className="btn btn-outline-dark btn-sm"
-                data-toggle="modal"
-                data-target="#authModal"
-                data-whatever="@mdo"
-              >
-                Login
-              </button>
-            </Fragment>
-          ) : (
-            <Fragment>
-              <Link to="/favorites">
-                <button className="btn btn-outline-success btn-sm">
-                  Favorites
+          <div className="navbar-brand">
+            <Link to="/">
+              <img src={image} width="40" height="40" alt="logo" />
+            </Link>
+          </div>
+          <div className="nav-bar-buttons">
+            {!loggedIn ? (
+              <Fragment>
+                <button
+                  type="button"
+                  className="btn btn-outline-dark btn-sm"
+                  data-toggle="modal"
+                  data-target="#authModal"
+                  data-whatever="@mdo"
+                >
+                  Login
                 </button>
-              </Link>
-              <Signout />
-            </Fragment>
-          )}
+              </Fragment>
+            ) : (
+              <Fragment>
+                <Link to="/favorites">
+                  <button className="btn btn-outline-success btn-sm">
+                    Favorites
+                  </button>
+                </Link>
+
+                <Signout />
+              </Fragment>
+            )}
+          </div>
         </nav>
         <Signin />
       </Fragment>
