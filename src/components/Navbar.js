@@ -50,7 +50,7 @@ class Navbar extends Component {
               <Fragment>
                 <button
                   type="button"
-                  className="btn btn-outline-dark btn-sm"
+                  className="btn btn-outline-dark"
                   data-toggle="modal"
                   data-target="#authModal"
                   data-whatever="@mdo"
@@ -61,9 +61,7 @@ class Navbar extends Component {
             ) : (
               <Fragment>
                 <Link to="/favorites">
-                  <button className="btn btn-outline-success btn-sm">
-                    Favorites
-                  </button>
+                  <button className="btn btn-outline-success">Favorites</button>
                 </Link>
 
                 <Signout />
