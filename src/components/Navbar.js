@@ -1,14 +1,14 @@
-import React, { Component, Fragment } from "react";
-import { Link } from "react-router-dom";
-import firebase from "./firebase";
-import Signout from "./SignOut";
-import Signin from "./SignIn";
-import image from "../media/blogo.jpg";
+import React, { Component, Fragment } from 'react';
+import { Link } from 'react-router-dom';
+import firebase from './firebase';
+import Signout from './SignOut';
+import Signin from './SignIn';
+import image from '../media/blogo.jpg';
 
 class Navbar extends Component {
   state = {
     loggedIn: false,
-    userName: ""
+    userName: ''
   };
 
   mounted = true;
@@ -25,11 +25,11 @@ class Navbar extends Component {
       if (user) {
         // User is signed in.
         this.setState({ userName: user.uid, loggedIn: true });
-        console.log(user.uid + " LOGGED IN");
+        console.log(user.uid + ' LOGGED IN');
       } else {
         // User is signed out, user === null
-        this.setState({ userName: "", loggedIn: false });
-        console.log("NOT LOGGED IN");
+        this.setState({ userName: '', loggedIn: false });
+        console.log('NOT LOGGED IN');
       }
     });
   };
@@ -38,7 +38,10 @@ class Navbar extends Component {
     const { loggedIn } = this.state;
     return (
       <Fragment>
-        <nav className="navbar sticky-top navbar-light bg-light">
+        <nav
+          style={{ width: '100%' }}
+          className="navbar sticky-top navbar-light bg-light"
+        >
           <Link to="/">
             <img src={image} width="40" height="40" alt="logo" />
           </Link>
