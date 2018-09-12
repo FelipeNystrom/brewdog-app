@@ -3,6 +3,7 @@ import firebase from './firebase';
 import { Redirect } from 'react-router-dom';
 import ShowMore from 'react-show-more';
 import Loading from './Loading';
+import NavigationControl from './NavigationControl';
 import './Card.css';
 import './Favorites.css';
 
@@ -75,7 +76,7 @@ class Favorites extends Component {
         if (favorites.length !== 0) {
           this.setState({ userFavorites: favorites });
         } else {
-          this.setState({ hasNoFavorites: true });
+          this.setState({ hasNoFavorites: true, userFavorites: [] });
         }
       });
   };
@@ -153,19 +154,30 @@ class Favorites extends Component {
         </div>
       );
     });
+    const { history } = this.props;
+
     return (
       <Fragment>
-        {/* Is displayed during fetch */}
-        {loggedIn &&
-          userFavorites.length === 0 &&
-          !hasNoFavorites && <Loading />}
-        {/* If user has no favorites show message */}
-        {hasNoFavorites && <div>You have 0 favorites</div>}
-        {/* Displays user favorites */}
-        {loggedIn && userFavorites.length > 0 && listFavorites}
-        {/* Is shown for 3 sec when user is logged out then triggers toggleView function which mounts default view  */}
-        {showLogOutMessage && <p>{loggedOutMessage}</p>}
-        {redirect && <Redirect to="/" />}
+        <div className="mainContainer">
+          <div className="favoritesHeader">
+            <h3>Favorites</h3>
+          </div>
+
+          <div className="favoriteContainer">
+            <NavigationControl history={history} />
+            {/* Is displayed during fetch */}
+            {loggedIn &&
+              userFavorites.length === 0 &&
+              !hasNoFavorites && <Loading />}
+            {/* If user has no favorites show message */}
+            {hasNoFavorites && <div>You have 0 favorites</div>}
+            {/* Displays user favorites */}
+            {loggedIn && userFavorites.length > 0 && listFavorites}
+            {/* Is shown for 3 sec when user is logged out then triggers toggleView function which mounts default view  */}
+            {showLogOutMessage && <p>{loggedOutMessage}</p>}
+            {redirect && <Redirect to="/" />}
+          </div>
+        </div>
       </Fragment>
     );
   }
