@@ -14,3 +14,11 @@ body {
   font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
 }
+
+#root {
+  height: 100vh;
+}
+
+a:hover {
+  text-decoration: none;
+}
