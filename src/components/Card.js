@@ -37,7 +37,7 @@ class Card extends Component {
                 lines={4}
                 more="Show more"
                 less="Show less"
-                anchorClass=""
+                anchorClass="showmorebutton"
               >
                 {beer.description}
               </ShowMore>

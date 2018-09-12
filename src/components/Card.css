@@ -46,6 +46,10 @@
   margin-top: 7%;
 }
 
+.showmorebutton {
+  color: rgb(50, 161, 165);
+}
+
 /* Food card */
 
 .food-card {

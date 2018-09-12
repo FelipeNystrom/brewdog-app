@@ -1,10 +1,10 @@
-import React, { Component, Fragment } from 'react';
-import firebase from './firebase';
-import { Redirect } from 'react-router-dom';
-import ShowMore from 'react-show-more';
-import Loading from './Loading';
-import './Card.css';
-import './Favorites.css';
+import React, { Component, Fragment } from "react";
+import firebase from "./firebase";
+import { Redirect } from "react-router-dom";
+import ShowMore from "react-show-more";
+import Loading from "./Loading";
+import "./Card.css";
+import "./Favorites.css";
 
 // Converter from DB-object to Array in state
 function toArray(firebaseObject) {
@@ -20,9 +20,9 @@ class Favorites extends Component {
     hasNoFavorites: false,
     redirect: false,
     userFavorites: [],
-    userName: '',
+    userName: "",
     loggedIn: false,
-    loggedOutMessage: 'Please login too see your favorites',
+    loggedOutMessage: "Please login too see your favorites",
     showLogOutMessage: false
   };
   // switch to prevent processes to run after unmount
@@ -49,7 +49,7 @@ class Favorites extends Component {
         // User is signed out
         this.setState(
           {
-            userName: 'Please Login',
+            userName: "Please Login",
             userFavorites: [],
             loggedIn: false,
             hasNoFavorites: false,
@@ -70,7 +70,7 @@ class Favorites extends Component {
     firebase
       .database()
       .ref(`/users/${this.state.userName}`)
-      .on('value', snapshot => {
+      .on("value", snapshot => {
         const favorites = toArray(snapshot.val());
         if (favorites.length !== 0) {
           this.setState({ userFavorites: favorites });
@@ -121,7 +121,7 @@ class Favorites extends Component {
                   lines={4}
                   more="Show more"
                   less="Show less"
-                  anchorClass=""
+                  anchorClass="showmorebutton"
                 >
                   {fav.beerDescription}
                 </ShowMore>

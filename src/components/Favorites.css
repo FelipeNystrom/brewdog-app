@@ -18,6 +18,10 @@
   transform: rotate(-1deg);
 }
 
+.showmorebutton {
+  color: rgb(50, 161, 165);
+}
+
 @media screen and (min-width: 650px) {
   .favoritesHeader {
     width: 100%;
