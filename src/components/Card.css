@@ -28,12 +28,18 @@
 .beer-card {
   display: flex;
   flex-direction: row;
-  margin-bottom: 5%;
+  padding-bottom: 1%;
+  padding-top: 3%;
 }
 
 .beer-card-title {
   text-align: left;
-  border-bottom: 0.05rem solid hsla(0, 0%, 30%, 0.7);
+  /* border-bottom: 0.05rem solid hsla(0, 0%, 30%, 0.7); */
+}
+
+.beer-card-description {
+  /* margin-top: 2%; */
+  font-size: 0.8rem;
 }
 
 .beer-card-info {
@@ -43,7 +49,7 @@
 .beer-card-img {
   width: 8%;
   margin-left: 7%;
-  margin-top: 7%;
+  margin-top: 1%;
 }
 
 .showmorebutton {
@@ -73,13 +79,17 @@
 
 .food-card-title {
   text-align: left;
-  border-bottom: 0.05rem solid hsla(0, 0%, 30%, 0.7);
+  margin-bottom: 3%;
 }
 
 .food-card-intro {
   font-size: 0.8rem;
-  padding-top: 3%;
+  padding-top: 7%;
   padding-bottom: 3%;
+  border-top: 0.1rem solid hsla(0, 0%, 30%, 0.7);
+}
+
+.food-card-intro-header {
 }
 
 .food-card-img {
@@ -96,7 +106,6 @@
 
 /* General */
 
-.beer-card-description,
 .food-card-description {
   margin-top: 5%;
   font-size: 0.8rem;
@@ -104,7 +113,7 @@
 
 .beer-name,
 .food-name {
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: bold;
 }
 
