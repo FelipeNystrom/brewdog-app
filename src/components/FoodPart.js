@@ -73,6 +73,7 @@ class FoodPart extends Component {
             
           */
           if (
+            result.hits &&
             result.hits[0].recipe.label.includes(
               fixedString
                 .replace('+', ' ')
