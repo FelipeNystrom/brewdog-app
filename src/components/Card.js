@@ -25,6 +25,7 @@ class Card extends Component {
     return (
       <div className="card">
         {/* Beer-card */}
+        <span className="badge badge-info">Perfect match!</span>
         <div className="beer-card">
           <div className="beer-card-info">
             <div className="beer-card-title" role="alert">
@@ -34,7 +35,7 @@ class Card extends Component {
             </div>
             <div className="beer-card-description">
               <ShowMore
-                lines={4}
+                lines={3}
                 more="Show more"
                 less="Show less"
                 anchorClass="showmorebutton"
@@ -47,16 +48,20 @@ class Card extends Component {
             <img src={beer.image_url} alt="beer img" />
           </div>
         </div>
+        <div className="food-card-title" role="alert">
+          <div className="food-name">{recipeToMatch}</div>
+        </div>
 
         {/* Food-card */}
 
-        <div className="food-card-title" role="alert">
-          <span className="badge badge-info">Food match</span>
-          <div className="food-name">{recipeToMatch}</div>
-        </div>
         <div className="food-card-intro">
-          Search for the best matching recipe and try out the match yourself.
-          Login to save your favorite match!
+          {/* <div className="food-card-intro-header">
+            <span className="badge badge-success">Make this food</span>
+          </div> */}
+          <div className="food-card-intro-text">
+            Search for the best matching recipe and try out the match yourself.
+            Login to save your favorite match!
+          </div>
         </div>
 
         {!showMore ? (
