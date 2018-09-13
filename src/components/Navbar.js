@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import firebase from './firebase';
 import Signout from './SignOut';
 import Signin from './SignIn';
-import image from '../media/blogo.jpg';
+import image from '../media/logo-ex-2.png';
 import './Navbar.css';
 
 class Navbar extends Component {
@@ -40,7 +40,7 @@ class Navbar extends Component {
         <nav className="navbar sticky-top navbar-light bg-light">
           <div className="navbar-brand">
             <Link to="/">
-              <img src={image} width="40" height="40" alt="logo" />
+              <img src={image} width="55" height="55" alt="logo" />
             </Link>
           </div>
           <div className="nav-bar-buttons">
