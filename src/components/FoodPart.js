@@ -229,7 +229,7 @@ class FoodPart extends Component {
                   )}
                 {fallback &&
                   finalfallback && (
-                    <div className="badge badge-secondary">Suprise match</div>
+                    <div className="badge badge-secondary">Surprise match</div>
                   )}
               </div>
               <div className="food-card-img">
