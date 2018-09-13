@@ -12,12 +12,12 @@ body {
   margin-top: 26%;
   max-height: 100vh;
   background: #f5f7f8;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
 #root {
-  height: 100vh;
+  height: calc(100vh-80px);
   padding-bottom: 2%;
 }
 
