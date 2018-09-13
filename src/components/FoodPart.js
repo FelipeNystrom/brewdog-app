@@ -179,7 +179,6 @@ class FoodPart extends Component {
           loggedIn: true,
           userName: user.uid
         });
-        console.log(user.uid + ' LOGGED IN');
       } else {
         // User is signed out, user === null
         this.setState({
@@ -189,7 +188,6 @@ class FoodPart extends Component {
           loggedIn: false,
           userName: ''
         });
-        console.log('NOT LOGGED IN');
       }
     });
   };
