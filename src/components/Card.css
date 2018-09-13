@@ -89,7 +89,12 @@
   border-top: 0.1rem solid hsla(0, 0%, 30%, 0.7);
 }
 
-.food-card-intro-header {
+.food-card-intro-text {
+  text-align: center;
+}
+
+.food-card-badge {
+  text-align: center;
 }
 
 .food-card-img {
@@ -113,7 +118,8 @@
 
 .beer-name,
 .food-name {
-  font-size: 0.9rem;
+  font-family: "Exo";
+  font-size: 1rem;
   font-weight: bold;
 }
 

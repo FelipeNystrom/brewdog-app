@@ -16,8 +16,19 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+h3,
+.firstHeader,
+.secondHeader,
+.thirdHeader,
+.ingredientButton,
+.meal {
+  font-family: 'Kanit';
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
 #root {
-  height: 100vh;
+  height: calc(100vh-90px);
   padding-bottom: 2%;
 }
 

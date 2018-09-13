@@ -2,7 +2,7 @@
   position: relative;
   width: 90%;
   margin: 0 auto;
-  margin-bottom: 1.3rem;
+  margin-bottom: 0rem;
   flex: 1;
   color: white;
   min-height: 9rem;
@@ -52,7 +52,6 @@
   background-color: transparent;
   color: hsla(0, 0%, 0%, 0.8);
   text-transform: uppercase;
-  text-decoration: underline;
   text-align: center;
 }
 

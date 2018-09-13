@@ -66,16 +66,16 @@ class FoodPart extends Component {
         .then(res => res.json())
         .then(result => {
           /*
-            check if return is something 
-            
+            check if return is something
+
           */
           if (result.hits.length !== 0) {
             /*
             fixedString.replace('+', ' ').replace(/\b\w/g, l => l.toUpperCase())
             removes every plus with a space and transforms every first caharacter in
-            in each word to uppercase. If results contains exact same title return 
+            in each word to uppercase. If results contains exact same title return
             result as perfect match
-            
+
           */
             if (
               result.hits[0].recipe.label.includes(
@@ -165,8 +165,8 @@ class FoodPart extends Component {
     return sentence.toLowerCase().replace(ws, '+');
   };
 
-  /* Function for login-check. Takes thre arguments that is 
-     passed to search array if user exists or not in db. This 
+  /* Function for login-check. Takes thre arguments that is
+     passed to search array if user exists or not in db. This
      to enable foodpairing functionality without login */
   auth = (first, second, third) => {
     firebase.auth().onAuthStateChanged(user => {
@@ -218,7 +218,7 @@ class FoodPart extends Component {
         ) : (
           <Fragment>
             <div className={`food-card ${show ? 'show' : 'hidden'}`}>
-              <div>
+              <div className="food-card-badge">
                 {!fallback &&
                   !finalfallback && (
                     <div className="badge badge-success">Perfect match!</div>

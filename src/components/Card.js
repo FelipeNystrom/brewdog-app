@@ -60,8 +60,8 @@ class Card extends Component {
             <span className="badge badge-success">Make this food</span>
           </div> */}
           <div className="food-card-intro-text">
-            Search for the best matching recipe and try out the match yourself.
-            Login to save your favorite match!
+            Search for the best matching recipe.
+            <br/>Login to save your favorite match!
           </div>
         </div>
 
