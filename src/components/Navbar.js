@@ -1,15 +1,15 @@
-import React, { Component, Fragment } from 'react';
-import { Link } from 'react-router-dom';
-import firebase from './firebase';
-import Signout from './SignOut';
-import Signin from './SignIn';
-import image from '../media/logo-ex-2.png';
-import './Navbar.css';
+import React, { Component, Fragment } from "react";
+import { Link } from "react-router-dom";
+import firebase from "./firebase";
+import Signout from "./SignOut";
+import Signin from "./SignIn";
+import image from "../media/logo-ex-2.png";
+import "./Navbar.css";
 
 class Navbar extends Component {
   state = {
     loggedIn: false,
-    userName: ''
+    userName: ""
   };
 
   mounted = true;
@@ -28,7 +28,7 @@ class Navbar extends Component {
         this.setState({ userName: user.uid, loggedIn: true });
       } else {
         // User is signed out, user === null
-        this.setState({ userName: '', loggedIn: false });
+        this.setState({ userName: "", loggedIn: false });
       }
     });
   };
