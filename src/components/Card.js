@@ -25,7 +25,6 @@ class Card extends Component {
     return (
       <div className="card">
         {/* Beer-card */}
-        <span className="badge badge-info">Perfect match!</span>
         <div className="beer-card">
           <div className="beer-card-info">
             <div className="beer-card-title" role="alert">
@@ -48,7 +47,9 @@ class Card extends Component {
             <img src={beer.image_url} alt="beer img" />
           </div>
         </div>
-        <div className="food-card-title" role="alert">
+
+        <div className="food-card-title">
+          <span className="badge badge-pill badge-dark">Food to match</span>
           <div className="food-name">{recipeToMatch}</div>
         </div>
 
