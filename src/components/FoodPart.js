@@ -65,17 +65,18 @@ class FoodPart extends Component {
       fetch(searchUrls[0])
         .then(res => res.json())
         .then(result => {
-          console.log(result);
-
           /*
+            check if return is something 
+            
+          */
+          if (result.hits.length !== 0) {
+            /*
             fixedString.replace('+', ' ').replace(/\b\w/g, l => l.toUpperCase())
             removes every plus with a space and transforms every first caharacter in
             in each word to uppercase. If results contains exact same title return 
             result as perfect match
             
           */
-          console.log(result.hits.length !== 0);
-          if (result.hits.length !== 0) {
             if (
               result.hits[0].recipe.label.includes(
                 fixedString
