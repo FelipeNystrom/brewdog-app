@@ -12,12 +12,13 @@ body {
   margin-top: 100px;
   max-height: 100vh;
   background: #f5f7f8;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
 #root {
-  height: calc(100vh-70px);
+  height: 100vh;
+  padding-bottom: 2%;
 }
 
 a {
@@ -26,4 +27,12 @@ a {
 
 a:hover {
   text-decoration: none;
+}
+
+@media screen and (min-width: 650px) {
+  #root {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }

@@ -7,9 +7,9 @@
 
 .card {
   position: relative;
-  max-width: 470px;
+  width: 100%;
   max-height: 100%;
-  margin: 4% auto;
+  margin: 4% 0;
   display: flex;
   padding: 6%;
   flex-direction: column;
@@ -162,10 +162,19 @@
 }
 
 @media screen and (min-width: 650px) {
+  .card {
+    width: 45%;
+  }
+
+  .container {
+    padding: 0 !important;
+    width: 80%;
+    justify-content: space-between;
+  }
   .resultsHeader {
-    width: 100%;
+    width: 80%;
     padding: 2% 0;
-    margin: 2rem 0;
+    margin: 2rem auto;
     background-color: hsl(325, 59%, 49%);
     transform: rotate(-2.5deg);
   }
