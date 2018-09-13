@@ -9,7 +9,7 @@ html {
 }
 
 body {
-  margin-top: 100px;
+  margin-top: 26%;
   max-height: 100vh;
   background: #f5f7f8;
   font-family: 'Roboto', sans-serif;
@@ -30,9 +30,18 @@ a:hover {
 }
 
 @media screen and (min-width: 650px) {
+  body {
+    margin-top: 8%;
+  }
   #root {
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  body {
+    margin-top: 5%;
   }
 }
