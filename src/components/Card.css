@@ -28,7 +28,7 @@
 .beer-card {
   display: flex;
   flex-direction: row;
-  margin-bottom: 5%;
+  /* margin-bottom: 2%; */
 }
 
 .beer-card-title {
@@ -43,11 +43,15 @@
 .beer-card-img {
   width: 8%;
   margin-left: 7%;
-  margin-top: 7%;
+  margin-top: 5%;
 }
 
 .showmorebutton {
   color: rgb(50, 161, 165);
+}
+
+.badge {
+  padding: 0.5em 0.5em;
 }
 
 /* Food card */
@@ -73,13 +77,16 @@
 
 .food-card-title {
   text-align: left;
-  border-bottom: 0.05rem solid hsla(0, 0%, 30%, 0.7);
+  border-bottom: 0.1rem solid hsla(0, 0%, 30%, 0.7);
 }
 
 .food-card-intro {
   font-size: 0.8rem;
-  padding-top: 3%;
+  padding-top: 5%;
   padding-bottom: 3%;
+}
+
+.food-card-intro h3 {
 }
 
 .food-card-img {

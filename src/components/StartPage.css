@@ -30,8 +30,12 @@
 .secondHeader {
   width: 101%;
   position: absolute;
-  border-top: 0.1rem solid #f5f7f8;
-  border-left: 0.1rem solid #f5f7f8;
+  /* border-top: 0.1rem solid #ffffff;
+  border-left: 0.1rem solid #f5f7f8; 
+  
+  added this instead*/
+  margin-top: 0.2rem;
+  margin-left: 0.2rem;
   padding: 3% 0;
   left: -1%;
   top: 40%;
@@ -110,11 +114,11 @@
 }
 
 .dinner {
-  background-image: url('../media/beer4.jpg');
+  background-image: url("../media/beer4.jpg");
 }
 
 .dessert {
-  background-image: url('../media/dessert1.jpg');
+  background-image: url("../media/dessert1.jpg");
 }
 
 @media screen and (min-width: 650px) {

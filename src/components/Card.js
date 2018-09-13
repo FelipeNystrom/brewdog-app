@@ -46,17 +46,22 @@ class Card extends Component {
           <div className="beer-card-img">
             <img src={beer.image_url} alt="beer img" />
           </div>
+          <div className="food-card-title" role="alert">
+            <div className="food-name">
+              <span className="badge badge-info">Food match</span>{" "}
+              {recipeToMatch}
+            </div>
+          </div>
         </div>
 
         {/* Food-card */}
 
-        <div className="food-card-title" role="alert">
-          <span className="badge badge-info">Food match</span>
-          <div className="food-name">{recipeToMatch}</div>
-        </div>
         <div className="food-card-intro">
-          Search for the best matching recipe and try out the match yourself.
-          Login to save your favorite match!
+          <h4>Wan't to try the combo?</h4>
+          <div className="food-card-intro-text">
+            Search for the best matching recipe and try out the match yourself.
+            Login to save your favorite match!
+          </div>
         </div>
 
         {!showMore ? (
