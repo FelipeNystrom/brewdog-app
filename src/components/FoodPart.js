@@ -66,26 +66,32 @@ class FoodPart extends Component {
         .then(res => res.json())
         .then(result => {
           /*
+            check if return is something 
+            
+          */
+          if (result.hits.length !== 0) {
+            /*
             fixedString.replace('+', ' ').replace(/\b\w/g, l => l.toUpperCase())
             removes every plus with a space and transforms every first caharacter in
             in each word to uppercase. If results contains exact same title return 
             result as perfect match
             
           */
-          if (
-            result.hits[0].recipe.label.includes(
-              fixedString
-                .replace('+', ' ')
-                .replace(/\b\w/g, l => l.toUpperCase())
-            )
-          ) {
-            this.setState({
-              ingredients: result.hits[0].recipe.ingredientLines,
-              name: result.hits[0].recipe.label,
-              image: result.hits[0].recipe.image,
-              isLoaded: true,
-              shouldUpdate: false
-            });
+            if (
+              result.hits[0].recipe.label.includes(
+                fixedString
+                  .replace('+', ' ')
+                  .replace(/\b\w/g, l => l.toUpperCase())
+              )
+            ) {
+              this.setState({
+                ingredients: result.hits[0].recipe.ingredientLines,
+                name: result.hits[0].recipe.label,
+                image: result.hits[0].recipe.image,
+                isLoaded: true,
+                shouldUpdate: false
+              });
+            }
             // if no return set state to trigger fallback fetch
           } else {
             this.setState({ fallback: true });
@@ -173,7 +179,6 @@ class FoodPart extends Component {
           loggedIn: true,
           userName: user.uid
         });
-        console.log(user.uid + ' LOGGED IN');
       } else {
         // User is signed out, user === null
         this.setState({
@@ -183,7 +188,6 @@ class FoodPart extends Component {
           loggedIn: false,
           userName: ''
         });
-        console.log('NOT LOGGED IN');
       }
     });
   };
@@ -225,7 +229,7 @@ class FoodPart extends Component {
                   )}
                 {fallback &&
                   finalfallback && (
-                    <div className="badge badge-secondary">Suprise match</div>
+                    <div className="badge badge-secondary">Surprise match</div>
                   )}
               </div>
               <div className="food-card-img">
