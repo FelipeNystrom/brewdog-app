@@ -65,8 +65,20 @@ class FoodPart extends Component {
       fetch(searchUrls[0])
         .then(res => res.json())
         .then(result => {
-          // if result has perfect match return result and set state
-          if (result.hits.includes(fixedString)) {
+          /*
+            fixedString.replace('+', ' ').replace(/\b\w/g, l => l.toUpperCase())
+            removes every plus with a space and transforms every first caharacter in
+            in each word to uppercase. If results contains exact same title return 
+            result as perfect match
+            
+          */
+          if (
+            result.hits[0].recipe.label.includes(
+              fixedString
+                .replace('+', ' ')
+                .replace(/\b\w/g, l => l.toUpperCase())
+            )
+          ) {
             this.setState({
               ingredients: result.hits[0].recipe.ingredientLines,
               name: result.hits[0].recipe.label,
