@@ -65,6 +65,8 @@ class FoodPart extends Component {
       fetch(searchUrls[0])
         .then(res => res.json())
         .then(result => {
+          console.log(result);
+
           /*
             fixedString.replace('+', ' ').replace(/\b\w/g, l => l.toUpperCase())
             removes every plus with a space and transforms every first caharacter in
@@ -72,21 +74,23 @@ class FoodPart extends Component {
             result as perfect match
             
           */
-          if (
-            result.hits &&
-            result.hits[0].recipe.label.includes(
-              fixedString
-                .replace('+', ' ')
-                .replace(/\b\w/g, l => l.toUpperCase())
-            )
-          ) {
-            this.setState({
-              ingredients: result.hits[0].recipe.ingredientLines,
-              name: result.hits[0].recipe.label,
-              image: result.hits[0].recipe.image,
-              isLoaded: true,
-              shouldUpdate: false
-            });
+          console.log(result.hits.length !== 0);
+          if (result.hits.length !== 0) {
+            if (
+              result.hits[0].recipe.label.includes(
+                fixedString
+                  .replace('+', ' ')
+                  .replace(/\b\w/g, l => l.toUpperCase())
+              )
+            ) {
+              this.setState({
+                ingredients: result.hits[0].recipe.ingredientLines,
+                name: result.hits[0].recipe.label,
+                image: result.hits[0].recipe.image,
+                isLoaded: true,
+                shouldUpdate: false
+              });
+            }
             // if no return set state to trigger fallback fetch
           } else {
             this.setState({ fallback: true });
