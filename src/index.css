@@ -9,7 +9,7 @@ html {
 }
 
 body {
-  margin-top: 80px;
+  margin-top: 100px;
   max-height: 100vh;
   background: #f8f9fa;
   font-family: "Roboto", sans-serif;
@@ -17,7 +17,7 @@ body {
 }
 
 #root {
-  height: calc(100vh-70px);
+  height: calc(100vh-body);
 }
 
 a {
