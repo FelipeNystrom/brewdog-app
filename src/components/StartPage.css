@@ -124,6 +124,13 @@
     flex-direction: row;
   }
 
+  .meal {
+    display: flex;
+    min-height: 280px;
+    align-items: center;
+    justify-content: center;
+  }
+
   .mainContainer,
   .navbar {
     width: 80%;
@@ -175,4 +182,11 @@
   .thirdHeader {
     top: 90%;
   }
+  .meal {
+    display: flex;
+    height: 360px;
+    align-items: center;
+    justify-content: center;
+  }
+
 }

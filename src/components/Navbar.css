@@ -6,7 +6,10 @@
   position: fixed;
   top: -1px;
   width: 100%;
-  background: grey;
+}
+
+.navbar {
+  background-color: #f5f7f8;
 }
 
 img {
