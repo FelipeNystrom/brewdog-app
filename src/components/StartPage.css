@@ -6,7 +6,6 @@
   flex: 1;
   color: white;
   min-height: 9rem;
-  transition: all 1s ease-in-out;
 }
 
 .BG {
@@ -141,15 +140,15 @@
   .secondHeader {
     width: 100.5%;
     font-size: 1.5rem;
-    transform: rotate(2deg);
+    transform: rotate(3deg);
     border-width: 0.2rem;
-    padding: 2% 0;
-    top: 50%;
+    padding: 2.5% 0;
+    top: 38%;
     left: -0.5%;
   }
   .thirdHeader {
     font-size: 1.3rem;
-    top: 90%;
+    top: 80%;
   }
 
   .mealContainer {
@@ -162,5 +161,16 @@
   }
   .dessert {
     margin-left: 0.5rem;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .firstHeader {
+  }
+  .secondHeader {
+    top: 42%;
+  }
+  .thirdHeader {
+    top: 90%;
   }
 }
