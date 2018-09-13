@@ -37,7 +37,7 @@ class Navbar extends Component {
     const { loggedIn } = this.state;
     return (
       <Fragment>
-        <nav className="navbar sticky-top navbar-light bg-light">
+        <nav className="navbar sticky-top">
           <div className="navbar-brand">
             <Link to="/">
               <img src={image} width="55" height="55" alt="logo" />
