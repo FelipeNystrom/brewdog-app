@@ -110,12 +110,12 @@
 }
 
 .dinner {
-  background-image: url('../media/beer4.jpg');
+  background-image: url("../media/beer4.jpg");
 }
 
 .dessert {
   margin-top: 1%;
-  background-image: url('../media/dessert1.jpg');
+  background-image: url("../media/dessert1.jpg");
 }
 
 @media screen and (min-width: 650px) {
@@ -136,6 +136,7 @@
 
   .headerContainer {
     min-height: 16rem;
+    margin-bottom: 1.3rem;
     width: 80%;
   }
 
@@ -173,6 +174,10 @@
   }
   .thirdHeader {
     top: 90%;
+  }
+
+  .headerContainer {
+    margin-bottom: 1.3rem;
   }
   .meal {
     display: flex;
