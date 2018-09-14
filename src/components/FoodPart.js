@@ -53,7 +53,6 @@ class FoodPart extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log('update');
     this.mounted = true;
 
     const { fallback, finalfallback, searchUrls } = this.state;
@@ -71,7 +70,6 @@ class FoodPart extends Component {
 
           */
           if (result.hits.length !== 0) {
-            console.log('1st if is true');
             /*
             fixedString.replace('+', ' ').replace(/\b\w/g, l => l.toUpperCase())
             removes every plus with a space and transforms every first caharacter in
@@ -79,14 +77,7 @@ class FoodPart extends Component {
             result as perfect match
 
           */
-            console.log(
-              result.hits[0].recipe.label.includes(recipeToMatch) ||
-                result.hits[0].recipe.label.includes(
-                  fixedString
-                    .replace('+', ' ')
-                    .replace(/\b\w/g, l => l.toUpperCase())
-                )
-            );
+
             if (
               result.hits[0].recipe.label.includes(recipeToMatch) ||
               result.hits[0].recipe.label.includes(
@@ -95,7 +86,6 @@ class FoodPart extends Component {
                   .replace(/\b\w/g, l => l.toUpperCase())
               )
             ) {
-              console.log('2nd if is true');
               this.setState({
                 ingredients: result.hits[0].recipe.ingredientLines,
                 name: result.hits[0].recipe.label,
@@ -106,11 +96,9 @@ class FoodPart extends Component {
             }
             // if no return set state to trigger fallback fetch
             else {
-              console.log('1st if is false');
               this.setState({ fallback: true });
             }
           } else {
-            console.log('1st if is false');
             this.setState({ fallback: true });
           }
         });
