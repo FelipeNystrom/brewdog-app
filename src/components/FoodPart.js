@@ -21,7 +21,6 @@ class FoodPart extends Component {
   componentDidMount() {
     const { showMore } = this.props;
     const { recipeToMatch, searchFor } = this.props;
-    console.log(this.props);
     // string manipulations method to build search query
     const lowerCaseSearch = searchFor.toLowerCase();
     const fixedString = this.noWhiteSpace(recipeToMatch[0]);
