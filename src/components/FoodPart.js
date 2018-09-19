@@ -21,7 +21,7 @@ class FoodPart extends Component {
   componentDidMount() {
     const { showMore } = this.props;
     const { recipeToMatch, searchFor } = this.props;
-
+    console.log(this.props);
     // string manipulations method to build search query
     const lowerCaseSearch = searchFor.toLowerCase();
     const fixedString = this.noWhiteSpace(recipeToMatch[0]);
@@ -36,14 +36,15 @@ class FoodPart extends Component {
 
     arrayFromSearchString.length = indexOfSearchWord + 2;
     const newSearchString = arrayFromSearchString.join('+');
-
+    const apiKey = process.env.REACT_APP_API_KEY;
+    const apiId = process.env.REACT_APP_API_ID;
     // search querys to use for fetch sequence
     // first search query
-    const recipeSearchUrl = `https://api.edamam.com/search?q=${fixedString}&from=0&to=1&app_id=3a28c4f3&app_key=c6990b9b2689845c519d65f89dc29977`;
+    const recipeSearchUrl = `https://api.edamam.com/search?q=${fixedString}&from=0&to=1&app_id=${apiId}&app_key=${apiKey}`;
     // second search query
-    const fallbackUrl = `https://api.edamam.com/search?q=${newSearchString}&from=0&to=1&app_id=3a28c4f3&app_key=c6990b9b2689845c519d65f89dc29977`;
+    const fallbackUrl = `https://api.edamam.com/search?q=${newSearchString}&from=0&to=1&app_id=${apiId}&app_key=${apiKey}`;
     // third search query
-    const finalFallBackUrl = `https://api.edamam.com/search?q=${finalFallback}+${lowerCaseSearch}&from=0&to=1&app_id=3a28c4f3&app_key=c6990b9b2689845c519d65f89dc29977`;
+    const finalFallBackUrl = `https://api.edamam.com/search?q=${finalFallback}+${lowerCaseSearch}&from=0&to=1&app_id=${apiId}&app_key=${apiKey}`;
     // Creates a delay to make class change possible. Updates component!
     if (showMore) {
       setTimeout(() => {
@@ -57,7 +58,7 @@ class FoodPart extends Component {
 
     const { fallback, finalfallback, searchUrls } = this.state;
     const { recipeToMatch } = this.props;
-    // String manipulation
+    // String manipulation remove whitespaces and replace with +
     const fixedString = this.noWhiteSpace(recipeToMatch[0]);
 
     // when component is updated try first search query fetch
@@ -65,16 +66,39 @@ class FoodPart extends Component {
       fetch(searchUrls[0])
         .then(res => res.json())
         .then(result => {
-          // if result has perfect match return result and set state
-          if (result.hits.includes(fixedString)) {
-            this.setState({
-              ingredients: result.hits[0].recipe.ingredientLines,
-              name: result.hits[0].recipe.label,
-              image: result.hits[0].recipe.image,
-              isLoaded: true,
-              shouldUpdate: false
-            });
+          /*
+            check if return is something
+
+          */
+          if (result.hits.length !== 0) {
+            /*
+            fixedString.replace('+', ' ').replace(/\b\w/g, l => l.toUpperCase())
+            removes every plus with a space and transforms every first caharacter in
+            in each word to uppercase. If results contains exact same title return
+            result as perfect match
+
+          */
+
+            if (
+              result.hits[0].recipe.label.includes(recipeToMatch) ||
+              result.hits[0].recipe.label.includes(
+                fixedString
+                  .replace('+', ' ')
+                  .replace(/\b\w/g, l => l.toUpperCase())
+              )
+            ) {
+              this.setState({
+                ingredients: result.hits[0].recipe.ingredientLines,
+                name: result.hits[0].recipe.label,
+                image: result.hits[0].recipe.image,
+                isLoaded: true,
+                shouldUpdate: false
+              });
+            }
             // if no return set state to trigger fallback fetch
+            else {
+              this.setState({ fallback: true });
+            }
           } else {
             this.setState({ fallback: true });
           }
@@ -147,8 +171,8 @@ class FoodPart extends Component {
     return sentence.toLowerCase().replace(ws, '+');
   };
 
-  /* Function for login-check. Takes thre arguments that is 
-     passed to search array if user exists or not in db. This 
+  /* Function for login-check. Takes thre arguments that is
+     passed to search array if user exists or not in db. This
      to enable foodpairing functionality without login */
   auth = (first, second, third) => {
     firebase.auth().onAuthStateChanged(user => {
@@ -161,7 +185,6 @@ class FoodPart extends Component {
           loggedIn: true,
           userName: user.uid
         });
-        console.log(user.uid + ' LOGGED IN');
       } else {
         // User is signed out, user === null
         this.setState({
@@ -171,7 +194,6 @@ class FoodPart extends Component {
           loggedIn: false,
           userName: ''
         });
-        console.log('NOT LOGGED IN');
       }
     });
   };
@@ -202,7 +224,7 @@ class FoodPart extends Component {
         ) : (
           <Fragment>
             <div className={`food-card ${show ? 'show' : 'hidden'}`}>
-              <div>
+              <div className="food-card-badge">
                 {!fallback &&
                   !finalfallback && (
                     <div className="badge badge-success">Perfect match!</div>
@@ -213,7 +235,7 @@ class FoodPart extends Component {
                   )}
                 {fallback &&
                   finalfallback && (
-                    <div className="badge badge-secondary">Suprise match</div>
+                    <div className="badge badge-secondary">Surprise match</div>
                   )}
               </div>
               <div className="food-card-img">

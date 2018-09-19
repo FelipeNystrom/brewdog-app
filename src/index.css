@@ -9,15 +9,27 @@ html {
 }
 
 body {
-  margin-top: 80px;
+  margin-top: 26%;
   max-height: 100vh;
   background: #f5f7f8;
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
+h3,
+.firstHeader,
+.secondHeader,
+.thirdHeader,
+.ingredientButton,
+.meal {
+  font-family: 'Kanit';
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
 #root {
-  height: calc(100vh-70px);
+  height: calc(100vh-80px);
+  padding-bottom: 2%;
 }
 
 a {
@@ -26,4 +38,21 @@ a {
 
 a:hover {
   text-decoration: none;
+}
+
+@media screen and (min-width: 650px) {
+  body {
+    margin-top: 8%;
+  }
+  #root {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  body {
+    margin-top: 5%;
+  }
 }

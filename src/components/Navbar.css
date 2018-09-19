@@ -6,12 +6,21 @@
   position: fixed;
   top: -1px;
   width: 100%;
-  background: grey;
+}
+
+.navbar {
+  background-color: #f5f7f8;
+}
+
+img {
+  border-radius: 0.3rem;
 }
 
 @media screen and (min-width: 650px) {
   .navbar {
-    width: 100%;
-    padding: 0 15%;
+    padding: 0 18%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
   }
 }

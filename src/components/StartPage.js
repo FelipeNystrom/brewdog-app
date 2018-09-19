@@ -36,7 +36,7 @@ class StartPage extends Component {
               <div>Beerit</div>
             </div>
             <div className="secondHeader BG">
-              <div>Match food with beer</div>
+              <div className="secondHeaderText">Match food with beer</div>
             </div>
             <div className="thirdHeader ">
               <div>Choose meal</div>
