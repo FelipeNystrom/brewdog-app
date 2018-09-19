@@ -51,14 +51,26 @@
 
 @media screen and (min-width: 650px) {
   .ingredientsHeader {
-    width: 100%;
+    width: 80%;
     padding: 2% 0;
-    margin: 2rem 0;
+    margin: 2rem auto;
     background-color: hsl(286, 62%, 32%);
     transform: rotate(2.5deg);
   }
 
   .ingredientsWrapper {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .ingredientsWrapper a {
+    width: 80%;
+  }
+
+  .ingredientButton {
+    padding: 1.4rem 0;
+    margin: 0.5rem 0;
   }
 }

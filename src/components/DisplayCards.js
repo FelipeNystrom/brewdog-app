@@ -24,11 +24,9 @@ class DisplayCards extends Component {
       if (user) {
         // User is signed in.
         this.setState({ userName: user.uid, loggedIn: true });
-        console.log(user.uid + ' LOGGED IN');
       } else {
         // User is signed out, user === null
         this.setState({ userName: '', loggedIn: false });
-        console.log('NOT LOGGED IN');
       }
     });
   };
